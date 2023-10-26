@@ -1,4 +1,5 @@
 import React from 'react';
+import "./order_home.css";
 
 class Category extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class Category extends React.Component {
     }
 
   render() {
-    return <button type = "button">{this.state.name}</button>;
+    return <button class = "button"><p class = "text">{this.state.name}</p></button>;
   }
 }
 
