@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Category from "./Cashier/order_home";
+import "./App.css"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Category name = "Teas"/>
+      <Category name = "Brown Sugar"/>
+      <Category name = "Milk Tea"/>
+      <Category name = "Fruits"/>
+      <Category name = "Fresh Sugarcane"/>
+      <Category name = "Fresh Taro/Red Bean"/>
+      <Category name = "Traditional"/>
     </div>
   );
 }
