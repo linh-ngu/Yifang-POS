@@ -1,0 +1,13 @@
+.grid-container-out {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 1px;
+    gap:1px;
+}
+  
+.grid-container-in {
+    display:grid;
+    grid-template-columns: 200px 200px 200px;
+    padding: 1px;
+    gap: 3px;
+}
