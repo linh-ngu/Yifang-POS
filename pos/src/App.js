@@ -1,16 +1,18 @@
-import Category from "./Cashier/order_home";
 import "./App.css"
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Category name = "Teas"/>
-      <Category name = "Brown Sugar"/>
-      <Category name = "Milk Tea"/>
-      <Category name = "Fruits"/>
-      <Category name = "Fresh Sugarcane"/>
-      <Category name = "Fresh Taro/Red Bean"/>
-      <Category name = "Traditional"/>
+      <BrowserRouter> 
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          {/* <Route path="/about" element={<h1>About</h1>} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
