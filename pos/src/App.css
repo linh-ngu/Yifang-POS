@@ -1,8 +1,37 @@
 .App {
   text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #F4EBCC;
 }
 
-.App-logo {
+.auth-form-container, .login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-align: center;
+  padding: 0.25rem 0;
+}
+
+input {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+}
+
+button {
+  border: none;
+  background-color: #F4E1AF;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +64,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
