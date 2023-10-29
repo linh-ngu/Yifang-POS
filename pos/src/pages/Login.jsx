@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/Login.css";
 
 export const Login = () => {
     const [staffid, setStaffID] = useState('');
@@ -11,7 +12,7 @@ export const Login = () => {
 
     return (
         <div className="auth-form-container">
-            <form className="login-form"onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="staffid">Staff ID</label>
                 <input 
                     value={staffid} 
@@ -20,9 +21,7 @@ export const Login = () => {
                     placeholder="Your Staff ID number" 
                     id="staffid" 
                     name="staffid" />
-                <button
-                    type="submit">Log In
-                </button>           
+                <button type="submit">Log In</button>           
             </form>
         </div>
     )
