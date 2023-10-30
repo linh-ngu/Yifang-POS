@@ -212,7 +212,9 @@ class Cashier extends React.Component {
     }
 
     handleGoBack = () => {
-        this.setState({curr: this.state.history.pop()});
+        if(this.state.history.length > 0){
+            this.setState({curr: this.state.history.pop()});
+        }
     };
 
     changeCurr = (newContent, newDrink = "None") => {
