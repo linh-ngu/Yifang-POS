@@ -12,12 +12,10 @@ function App() {
     <div className="App">
         <BrowserRouter>
           <Navbar />
-          <div className='page-wrap'>
             <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/login" element={<Login />} />
             </Routes>
-          </div>
           <Footer />
         </BrowserRouter>
     </div>
