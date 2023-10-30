@@ -11,3 +11,11 @@
     padding: 1px;
     gap: 3px;
 }
+
+.button {
+    display:inline-block;
+    width: 200px;
+    height: 200px;
+    font-size:larger;
+    font-style: italic;
+}
