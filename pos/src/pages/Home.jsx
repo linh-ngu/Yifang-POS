@@ -3,8 +3,27 @@ import Video from '../assets/Yifang.mov'
 import '../styles/Home.css'
 import translateText from '../apirequests/GoogleTranslate';
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 function Home() {
+  // const googleTranslateElementInit = () => {
+  //   new window.google.translate.TranslateElement(
+  //     {
+  //       pageLanguage: "en",
+  //       autoDisplay: false
+  //     },
+  //     "google_translate_element"
+  //   );
+  // };
+  // useEffect(() => {
+  //   var addScript = document.createElement("script");
+  //   addScript.setAttribute(
+  //     "src",
+  //     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  //   );
+  //   document.body.appendChild(addScript);
+  //   window.googleTranslateElementInit = googleTranslateElementInit;
+  // }, []);
   const [inputText, setInputText] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
 
@@ -20,10 +39,9 @@ function Home() {
     <div className='home'>
       <div className="overlay"></div>
       <video src={Video} autoPlay loop muted/>
-      <div className='video-text'>
+      <div id="google_translate_element" className='video-text'>
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
-        {/* adding translate button */}
         <input
         type="text"
         value={inputText}
@@ -35,7 +53,7 @@ function Home() {
         >
           <option value="es">Spanish</option>
           <option value="fr">French</option>
-          {/* Add more language options */}
+          <option value="ZH">Chinese (Mandarin)</option>
         </select>
         <button onClick={handleTranslate}>Translate</button>   
       </div>
