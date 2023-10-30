@@ -28,11 +28,13 @@ function Home() {
   const [inputText, setInputText] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
   const [weatherText, setWeatherText] = useState('');
+  const [translatedText, setTranslatedText] = useState('');
 
   const handleTranslate = async () => {
     if (inputText) {
-      const translatedText = await translateText(inputText, targetLanguage);
-      console.log(translatedText)
+      const translated = await translateText(inputText, targetLanguage);
+      setTranslatedText(translated);
+      console.log(translated);
     }
   };
 
@@ -65,6 +67,7 @@ function Home() {
         </select>
         <button onClick={handleTranslate}>Translate</button>  
         <div>
+          <p>{translatedText}</p>
           <button onClick={handleWeather}>Weather</button>
           <p>{weatherText}</p>
         </div> 
