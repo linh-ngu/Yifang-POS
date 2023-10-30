@@ -27,6 +27,7 @@ function Home() {
   // }, []);
   const [inputText, setInputText] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
+  const [weatherText, setWeatherText] = useState('');
 
   const handleTranslate = async () => {
     if (inputText) {
@@ -36,8 +37,10 @@ function Home() {
   };
 
   const handleWeather = async() => {
-    const weatherText = await getWeather();
-    console.log(weatherText);
+    const weather = await getWeather();
+    setWeatherText(weather.Headline.Text + " - Min: " + weather.DailyForecasts[0].Temperature.Minimum.Value
+    + "F, Max: " + weather.DailyForecasts[0].Temperature.Maximum.Value + "F");
+    console.log(weather);
 }
 
   return (
@@ -63,6 +66,7 @@ function Home() {
         <button onClick={handleTranslate}>Translate</button>  
         <div>
           <button onClick={handleWeather}>Weather</button>
+          <p>{weatherText}</p>
         </div> 
       </div>
     </div>
