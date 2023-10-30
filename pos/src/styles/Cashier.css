@@ -1,6 +1,6 @@
 .grid-container-out {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 50% 50%;
     padding: 1px;
     gap:1px;
 }

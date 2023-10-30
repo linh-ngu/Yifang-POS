@@ -72,6 +72,7 @@ function Home() {
           <p>{weatherText}</p>
         </div> 
       </div>
+      
     </div>
   )
 }
