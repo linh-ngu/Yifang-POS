@@ -34,6 +34,8 @@ class Cashier extends React.Component {
         this.state = {
             staffId: props.staffId,
             curr: this.home,
+            history: [],
+            count: 0
         };
 
         this.customization = (
@@ -55,8 +57,13 @@ class Cashier extends React.Component {
         );
     }
 
+    handleGoBack = () => {
+        this.setState({curr: this.state.history.pop()});
+    };
+
     changeCurr = (newContent, newDrink = "None") => {
-        if(newDrink != "None"){
+        this.state.history.push(this.state.curr);
+        if(newDrink !== "None"){
             this.drink = newDrink;
             this.customization = (
                 <div>
@@ -72,10 +79,15 @@ class Cashier extends React.Component {
 
     render() {
         return (
-            <div class = "grid-container-out">
-                <div></div>
-                <div>{this.state.curr}</div>
-            </div>
+            <>
+                <div class = "grid-container-out">
+                    <div></div>
+                    <div>
+                        <button onClick={() => this.handleGoBack()}>Back</button>
+                        {this.state.curr}
+                    </div>
+                </div>
+            </>
 
         );
     }
