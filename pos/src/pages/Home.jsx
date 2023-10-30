@@ -11,6 +11,7 @@ function Home() {
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
       </div>
+      
     </div>
   )
 }
