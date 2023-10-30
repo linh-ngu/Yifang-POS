@@ -29,3 +29,11 @@ video {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.25);
 }
+
+button {
+    border: none;
+    background-color:#ADD8E6;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}

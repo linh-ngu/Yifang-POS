@@ -10,6 +10,7 @@ function Home() {
       <div className='video-text'>
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
+        <button type="text">Translate</button>    
       </div>
     </div>
   )
