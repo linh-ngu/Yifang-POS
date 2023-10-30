@@ -6,36 +6,36 @@ import getWeather from '../apirequests/AccuWeather';
 import React, { useState } from "react";
 
 function Home() {
-  // const googleTranslateElementInit = () => {
-  //   new window.google.translate.TranslateElement(
-  //     {
-  //       pageLanguage: "en",
-  //       autoDisplay: false
-  //     },
-  //     "google_translate_element"
-  //   );
-  // };
-  // useEffect(() => {
-  //   var addScript = document.createElement("script");
-  //   addScript.setAttribute(
-  //     "src",
-  //     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-  //   );
-  //   document.body.appendChild(addScript);
-  //   window.googleTranslateElementInit = googleTranslateElementInit;
-  // }, []);
-  const [inputText, setInputText] = useState('');
-  const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
+  const googleTranslateElementInit = () => {
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+        autoDisplay: false
+      },
+      "google_translate_element"
+    );
+  };
+  useEffect(() => {
+    var addScript = document.createElement("script");
+    addScript.setAttribute(
+      "src",
+      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    );
+    document.body.appendChild(addScript);
+    window.googleTranslateElementInit = googleTranslateElementInit;
+  }, []);
+  // const [inputText, setInputText] = useState('');
+  // const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
   const [weatherText, setWeatherText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
 
-  const handleTranslate = async () => {
-    if (inputText) {
-      const translated = await translateText(inputText, targetLanguage);
-      setTranslatedText(translated);
-      console.log(translated);
-    }
-  };
+  // const handleTranslate = async () => {
+  //   if (inputText) {
+  //     const translated = await translateText(inputText, targetLanguage);
+  //     setTranslatedText(translated);
+  //     console.log(translated);
+  //   }
+  // };
 
   const handleWeather = async() => {
     const weather = await getWeather();
@@ -51,7 +51,7 @@ function Home() {
       <div id="google_translate_element" className='video-text'>
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
-        <input
+        {/* <input
         type="text"
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
@@ -64,7 +64,7 @@ function Home() {
           <option value="fr">French</option>
           <option value="ZH">Chinese (Mandarin)</option>
         </select>
-        <button onClick={handleTranslate}>Translate</button>  
+        <button onClick={handleTranslate}>Translate</button>   */}
         <div>
           <p>{translatedText}</p>
           <button onClick={handleWeather}>Weather</button>
