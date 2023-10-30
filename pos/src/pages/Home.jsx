@@ -2,6 +2,7 @@
 import Video from '../assets/Yifang.mov'
 import '../styles/Home.css'
 import translateText from '../apirequests/GoogleTranslate';
+import getWeather from '../apirequests/AccuWeather';
 import React, { useState } from "react";
 import { useEffect } from "react";
 
@@ -31,9 +32,13 @@ function Home() {
     if (inputText) {
       const translatedText = await translateText(inputText, targetLanguage);
       console.log(translatedText)
-      // Do something with the translatedText, e.g., display it on the page.
     }
   };
+
+  const handleWeather = async() => {
+    const weatherText = await getWeather();
+    console.log(weatherText);
+}
 
   return (
     <div className='home'>
@@ -55,7 +60,10 @@ function Home() {
           <option value="fr">French</option>
           <option value="ZH">Chinese (Mandarin)</option>
         </select>
-        <button onClick={handleTranslate}>Translate</button>   
+        <button onClick={handleTranslate}>Translate</button>  
+        <div>
+          <button onClick={handleWeather}>Weather</button>
+        </div> 
       </div>
     </div>
   )
