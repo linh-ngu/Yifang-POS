@@ -5,35 +5,73 @@ class Cashier extends React.Component {
     constructor(props) {
         super(props);
         this.drink = "N/A";
-        this.home = 
-                <div class = "grid-container-in">
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.teas)}><p class = "text">Teas</p></button>
-                    </div>
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.bwsg)}><p class = "text">Brown Sugar</p></button>
-                    </div>
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.milkTea)}><p class = "text">Milk Tea</p></button>
-                    </div>
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.fruits)}><p class = "text">Fruits</p></button>
-                    </div>
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.sugarcane)}><p class = "text">Fresh Sugarcane</p></button>
-                        {/* <Category name = "Fresh Sugarcane" onClick={() => this.changeCurr(this.sugarcane)}/> */}
-                    </div>
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.taroBean)}><p class = "text">Fresh Taro/Red Bean</p></button>
-                    </div>
-                    <div>
-                        <button class = "button"  onClick={() => this.changeCurr(this.traditional)}><p class = "text">Traditional</p></button>
-                    </div>
-                </div>;
+
+        this.order_table = [
+            {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
+             {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
+        ];
+
+        this.home_left = 
+            <div class = "grid-container-in">
+                <div>
+                <table>
+                    <thead>
+                        <tr>
+                        <th style={{ paddingLeft: "40%" }}s>Name</th>
+                        <th style={{ paddingLeft: "60%" }}>Qty</th>
+                        <th style={{ paddingLeft: "75%" }}>Each</th>
+                        <th style={{ paddingLeft: "90%" }}>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.order_table.map((item) => (
+                        <tr key={item.drinkId}>
+                            <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
+                            <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
+                            <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
+                            <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
+                        </tr>
+                        ))}
+                    </tbody>
+                    </table>
+                </div>
+                <div> {/*price breakdown*/}
+
+                </div>
+            </div>;
+
+        this.home_right = 
+            <div class = "grid-container-in">
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.teas)}><p class = "text">Teas</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.bwsg)}><p class = "text">Brown Sugar</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.milkTea)}><p class = "text">Milk Tea</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.fruits)}><p class = "text">Fruits</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.sugarcane)}><p class = "text">Fresh Sugarcane</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.taroBean)}><p class = "text">Fresh Taro/Red Bean</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.traditional)}><p class = "text">Traditional</p></button>
+                </div>
+                <div>
+                    <button class = "button"  onClick={() => this.changeCurr(this.traditional)}><p class = "text">Seasonal</p></button>
+                </div>
+            </div>;
 
         this.state = {
             staffId: props.staffId,
-            curr: this.home,
+            curr_right: this.home_right,
+            curr_left: this.home_left,
             history: [],
             count: 0
         };
@@ -213,12 +251,12 @@ class Cashier extends React.Component {
 
     handleGoBack = () => {
         if(this.state.history.length > 0){
-            this.setState({curr: this.state.history.pop()});
+            this.setState({curr_right: this.state.history.pop()});
         }
     };
 
     changeCurr = (newContent, newDrink = "None") => {
-        this.state.history.push(this.state.curr);
+        this.state.history.push(this.state.curr_right);
         if(newDrink !== "None"){
             this.drink = newDrink;
             this.customization = (
@@ -230,17 +268,19 @@ class Cashier extends React.Component {
             newContent = this.customization;
         }
 
-        this.setState({ curr: newContent });
+        this.setState({ curr_right: newContent });
     }
 
     render() {
         return (
             <>
                 <div class = "grid-container-out">
-                    <div></div>
+                    <div>
+                        {this.state.curr_left}
+                    </div>
                     <div>
                         <button onClick={() => this.handleGoBack()}>Back</button>
-                        {this.state.curr}
+                        {this.state.curr_right}
                     </div>
                 </div>
             </>
