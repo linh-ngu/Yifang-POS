@@ -12,7 +12,18 @@
 
 .video-text {
     position: absolute;
+    text-align: center;
+    font-size: x-large;
     color: white;
+}
+
+.video-text h1 {
+    font-size: 3em;
+    padding: 5px
+}
+
+.video-text h3 {
+    padding: 5px;
 }
 
 video {
