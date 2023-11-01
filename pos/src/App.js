@@ -1,4 +1,4 @@
-import './App.css';
+import './index.css';
 import { Login } from "./pages/Login";
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
@@ -19,7 +19,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
-          <Footer />
+          {/* <Footer /> */}
         </BrowserRouter>
     </div>
   );
