@@ -8,37 +8,37 @@ class Cashier extends React.Component {
 
         this.order_table = [
             {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
-             {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
+            {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
         ];
 
-        this.home_left = 
-            <div class = "grid-container-in">
-                <div>
-                <table>
-                    <thead>
-                        <tr>
-                        <th style={{ paddingLeft: "40%" }}s>Name</th>
-                        <th style={{ paddingLeft: "60%" }}>Qty</th>
-                        <th style={{ paddingLeft: "75%" }}>Each</th>
-                        <th style={{ paddingLeft: "90%" }}>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.order_table.map((item) => (
-                        <tr key={item.drinkId}>
-                            <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
-                            <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
-                            <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
-                            <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
-                        </tr>
-                        ))}
-                    </tbody>
-                    </table>
-                </div>
-                <div> {/*price breakdown*/}
-
-                </div>
+        this.home_table = 
+            <div>
+            <table>
+                <thead>
+                    <tr>
+                    <th style={{ paddingLeft: "40%" }}s>Name</th>
+                    <th style={{ paddingLeft: "60%" }}>Qty</th>
+                    <th style={{ paddingLeft: "75%" }}>Each</th>
+                    <th style={{ paddingLeft: "90%" }}>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.order_table.map((item) => (
+                    <tr key={item.drinkId}>
+                        <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
+                        <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
+                        <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
+                        <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
+                    </tr>
+                    ))}
+                </tbody>
+                </table>
             </div>;
+        
+        this.home_price = 
+        <div> {/*price breakdown*/}
+
+        </div>
 
         this.home_right = 
             <div class = "grid-container-in">
@@ -71,7 +71,8 @@ class Cashier extends React.Component {
         this.state = {
             staffId: props.staffId,
             curr_right: this.home_right,
-            curr_left: this.home_left,
+            curr_table: this.home_table,
+            curr_price: this.home_price,
             history_right: [],
             history_left:[],
         };
@@ -79,14 +80,6 @@ class Cashier extends React.Component {
         this.customization = (
             <div>
               <p>Customization for: {this.drink}</p>
-              <div class = "grid-container-topping">
-                <div>
-                    
-                    <input type = "checkbox">Boba
-                    </input>
-                </div>
-
-              </div>
             </div>
         );
 
@@ -262,6 +255,39 @@ class Cashier extends React.Component {
         }
     };
 
+    saveDrink = () => {
+        this.order_table.push({drinkId: 0, drinkName: "test", Qty:2, Each: 5.50, Total: 11});
+        this.changeCurrLeft();
+        this.setState({curr_right: this.state.history_right.pop()});
+    }
+
+    changeCurrLeft = () => {
+        this.home_table =  
+        <div>
+            <table>
+            <thead>
+                <tr>
+                <th style={{ paddingLeft: "40%" }}s>Name</th>
+                <th style={{ paddingLeft: "60%" }}>Qty</th>
+                <th style={{ paddingLeft: "75%" }}>Each</th>
+                <th style={{ paddingLeft: "90%" }}>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {this.order_table.map((item) => (
+                <tr key={item.drinkId}>
+                    <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
+                    <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
+                    <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
+                    <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
+                </tr>
+                ))}
+            </tbody>
+            </table>
+        </div>;
+        
+        this.setState({ curr_table: this.home_table });
+    }
 
     changeCurrRight = (newContent, newDrink = "None") => {
         this.state.history_right.push(this.state.curr_right);
@@ -343,7 +369,7 @@ class Cashier extends React.Component {
                     </div>
 
                     <div style={{textAlign:"right", paddingRight:"10%"}}>
-                        <button class = "button-small"> Save </button>
+                        <button class = "button-small" onClick={() => this.saveDrink()}> Save </button>
                     </div>
                 </div>
             );
@@ -358,7 +384,14 @@ class Cashier extends React.Component {
             <>
                 <div class = "grid-container-out">
                     <div>
-                        {this.state.curr_left}
+                    <div class = "grid-container-in">
+                        <div>
+                            {this.state.curr_table}
+                        </div>
+                        <div> 
+                            {this.state.curr_price}
+                        </div>
+                    </div>;
                     </div>
                     <div>
                         <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
