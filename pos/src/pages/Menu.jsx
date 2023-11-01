@@ -1,12 +1,11 @@
 import React from 'react'
-import Cards from '../components/Cards'
+// import Cards from '../components/Cards'
 import Food from '../components/Food'
-import '../styles/Menu.css'
 
 function Menu() {
   return (
     <div className='menu'>
-        <div className="menu-wrap">
+        <div className='absolute top-[150px] w-full'>
             {/* <Cards /> */}
             <Food />
         </div>

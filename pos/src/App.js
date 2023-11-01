@@ -1,5 +1,5 @@
 import './index.css';
-import { Login } from "./pages/Login";
+import Login from "./pages/Login";
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -19,7 +19,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </BrowserRouter>
     </div>
   );
