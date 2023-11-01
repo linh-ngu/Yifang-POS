@@ -1,9 +1,8 @@
-// import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Video from '../assets/Yifang.mov'
 import '../styles/Home.css'
-import translateText from '../apirequests/GoogleTranslate';
+// import translateText from '../apirequests/GoogleTranslate';
 import getWeather from '../apirequests/AccuWeather';
-import React, { useState, useEffect } from "react";
 
 function Home() {
   const googleTranslateElementInit = () => {
@@ -51,27 +50,12 @@ function Home() {
       <div id="google_translate_element" className='video-text'>
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
-        {/* <input
-        type="text"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        />
-        <select
-          value={targetLanguage}
-          onChange={(e) => setTargetLanguage(e.target.value)}
-        >
-          <option value="es">Spanish</option>
-          <option value="fr">French</option>
-          <option value="ZH">Chinese (Mandarin)</option>
-        </select>
-        <button onClick={handleTranslate}>Translate</button>   */}
         <div>
           <p>{translatedText}</p>
           <button onClick={handleWeather}>Weather</button>
           <p>{weatherText}</p>
-        </div> 
+        </div>
       </div>
-      
     </div>
   )
 }

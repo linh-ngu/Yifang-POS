@@ -1,10 +1,10 @@
-import './App.css';
+import './index.css';
+import Login from "./pages/Login";
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
 import Manager from "./pages/Manager";
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
-import Login from "./pages/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
