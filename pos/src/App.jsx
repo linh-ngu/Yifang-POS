@@ -6,8 +6,8 @@ import Login from "./pages/Login"
 function App() {
   return (
     // <Cashier staffId = "1"/>
-    <Home />
-    // <Login />
+    // <Home />
+    <Login />
   );
 }
 

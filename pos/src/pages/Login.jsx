@@ -1,33 +1,36 @@
-// import React, { useState } from "react";
-// import "../styles/Login.css";
-// import { GoogleLogin } from 'react-google-login';
+import React, { useState } from "react";
+import { useEffect } from 'react';
+import "../styles/Login.css";
 
-// const clientId = "659412670449-bqubbteq6sk1dfk903m8mdh7onu59j4r.apps.googleusercontent.com";
+function Login() {
 
-// function Login() {
+    function handleCallbackResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+    }
 
-//     const onSuccess = (res) => {
-//         console.log("Login Success. Current user: ", res.profileObj);
-//     }
-//     const onFailure = (res) => {
-//         console.log("Login Failed. res: ", res);
-//     }
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: "659412670449-bqubbteq6sk1dfk903m8mdh7onu59j4r.apps.googleusercontent.com",
+            callback: handleCallbackResponse
+        });
 
-//     return (
-//         <div id="signInButton">
-//             <GoogleLogin
-//                 clientId={clientId}
-//                 buttonText="Login"
-//                 onSuccess={onSuccess}
-//                 onFailure={onFailure}
-//                 cookiePolicy={'single-host-origin'}
-//                 isSignedIn={true}
-//             />
-//         </div>
-//     )
-// }
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { theme: "outline", size: "large"}
+        )
+    }, []);
 
-// // export const Login = () => {
+    return (
+        <div>
+            <div id="signInDiv">
+
+            </div>
+        </div>
+    )
+}
+
+// export const Login = () => {
 // //     const [staffid, setStaffID] = useState('');
 
 // //     const handleSubmit = (e) => {
@@ -51,6 +54,6 @@
 // //             </form>
 // //         </div>
 // //     )
-// // }
+// }
 
-// export default Login
+export default Login
