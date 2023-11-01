@@ -1,6 +1,7 @@
 import './App.css';
 import Menu from "./pages/Menu";
 import Home from "./pages/Home";
+import Manager from "./pages/Manager";
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
 import Login from "./pages/Login";
@@ -17,6 +18,7 @@ function App() {
               <Route path="/" element={<Home/>} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/manager" element={<Manager />} />
             </Routes>
           </div>
           <Footer />

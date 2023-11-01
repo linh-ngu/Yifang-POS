@@ -19,6 +19,7 @@ function Navbar() {
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
                     <Link to='/login'>Login</Link>
+                    <Link to='/manager'>Manager</Link>
                 </div>
             </div>
             <div className='rightSide'>
@@ -26,6 +27,7 @@ function Navbar() {
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
                     <Link to='/login'>Login</Link>
+                    <Link to='/manager'>Manager</Link>
                     <button onClick={toggleNavbar}>
                         <MenuIcon/>
                     </button>
