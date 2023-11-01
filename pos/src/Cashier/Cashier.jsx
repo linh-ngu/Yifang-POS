@@ -6,10 +6,7 @@ class Cashier extends React.Component {
         super(props);
         this.drink = "N/A";
 
-        this.order_table = [
-            {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
-            {drinkId: 2, drinkName: "sugarcane lemon mountain tea", Qty: 2, Each: 5.75, Total: 11.50 },
-        ];
+        this.order_table = [];
 
         this.home_table = 
             <div>
@@ -36,9 +33,34 @@ class Cashier extends React.Component {
             </div>;
         
         this.home_price = 
-        <div> {/*price breakdown*/}
-
-        </div>
+        <div> 
+            <div class = "grid-container-topping">
+                <div>
+                    Subtotal:
+                </div>
+                <div>
+                    0.00
+                </div>
+                <div>
+                    Tax:
+                </div>
+                <div>
+                    0.00
+                </div>
+                <div>
+                    Tips:
+                </div>
+                <div>
+                    0.00
+                </div>
+                <div>
+                    Balance Due:
+                </div>
+                <div>
+                    0.00
+                </div>
+            </div>
+        </div>;
 
         this.home_right = 
             <div class = "grid-container-in">
@@ -257,11 +279,12 @@ class Cashier extends React.Component {
 
     saveDrink = () => {
         this.order_table.push({drinkId: 0, drinkName: "test", Qty:2, Each: 5.50, Total: 11});
-        this.changeCurrLeft();
+        this.changeCurrTable();
+        this.changeCurrPrice();
         this.setState({curr_right: this.state.history_right.pop()});
     }
 
-    changeCurrLeft = () => {
+    changeCurrTable = () => {
         this.home_table =  
         <div>
             <table>
@@ -285,8 +308,42 @@ class Cashier extends React.Component {
             </tbody>
             </table>
         </div>;
-        
+
         this.setState({ curr_table: this.home_table });
+    }
+
+    changeCurrPrice = () => {
+        this.home_price = 
+        <div> 
+            <div class = "grid-container-topping">
+                <div>
+                    Subtotal:
+                </div>
+                <div>
+                    5.75
+                </div>
+                <div>
+                    Tax:
+                </div>
+                <div>
+                    {(5.75 * 0.075).toFixed(2)}
+                </div>
+                <div>
+                    Tips:
+                </div>
+                <div>
+                    0.00
+                </div>
+                <div>
+                    Balance Due:
+                </div>
+                <div>
+                    {(5.75 *(1+ 0.075)).toFixed(2)}
+                </div>
+            </div>
+        </div>;
+
+        this.setState({curr_price: this.home_price});
     }
 
     changeCurrRight = (newContent, newDrink = "None") => {
@@ -384,7 +441,7 @@ class Cashier extends React.Component {
             <>
                 <div class = "grid-container-out">
                     <div>
-                    <div class = "grid-container-in">
+                    <div class = "grid-container-left">
                         <div>
                             {this.state.curr_table}
                         </div>

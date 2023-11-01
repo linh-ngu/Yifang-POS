@@ -25,6 +25,13 @@
 
 }
 
+.grid-container-left {
+    display:grid;
+    grid-template-rows: 140% auto;
+    padding: 3px;
+    gap: 3px;
+}
+
 .button {
     display:inline-block;
     width: 200px;
