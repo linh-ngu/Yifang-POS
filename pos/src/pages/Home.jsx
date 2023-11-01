@@ -3,7 +3,11 @@ import Video from '../assets/Yifang.mov'
 import '../styles/Home.css'
 import translateText from '../apirequests/GoogleTranslate';
 import getWeather from '../apirequests/AccuWeather';
+<<<<<<< HEAD
+import React, { useState,useEffect } from "react";
+=======
 import React, { useState, useEffect } from "react";
+>>>>>>> b1687295a6f7c5d8bc1dc845497967000a4b7d6f
 
 function Home() {
   const googleTranslateElementInit = () => {
