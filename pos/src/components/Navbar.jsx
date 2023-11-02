@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Logo from '../assets/YifangLogo.png'
+import Logo from '../assets/yiFangLogo.png'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import '../styles/Navbar.css'
@@ -19,6 +19,7 @@ function Navbar() {
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
                     <Link to='/login'>Login</Link>
+                    <Link to='/manager'>Manager</Link>
                 </div>
             </div>
             <div className='rightSide'>
@@ -26,6 +27,7 @@ function Navbar() {
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
                     <Link to='/login'>Login</Link>
+                    <Link to='/manager'>Manager</Link>
                     <button onClick={toggleNavbar}>
                         <MenuIcon/>
                     </button>

@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 import "../styles/Cashier.css"
 
 class Cashier extends React.Component {
@@ -106,6 +107,8 @@ class Cashier extends React.Component {
         );
 
         this.teas = (
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "sun moon lake black tea")}><p>sun moon lake black tea</p></button>
@@ -123,9 +126,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "tea w/ original salty cream")}><p>tea w/ original salty cream</p></button>
                 </div>
             </div>
+            </>
         );
 
         this.bwsg = (
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl latte")}><p>brown sugar pearl latte</p></button>
@@ -137,9 +143,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl matcha latte")}><p>brown sugar pearl matcha latte</p></button>
                 </div>
             </div>
+            </>
         );
 
         this.milkTea = (
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "traditional milk tea")}><p>traditional milk tea</p></button>
@@ -157,9 +166,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "peach green milk tea")}><p>peach green milk tea</p></button>
                 </div>
             </div>
+            </>
         );
 
         this.fruits = (
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "avocado mango agar cooler")}><p>avocado mango agar cooler</p></button>
@@ -213,9 +225,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "aiyu jelly lemon tea")}><p>aiyu jelly lemon tea</p></button>
                 </div>
             </div>
+            </>
         );
 
         this.sugarcane =(
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane mountain tea")}><p>sugarcane mountain tea</p></button>
@@ -224,8 +239,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane lemon mountain tea")}><p>sugarcane lemon mountain tea</p></button>
                 </div>
             </div>
+            </>
         );
+
         this.taroBean = (
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro latte")}><p>fresh taro latte</p></button>
@@ -246,8 +265,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "red bean match frappe with boba")}><p>red bean match frappe with boba</p></button>
                 </div>
             </div>
+            </>
         );
+
         this.traditional = (
+            <>
+            <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "super trio wintermelon tea")}><p>super trio wintermelon tea</p></button>
@@ -268,6 +291,7 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "thai tea")}><p>thai tea</p></button>
                 </div>
             </div>
+            </>
         );
     }
 
@@ -276,16 +300,17 @@ class Cashier extends React.Component {
             this.setState({curr_right: this.state.history_right.pop()});
         }
     };
-
+    
     saveDrink = () => {
+        // EDIT THIS AFTER CONNECTION WITH DATABASE
         this.order_table.push({drinkId: 0, drinkName: "test", Qty:2, Each: 5.50, Total: 11});
         this.changeCurrTable();
-        this.changeCurrPrice();
+        this.changeCurrPrice(5.75);
         this.setState({curr_right: this.state.history_right.pop()});
     }
 
     changeCurrTable = () => {
-        this.home_table =  
+        this.home_table =  (
         <div>
             <table>
             <thead>
@@ -307,26 +332,26 @@ class Cashier extends React.Component {
                 ))}
             </tbody>
             </table>
-        </div>;
+        </div>);
 
         this.setState({ curr_table: this.home_table });
     }
 
-    changeCurrPrice = () => {
-        this.home_price = 
+    changeCurrPrice = (price) => {
+        this.home_price = (
         <div> 
             <div class = "grid-container-topping">
                 <div>
                     Subtotal:
                 </div>
                 <div>
-                    5.75
+                    {price.toFixed(2)}
                 </div>
                 <div>
                     Tax:
                 </div>
                 <div>
-                    {(5.75 * 0.075).toFixed(2)}
+                    {(price * 0.075).toFixed(2)}
                 </div>
                 <div>
                     Tips:
@@ -338,10 +363,10 @@ class Cashier extends React.Component {
                     Balance Due:
                 </div>
                 <div>
-                    {(5.75 *(1+ 0.075)).toFixed(2)}
+                    {(price *(1+ 0.075)).toFixed(2)}
                 </div>
             </div>
-        </div>;
+        </div>);
 
         this.setState({curr_price: this.home_price});
     }
@@ -436,6 +461,12 @@ class Cashier extends React.Component {
         this.setState({ curr_right: newContent });
     }
 
+    payOrder = () => {
+        this.order_table = [] //clear table
+        this.changeCurrTable();
+        this.changeCurrPrice(0);
+    }
+
     render() {
         return (
             <>
@@ -447,11 +478,13 @@ class Cashier extends React.Component {
                         </div>
                         <div> 
                             {this.state.curr_price}
+                            <div style = {{textAlign:"right", paddingRight:"10%"}}>
+                                <button class = "button-small" onClick={() => this.payOrder()}>Pay Now</button>
+                            </div>
                         </div>
                     </div>;
                     </div>
                     <div>
-                        <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
                         {this.state.curr_right}
                     </div>
                 </div>

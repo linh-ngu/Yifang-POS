@@ -22,7 +22,14 @@ function Login() {
     }, []);
 
     return (
+<<<<<<< HEAD
         <div id='signInDiv'></div>
+=======
+        <div>
+            <div id="signInDiv">
+            </div>
+        </div>
+>>>>>>> ac36fbda1aec23017d59e86ba0e70432993eacaa
     )
 }
 
