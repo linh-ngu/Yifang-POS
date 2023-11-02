@@ -23,7 +23,7 @@ const Food = () => {
     };
 
     return (
-        <div className='max-w-[1640px] m-auto px-4 py-4'>
+        <div className='max-w-[1640px] m-auto px-16 py-4'>
             <h1 className='font-bold text-4xl text-center'>Menu</h1>
             <div className='flex flex-col justify-between py-4'> {/*filter row*/}
                 <div> {/*filter type*/}

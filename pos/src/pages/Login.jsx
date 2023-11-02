@@ -22,11 +22,7 @@ function Login() {
     }, []);
 
     return (
-        <div>
-            <div id="signInDiv">
-
-            </div>
-        </div>
+        <div id='signInDiv'></div>
     )
 }
 

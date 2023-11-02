@@ -32,3 +32,8 @@ button {
     border-radius: 10px;
     width: 200px;
 }
+
+#signInDiv {
+    background-color: green;
+    padding: 150px
+}
