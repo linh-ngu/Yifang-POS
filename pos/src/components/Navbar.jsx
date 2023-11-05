@@ -20,6 +20,7 @@ function Navbar() {
                     <Link to='/order'>Order</Link>
                     <Link to='/login'>Login</Link>
                     <Link to='/manager'>Manager</Link>
+                    <Link to='/cashier'>Cashier</Link>
                 </div>
             </div>
             <div className='rightSide'>
@@ -28,6 +29,7 @@ function Navbar() {
                     <Link to='/order'>Order</Link>
                     <Link to='/login'>Login</Link>
                     <Link to='/manager'>Manager</Link>
+                    <Link to='/cashier'>Cashier</Link>
                     <button onClick={toggleNavbar}>
                         <MenuIcon/>
                     </button>

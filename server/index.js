@@ -11,17 +11,27 @@ app.use(express.json());
 
 //create a todo
 
-//get manager
+// get staff
+// app.get('/manager', async (req, res) => {
+//     try {
+//       const result = await pool.query('SELECT * FROM staff');
+//       res.json(result.rows);
+//       // res.send("hello");
+//     } catch (err) {
+//       console.error(err);
+//       res.status(500).send('Internal Server Error');
+//     }
+//   });
 app.get('/manager', async (req, res) => {
-    try {
-      const result = await pool.query('SELECT * FROM staff');
-      res.json(result.rows);
-      // res.send("hello");
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
-    }
-  });
+  try {
+    const result = await pool.query('SELECT * FROM ingredients');
+    res.json(result.rows);
+    // res.send("hello");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 // get a todo
 

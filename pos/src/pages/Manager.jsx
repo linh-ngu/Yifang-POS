@@ -4,14 +4,14 @@ import { useState } from 'react';
 import '../styles/Manager.css'
 
 const Manager = () => {
-    const[staff, setStaff] = useState([]);
+    const[ingredient, setIngredient] = useState([]);
 
-    const getStaff = async() => {
+    const getIngredient = async() => {
         try {
             const response = await fetch("http://localhost:5000/manager");
             const jsonData = await response.json();
 
-            setStaff(jsonData);
+            setIngredient(jsonData);
 
             // console.log(jsonData);
         } catch (err) {
@@ -20,13 +20,16 @@ const Manager = () => {
     } 
     
     useEffect(() => {
-        getStaff();
+        getIngredient();
     },[]);
 
     return (
         <div className='manager-wrap'>
-            {staff.map(my_staff => (
+            {/* {staff.map(my_staff => (
                 <p>{my_staff.name} | {my_staff.email}</p>
+            ))} */}
+            {ingredient.map(my_ingredient => (
+                <p>{my_ingredient.ingredient_id} | {my_ingredient.name} | {my_ingredient.stock_level} | {my_ingredient.restock_date} | {my_ingredient.supplier}</p>
             ))}
         </div>
     )
