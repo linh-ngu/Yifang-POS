@@ -33,16 +33,13 @@
     /* Remove margin or padding from parent elements if necessary */
   }
   
-  .navbar {
+  .manager-navbar {
     display: flex; /* Aligns the list items in a row */
     justify-content: center; /* Centers the list items */
     align-items: center; /* Centers the list items vertically */
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
   }
   
-  .navbar li {
+  .manager-navbar li {
     padding: 10px 16px; /* Adjust padding to control the spacing of the text */
     margin: 0 4px; /* Space between tabs */
     background-color: #f1f1f1;
@@ -52,12 +49,12 @@
     transition: all 0.3s ease-in-out;
   }
   
-  .navbar li:hover {
+  .manager-navbar li:hover {
     background-color: #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
   }
   
-  .navbar li.active {
+  .manager-navbar li.active {
     background-color: #ccc;
     color: #333;
   }
