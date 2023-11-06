@@ -5,9 +5,14 @@ import '../styles/Manager.css'
 import Ingredient from '../Manager/Ingredient';
 import Menu from '../Manager/Menu';
 import OrderHistory from '../Manager/OrderHistory';
+import Reports from '../Manager/Report';
 
 const Manager = () => {
-    // const[ingredient, setIngredient] = useState([]);
+     //const[ingredient, setIngredient] = useState([]);
+     const[activeTab,setActiveTab] = useState([]);
+     const changeTab = (tab) => {
+        setActiveTab(tab);
+    };
 
     // const getIngredient = async() => {
     //     try {
@@ -37,9 +42,22 @@ const Manager = () => {
     //     </div>
     // )
     return (
-        // <Ingredient />
-        // <Menu />
-        <OrderHistory />
+        <div className='manager-wrap'>
+            <div className="navbar-container">
+            <ul className="navbar">
+                <li className={activeTab === 'ingredient' ? 'active' : ''} onClick={() => changeTab('ingredient')}>Inventory</li>
+                <li className={activeTab === 'menu' ? 'active' : ''} onClick={() => changeTab('menu')}>Menu</li>
+                <li className={activeTab === 'order-history' ? 'active' : ''} onClick={() => changeTab('order-history')}>Order History</li>
+                <li className={activeTab === 'reports' ? 'active' : ''} onClick={() => changeTab('order-history')}>Reports</li>
+            </ul>
+            </div>
+            <div className="tab-content">
+                {activeTab === 'ingredient' && <Ingredient />}
+                {activeTab === 'menu' && <Menu />}
+                {activeTab === 'order-history' && <OrderHistory />}
+                {activeTab === 'reports' && <Reports />}
+            </div>
+        </div>
     )
 };
 

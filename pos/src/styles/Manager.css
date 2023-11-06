@@ -9,3 +9,71 @@
     top: 150px;
     width: 100vw;
 }
+
+/* Manager.css */
+/* Manager.css */
+
+.manager-wrap {
+    font-family: Arial, sans-serif;
+    width: 100%; /* Ensure the manager wrap takes full width */
+    display: flex;
+    justify-content: center; /* Center the tabs container horizontally */
+    align-items: center; /* Center the tabs container vertically */
+    height: 100px; /* Adjust the height as necessary */
+  }
+  
+  .navbar-container {
+    display: flex; /* Use flexbox to align children inline */
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 20px; /* Rounded corners for the navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    /* Remove margin or padding from parent elements if necessary */
+  }
+  
+  .navbar {
+    display: flex; /* Aligns the list items in a row */
+    justify-content: center; /* Centers the list items */
+    align-items: center; /* Centers the list items vertically */
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  
+  .navbar li {
+    padding: 10px 16px; /* Adjust padding to control the spacing of the text */
+    margin: 0 4px; /* Space between tabs */
+    background-color: #f1f1f1;
+    border-radius: 20px; /* Rounded corners for each tab */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for raised effect */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar li:hover {
+    background-color: #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
+  }
+  
+  .navbar li.active {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .tab-content {
+    display: none; /* Hide all tab content by default */
+    padding: 20px;
+    /* Add other styles for your tab content as needed */
+  }
+  
+  /* Specific class to display the active content */
+  .tab-content.active {
+    display: block; /* Show the active tab content */
+  }
+  
+  
+  
+  
+  
