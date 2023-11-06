@@ -4,6 +4,7 @@ import { useState } from 'react';
 import '../styles/Manager.css'
 import Ingredient from '../Manager/Ingredient';
 import Menu from '../Manager/Menu';
+import OrderHistory from '../Manager/OrderHistory';
 
 const Manager = () => {
     // const[ingredient, setIngredient] = useState([]);
@@ -37,7 +38,8 @@ const Manager = () => {
     // )
     return (
         // <Ingredient />
-        <Menu />
+        // <Menu />
+        <OrderHistory />
     )
 };
 
