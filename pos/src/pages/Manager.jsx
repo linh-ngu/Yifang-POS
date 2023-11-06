@@ -44,7 +44,7 @@ const Manager = () => {
     return (
         <div className='manager-wrap'>
             <div className="navbar-container">
-            <ul className="navbar">
+            <ul className="manager-navbar">
                 <li className={activeTab === 'ingredient' ? 'active' : ''} onClick={() => changeTab('ingredient')}>Inventory</li>
                 <li className={activeTab === 'menu' ? 'active' : ''} onClick={() => changeTab('menu')}>Menu</li>
                 <li className={activeTab === 'order-history' ? 'active' : ''} onClick={() => changeTab('order-history')}>Order History</li>

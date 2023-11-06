@@ -12,6 +12,32 @@ const Drink = () => {
             })
         );
     };
+    
+    //customization stuff
+    const Customization = ({ item, onClose }) => {
+        if (!item) return null;
+      
+        return (
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
+            <div className="bg-white p-5 rounded">
+              <h2 className="text-xl font-bold">{item.name}</h2>
+              {/* Add your customization fields here */}
+              <p>Customize your drink...</p>
+              <button onClick={onClose} className="border px-4 py-2 mt-4">Close</button>
+            </div>
+          </div>
+        );
+      };
+
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const openModal = (item) => {
+        setSelectedItem(item);
+    };
+
+    const closeModal = () => {
+        setSelectedItem(null);
+    };
 
     return (
         <div className='max-w-[1640px] m-auto px-16 py-4'>
@@ -35,7 +61,7 @@ const Drink = () => {
 
             <div className='grid grid-cols-2 lg:grid-cols-3 gap-6 pt-4'> {/*display food cards*/}
                 {orders.map((item, index) => (
-                    <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
+                    <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300' onClick={() => openModal(item)}>
                         <img src={item.image} alt={item.name}
                         className='w-full h-[400px] object-cover rounded-t-lg' />
                         <div className='flex justify-between px-2 py-4'>
@@ -47,7 +73,8 @@ const Drink = () => {
                     </div>
                 ) )}
             </div>
-
+                    {/* Modal component */}
+            <Customization item={selectedItem} onClose={closeModal} />
         </div>
     )
 }
