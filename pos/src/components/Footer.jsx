@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../assets/yiFangLogo.png'
+import Logo from '../assets/YifangLogo.png'
 import '../styles/Footer.css'
 
 function Footer() {
