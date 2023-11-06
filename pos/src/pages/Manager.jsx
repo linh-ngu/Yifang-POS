@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import '../styles/Manager.css'
 import Ingredient from '../Manager/Ingredient';
+import Menu from '../Manager/Menu';
 
 const Manager = () => {
     // const[ingredient, setIngredient] = useState([]);
@@ -35,7 +36,8 @@ const Manager = () => {
     //     </div>
     // )
     return (
-        <Ingredient />
+        // <Ingredient />
+        <Menu />
     )
 };
 

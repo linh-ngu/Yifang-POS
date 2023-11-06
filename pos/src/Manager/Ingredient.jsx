@@ -93,17 +93,7 @@ const Ingredient = () => {
     useEffect(() => {
         getIngredient();
     },[]);
-
-    // return (
-    //     <div className='manager-wrap'>
-    //         {/* {staff.map(my_staff => (
-    //             <p>{my_staff.name} | {my_staff.email}</p>
-    //         ))} */}
-    //         {ingredient.map(my_ingredient => (
-    //             <p>{my_ingredient.ingredient_id} | {my_ingredient.name} | {my_ingredient.stock_level} | {my_ingredient.restock_date} | {my_ingredient.supplier}</p>
-    //         ))}
-    //     </div>
-    // )
+    
     return (
         <div className="ingredient-container">
             <table className="ingredient-table">

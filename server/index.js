@@ -22,11 +22,37 @@ app.use(express.json());
 //       res.status(500).send('Internal Server Error');
 //     }
 //   });
+
+// manager -> get ingredients
 app.get('/manager', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM ingredients');
     res.json(result.rows);
     // res.send("hello");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// manager -> get menu (base_drinks)
+app.get('/manager/menu', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM base_drinks');
+    res.json(result.rows);
+    // console.log(req.params);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+//manager -> get orderhistory
+app.get('/manager/orderhistory', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM orders');
+    res.json(result.rows);
+    // console.log(req.params);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
