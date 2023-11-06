@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from 'react';
 import "../styles/Login.css";
 
@@ -22,10 +22,7 @@ function Login() {
     }, []);
 
     return (
-        <div>
-            <div id="signInDiv">
-            </div>
-        </div>
+        <div id='signInDiv'></div>
     )
 }
 
