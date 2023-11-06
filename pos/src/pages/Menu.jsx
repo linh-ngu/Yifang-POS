@@ -6,7 +6,6 @@ function Menu() {
   return (
     <div className='menu'>
         <div className='absolute top-[150px] w-full'>
-            {/* <Cards /> */}
             <Food />
         </div>
     </div>

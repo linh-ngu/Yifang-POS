@@ -48,7 +48,7 @@ const Manager = () => {
                 <li className={activeTab === 'ingredient' ? 'active' : ''} onClick={() => changeTab('ingredient')}>Inventory</li>
                 <li className={activeTab === 'menu' ? 'active' : ''} onClick={() => changeTab('menu')}>Menu</li>
                 <li className={activeTab === 'order-history' ? 'active' : ''} onClick={() => changeTab('order-history')}>Order History</li>
-                <li className={activeTab === 'reports' ? 'active' : ''} onClick={() => changeTab('order-history')}>Reports</li>
+                <li className={activeTab === 'reports' ? 'active' : ''} onClick={() => changeTab('reports')}>Reports</li>
             </ul>
             </div>
             <div className="tab-content">
