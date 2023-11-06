@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Manager from "./pages/Manager";
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
-import Cashier from './Cashier/Cashier';
+import Cashier from './pages/Cashier';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
