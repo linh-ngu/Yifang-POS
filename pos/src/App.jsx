@@ -1,5 +1,5 @@
 import "./App.css"
-import Cashier from "./Cashier/Cashier"
+import Cashier from "./pages/Cashier"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 
