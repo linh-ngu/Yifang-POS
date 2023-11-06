@@ -84,7 +84,7 @@ const Ingredient = () => {
 
             setIngredient(jsonData);
 
-            // console.log(jsonData);
+            console.log(jsonData);
         } catch (err) {
             console.error(err.message);
         }
@@ -93,7 +93,7 @@ const Ingredient = () => {
     useEffect(() => {
         getIngredient();
     },[]);
-    
+
     return (
         <div className="ingredient-container">
             <table className="ingredient-table">
