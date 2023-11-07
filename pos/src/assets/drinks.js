@@ -45,7 +45,7 @@ import pumpkin from './pumpkin.jpg';
 import chai from './chai.jpg';
 import supertriotraditional from './superTrioTraditionalMilkTea.jpeg';
 
-export const data = [
+export const drinksData = [
     {
       id: 1,
       name: 'thai tea',
