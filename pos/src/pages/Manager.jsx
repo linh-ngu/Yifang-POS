@@ -1,11 +1,10 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
 import '../styles/Manager.css'
-import Ingredient from '../Manager/Ingredient';
-import Menu from '../Manager/Menu';
-import OrderHistory from '../Manager/OrderHistory';
-import Reports from '../Manager/Report';
+import Ingredient from '../components/Ingredient';
+import Menu from '../components/Menu';
+import OrderHistory from '../components/OrderHistory';
+import Reports from '../components/Report';
 
 const Manager = () => {
      //const[ingredient, setIngredient] = useState([]);
