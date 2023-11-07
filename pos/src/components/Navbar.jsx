@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Logo from '../assets/yiFangLogo.png'
+import Logo from '../assets/YifangLogo.png'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import '../styles/Navbar.css'
