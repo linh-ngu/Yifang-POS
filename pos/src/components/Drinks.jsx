@@ -19,11 +19,16 @@ const Drink = () => {
       
         return (
           <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
-            <div className="bg-white p-5 rounded">
-              <h2 className="text-xl font-bold">{item.name}</h2>
+            <div className="bg-white rounded-lg">
               {/* Add your customization fields here */}
-              <p>Customize your drink...</p>
+              <img src={item.image} alt={item.name} 
+              className='h-[300px] w-[590px] object-cover rounded-t-lg'/>
+              <div className='px-8 py-6'>
+                <h2 className="text-xl font-bold">{item.name}</h2>
+                <p>Customize your drink...</p>
+              </div>
               <button onClick={onClose} className="border px-4 py-2 mt-4">Close</button>
+              <button>Add to Cart</button>
             </div>
           </div>
         );
