@@ -28,8 +28,8 @@ const Drink = () => {
         if (!item) return null;
       
         return (
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-                <div className="relative bg-white rounded-lg overflow-y-scroll h-3/4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8" onClick={onClose}>
+                <div className="relative bg-white rounded-lg overflow-y-scroll max-h-[calc(100vh-200px)]" onClick={(e) => e.stopPropagation()}>
                     <img src={item.image} alt={item.name} 
                     className='h-[300px] w-[590px] object-cover rounded-t-lg'/>
                     <div className='px-8'>
@@ -55,7 +55,7 @@ const Drink = () => {
                         <div className='flex justify-center items-center m-4'>
                             <button className='m-2 cursor-pointer'>-</button>
                             <p>
-                                <span className='bg-blue-200 text-black p-2 rounded-full'>{item.price}</span> {/*change price to count*/}
+                                <span className='bg-blue-200 text-black p-2 rounded-full'>1</span> {/*change price to count*/}
                             </p>
                             <button className='m-2 cursor-pointer'>+</button>
                         </div>
@@ -82,7 +82,7 @@ const Drink = () => {
             <div className='flex flex-col justify-between py-4'> {/*filter row*/}
                 <div> {/*filter type*/}
                     <p className='font-bold text-gray-700'>Filter Type</p>
-                    <div className='flex'>
+                    <div className='flex flex-wrap'>
                     <button onClick={() => handleFilter('All')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'All' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>All</button>
                         <button onClick={() => handleFilter('Tea')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Tea' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Tea</button>
                         <button onClick={() => handleFilter('Brown Sugar')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Brown Sugar' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Brown Sugar</button>
@@ -96,12 +96,12 @@ const Drink = () => {
                 </div>
             </div>
 
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-6 pt-4'> {/*display food cards*/}
+            <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4'> {/*display food cards*/}
                 {drinks.map((item, index) => (
                     <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300' onClick={() => openModal(item)}>
                         <img src={item.image} alt={item.name}
-                        className='w-full h-[400px] object-cover rounded-t-lg' />
-                        <div className='flex justify-between px-2 py-4'>
+                        className='w-full h-[200px] lg:h-[400px] object-cover rounded-t-lg' />
+                        <div className='flex justify-between px-2 py-4 bg-white'>
                             <p className='font-bold'>{item.name}</p>
                             <p>
                                 <span className='bg-yellow-600 text-white p-2 rounded-full'>{item.price}</span>
@@ -110,7 +110,6 @@ const Drink = () => {
                     </div>
                 ) )}
             </div>
-                    {/* Modal component */}
             <Customization item={selectedItem} onClose={closeModal} />
         </div>
     )

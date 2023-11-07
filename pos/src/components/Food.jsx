@@ -4,28 +4,28 @@ import {drinksData} from '../assets/drinks'
 
 const Food = () => {
 
-    const [activeFilter, setActiveFilter] = useState('All');
+    // const [activeFilter, setActiveFilter] = useState('All');
 
-    const handleFilter = (category) => {
-        if (category === 'All') {
-          setFoods(drinksData);
-        } else {
-          setFoods(
-            drinksData.filter((item) => {
-              return item.category === category;
-            })
-          );
-        }
-        setActiveFilter(category);
-      };
+    // const handleFilter = (category) => {
+    //     if (category === 'All') {
+    //       setFoods(drinksData);
+    //     } else {
+    //       setFoods(
+    //         drinksData.filter((item) => {
+    //           return item.category === category;
+    //         })
+    //       );
+    //     }
+    //     setActiveFilter(category);
+    //   };
     
-    const [foods, setFoods] = useState(drinksData)
+    const [foods] = useState(drinksData)
 
     return (
         <div className='max-w-[1640px] m-auto px-16 py-4'>
             <h1 className='font-bold text-4xl text-center'>Menu</h1>
-            <div className='flex flex-col justify-between py-4'> {/*filter row*/}
-                <div> {/*filter type*/}
+            {/* <div className='flex flex-col justify-between py-4'>
+                <div>
                     <p className='font-bold text-gray-700'>Filter Type</p>
                     <div>
                         <button onClick={() => handleFilter('All')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'All' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>All</button>
@@ -39,14 +39,14 @@ const Food = () => {
                         <button onClick={() => handleFilter('Seasonal')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Seasonal' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Seasonal</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-6 pt-4'> {/*display food cards*/}
+            <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4'>
                 {foods.map((item, index) => (
                     <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
                         <img src={item.image} alt={item.name}
-                        className='w-full h-[400px] object-cover rounded-t-lg' />
-                        <div className='flex justify-between px-2 py-4'>
+                        className='w-full h-[200px] lg:h-[400px] object-cover rounded-t-lg' />
+                        <div className='flex justify-between px-2 py-4 bg-white'>
                             <p className='font-bold'>{item.name}</p>
                             <p>
                                 <span className='bg-yellow-600 text-white p-2 rounded-full'>{item.price}</span>
