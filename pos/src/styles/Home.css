@@ -3,13 +3,6 @@
     margin: 0;
 }
 
-.home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .video-text {
     position: absolute;
     text-align: center;
@@ -24,20 +17,6 @@
 
 .video-text h3 {
     padding: 5px;
-}
-
-video {
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    object-fit: cover;
-}
-
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 150px);
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .weather-button {
