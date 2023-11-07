@@ -41,7 +41,7 @@ video {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-button {
+.weather-button {
     border: none;
     background-color:#ADD8E6;
     margin-top: 10px;

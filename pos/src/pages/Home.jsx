@@ -26,7 +26,7 @@ function Home() {
   // const [inputText, setInputText] = useState('');
   // const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
   const [weatherText, setWeatherText] = useState('');
-  const [translatedText, setTranslatedText] = useState('');
+  const [translatedText] = useState('');
 
   // const handleTranslate = async () => {
   //   if (inputText) {
@@ -52,7 +52,7 @@ function Home() {
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
         <div>
           <p>{translatedText}</p>
-          <button onClick={handleWeather}>Weather</button>
+          <button className='weather-button' onClick={handleWeather}>Weather</button>
           <p>{weatherText}</p>
         </div>
       </div>
