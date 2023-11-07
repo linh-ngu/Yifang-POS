@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import "../styles/Cashier.css"
 
 class Cashier extends React.Component {
