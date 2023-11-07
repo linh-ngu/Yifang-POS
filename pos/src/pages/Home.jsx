@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Video from '../assets/Yifang.mov'
 import '../styles/Home.css'
-// import translateText from '../apirequests/GoogleTranslate';
 import getWeather from '../apirequests/AccuWeather';
+import Footer from '../components/Footer';
 
 function Home() {
   const googleTranslateElementInit = () => {
@@ -25,18 +25,9 @@ function Home() {
     document.body.appendChild(addScript);
     window.googleTranslateElementInit = googleTranslateElementInit;
   }, []);
-  // const [inputText, setInputText] = useState('');
-  // const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
+ 
   const [weatherText, setWeatherText] = useState('');
   const [translatedText] = useState('');
-
-  // const handleTranslate = async () => {
-  //   if (inputText) {
-  //     const translated = await translateText(inputText, targetLanguage);
-  //     setTranslatedText(translated);
-  //     console.log(translated);
-  //   }
-  // };
 
   const handleWeather = async() => {
     const weather = await getWeather();
@@ -46,18 +37,19 @@ function Home() {
   }
 
   return (
-    <div className='home'>
-      <div className="overlay"></div>
-      <video src={Video} autoPlay loop muted/>
+    <div className='flex flex-col justify-center items-center'>
+      <div className="absolute w-full bg-black bg-opacity-50 h-screen top-0"></div>
+      <video src={Video} autoPlay loop muted className='top-0 object-cover h-screen'/>
       <div className='video-text'>
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
         <div>
-          <p id="google_translate_element">{translatedText}</p>
+          <p id="google_translate_element" className='p-4'>{translatedText}</p>
           <button className='weather-button' onClick={handleWeather}>Weather</button>
           <p>{weatherText}</p>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
