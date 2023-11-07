@@ -10,10 +10,12 @@ function Home() {
       {
         pageLanguage: "en",
         autoDisplay: false
+        
       },
       "google_translate_element"
     );
   };
+
   useEffect(() => {
     var addScript = document.createElement("script");
     addScript.setAttribute(
@@ -41,7 +43,7 @@ function Home() {
     setWeatherText(weather.Headline.Text + " - Min: " + weather.DailyForecasts[0].Temperature.Minimum.Value
     + "F, Max: " + weather.DailyForecasts[0].Temperature.Maximum.Value + "F");
     console.log(weather);
-}
+  }
 
   return (
     <div className='home'>

@@ -31,7 +31,6 @@ video {
     height: 100vh;
     top: 0;
     object-fit: cover;
-    /* position: absolute; */
 }
 
 .overlay {
@@ -48,3 +47,10 @@ video {
     padding: 10px;
     border-radius: 10px;
 }
+
+.goog-logo-link,.goog-te-gadget span {
+    display:none !important;
+  }
+ .goog-te-gadget {
+    font-size: 0px!important;
+  }
