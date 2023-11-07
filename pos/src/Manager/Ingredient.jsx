@@ -6,6 +6,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import '../styles/Manager.css'
+import Customization from '../components/Customization';
 
 // class Ingredient extends Component {
 //     // constructor(props) {
@@ -76,6 +77,7 @@ import '../styles/Manager.css'
 
 const Ingredient = () => {
     const[ingredient, setIngredient] = useState([]);
+    const[task, setTask] = useState(null);
 
     const getIngredient = async() => {
         try {
@@ -93,6 +95,14 @@ const Ingredient = () => {
     useEffect(() => {
         getIngredient();
     },[]);
+
+    const openModal = () => {
+        setTask(8);
+    };
+
+    const closeModal = () => {
+        setTask(null);
+    };
 
     return (
         <div className="ingredient-container">
@@ -118,12 +128,13 @@ const Ingredient = () => {
                     ))}
                 </tbody>
             </table>
-            <button className="add-button">Add Ingredient</button>
+            <button className="add-button" onClick={() => openModal()}>Add Ingredient</button>
             <button className="remove-button">Remove Ingredient</button>
             <button className="restock-button">Change Restock Date</button>
             <button className="supplier-button">Change Supplier</button>
             <button className="name-button">Change Name</button>
             <button className="stock-button">Change Stock Level</button>
+            <Customization item={task} onClose={closeModal} />
         </div>
     )
 };

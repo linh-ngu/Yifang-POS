@@ -23,6 +23,18 @@ app.use(express.json());
 //     }
 //   });
 
+// cashier -> get base drinks
+app.get('/cashier', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM base_drinks');
+    res.json(result.rows);
+    // console.log(req.params);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // manager -> get ingredients
 app.get('/manager', async (req, res) => {
   try {
