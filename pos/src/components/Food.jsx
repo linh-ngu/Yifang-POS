@@ -1,18 +1,25 @@
 import React, { useState} from 'react'
-import {data} from '../assets/data'
+import {drinksData} from '../assets/drinks'
 
 
 const Food = () => {
-    
-    const [foods, setFoods] = useState(data)
 
-    const filterType = (category) => {
-        setFoods(
-            data.filter((item) => {
-                return item.category === category
+    const [activeFilter, setActiveFilter] = useState('All');
+
+    const handleFilter = (category) => {
+        if (category === 'All') {
+          setFoods(drinksData);
+        } else {
+          setFoods(
+            drinksData.filter((item) => {
+              return item.category === category;
             })
-        );
-    };
+          );
+        }
+        setActiveFilter(category);
+      };
+    
+    const [foods, setFoods] = useState(drinksData)
 
     return (
         <div className='max-w-[1640px] m-auto px-16 py-4'>
@@ -20,16 +27,16 @@ const Food = () => {
             <div className='flex flex-col justify-between py-4'> {/*filter row*/}
                 <div> {/*filter type*/}
                     <p className='font-bold text-gray-700'>Filter Type</p>
-                    <div className='flex'>
-                        <button onClick={()=> setFoods(data)} className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>All</button>
-                        <button onClick={()=> filterType('Tea')} className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Tea</button>
-                        <button onClick={()=> filterType('Brown Sugar')} className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Brown Sugar</button>
-                        <button onClick={()=> filterType('Milk Tea')}className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Milk Tea</button>
-                        <button onClick={()=> filterType('Fruits')}className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Fruits</button>
-                        <button onClick={()=> filterType('Fresh Sugarcane')}className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Fresh Sugarcane</button>
-                        <button onClick={()=> filterType('Fresh Taro/Red Bean')}className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Fresh Taro/Red Bean</button>
-                        <button onClick={()=> filterType('Traditional')}className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Traditional</button>
-                        <button onClick={()=> filterType('Seasonal')}className='m-1 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-white'>Seasonal</button>
+                    <div>
+                        <button onClick={() => handleFilter('All')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'All' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>All</button>
+                        <button onClick={() => handleFilter('Tea')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Tea' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Tea</button>
+                        <button onClick={() => handleFilter('Brown Sugar')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Brown Sugar' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Brown Sugar</button>
+                        <button onClick={() => handleFilter('Milk Tea')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Milk Tea' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Milk Tea</button>
+                        <button onClick={() => handleFilter('Fruits')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Fruits' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Fruits</button>
+                        <button onClick={() => handleFilter('Fresh Sugarcane')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Fresh Sugarcane' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Fresh Sugarcane</button>
+                        <button onClick={() => handleFilter('Fresh Taro/Red Bean')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Fresh Taro/Red Bean' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Fresh Taro/Red Bean</button>
+                        <button onClick={() => handleFilter('Traditional')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Traditional' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Traditional</button>
+                        <button onClick={() => handleFilter('Seasonal')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Seasonal' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Seasonal</button>
                     </div>
                 </div>
             </div>
