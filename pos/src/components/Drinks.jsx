@@ -37,11 +37,11 @@ const Drink = () => {
                         <p className='pb-4'>add ingredients</p>
                         <hr className='solid'></hr>
                         <h3 className='py-4 font-bold'>Add Toppings (Additional)</h3>
-                        <div className='grid grid-cols-2 gap-3 py-2'>
+                        <div className='grid grid-cols-2 gap-3 pt-2 pb-5'>
                             {toppings.map((item, index) => (
                                 <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
                                     <div className='flex justify-between px-2 py-4'>
-                                        <p className='font-medium'>{item.name}</p>
+                                        <p className='font-medium px-2'>{item.name}</p>
                                     </div>
                                 </div>
                             ) )}
@@ -55,7 +55,7 @@ const Drink = () => {
                         <div className='flex justify-center items-center m-4'>
                             <button className='m-2 cursor-pointer'>-</button>
                             <p>
-                                <span className='bg-blue-200 text-black p-1 rounded-full'>{item.price}</span> {/*change price to count*/}
+                                <span className='bg-blue-200 text-black p-2 rounded-full'>{item.price}</span> {/*change price to count*/}
                             </p>
                             <button className='m-2 cursor-pointer'>+</button>
                         </div>
@@ -104,7 +104,7 @@ const Drink = () => {
                         <div className='flex justify-between px-2 py-4'>
                             <p className='font-bold'>{item.name}</p>
                             <p>
-                                <span className='bg-yellow-600 text-white p-1 rounded-full'>{item.price}</span>
+                                <span className='bg-yellow-600 text-white p-2 rounded-full'>{item.price}</span>
                             </p>
                         </div>
                     </div>
