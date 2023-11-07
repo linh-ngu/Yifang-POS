@@ -49,11 +49,11 @@ function Home() {
     <div className='home'>
       <div className="overlay"></div>
       <video src={Video} autoPlay loop muted/>
-      <div id="google_translate_element" className='video-text'>
+      <div className='video-text'>
         <h1>Yi Fang Taiwan Fruit Tea</h1>
         <h3>Authentic  ·  Organic  ·  Fresh</h3>
         <div>
-          <p>{translatedText}</p>
+          <p id="google_translate_element">{translatedText}</p>
           <button className='weather-button' onClick={handleWeather}>Weather</button>
           <p>{weatherText}</p>
         </div>
