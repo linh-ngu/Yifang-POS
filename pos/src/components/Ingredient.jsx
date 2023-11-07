@@ -6,7 +6,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import '../styles/Manager.css'
-import Customization from '../components/Customization';
+import Customization from './Customization';
 
 // class Ingredient extends Component {
 //     // constructor(props) {
