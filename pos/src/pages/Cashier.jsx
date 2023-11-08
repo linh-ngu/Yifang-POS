@@ -13,10 +13,10 @@ class Cashier extends React.Component {
             <table>
                 <thead>
                     <tr>
-                    <th style={{ paddingLeft: "40%" }}s>Name</th>
-                    <th style={{ paddingLeft: "60%" }}>Qty</th>
-                    <th style={{ paddingLeft: "75%" }}>Each</th>
-                    <th style={{ paddingLeft: "90%" }}>Total</th>
+                    <th style={{ paddingLeft: "40%", paddingTop: "15%"}}>Name</th>
+                    <th style={{ paddingLeft: "60%", paddingTop: "15%" }}>Qty</th>
+                    <th style={{ paddingLeft: "75%", paddingTop: "15%"}}>Each</th>
+                    <th style={{ paddingLeft: "90%", paddingTop: "15%" }}>Total</th>
                     </tr>
                 </thead>
                 <tbody>
