@@ -3,7 +3,7 @@
     grid-template-columns: 50% 50%;
     padding: 1px;
     gap:1px;
-    padding-top: 125px;
+    padding-top: 150px;
     min-height: 650px;
 }
   
@@ -41,12 +41,16 @@
     font-size:larger;
     font-style: italic;
     border-radius: 10px;
+    border: 2px;
+    background-color: antiquewhite;
 }
 
 .button-small{
     display:-ms-flexbox;
     align-items: center;
     justify-content: center;
+    background-color: antiquewhite;
+    border-radius: 10px;
     width: 100px;
     height: 30px;
 }

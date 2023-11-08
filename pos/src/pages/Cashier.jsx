@@ -5,6 +5,7 @@ class Cashier extends React.Component {
     constructor(props) {
         super(props);
         this.drink = "N/A";
+        this.qty = 1;
 
         this.order_table = [];
 
@@ -302,7 +303,7 @@ class Cashier extends React.Component {
     
     saveDrink = () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
-        this.order_table.push({drinkId: 0, drinkName: "test", Qty:2, Each: 5.50, Total: 11});
+        this.order_table.push({drinkId: 0, drinkName: this.drink, Qty: this.qty, Each: 5.75, Total: 5.75*this.qty});
         this.changeCurrTable();
         this.changeCurrPrice(5.75);
         this.setState({curr_right: this.state.history_right.pop()});
@@ -446,7 +447,7 @@ class Cashier extends React.Component {
                     </div>
                 </div>
                     <div style={{textAlign: "center"}}>
-                        Qty <input type="number" style={{width:"25px", height:"5px"}}></input>
+                        Qty <input type="number" style={{width:"40px", height:"10px"}}></input>
                     </div>
 
                     <div style={{textAlign:"right", paddingRight:"10%"}}>
