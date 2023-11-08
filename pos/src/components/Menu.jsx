@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import jdbcpostgreSQL from './jdbcpostgreSQL';
 import { useEffect } from 'react';
 import { useState } from 'react';

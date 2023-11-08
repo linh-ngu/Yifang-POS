@@ -1,8 +1,8 @@
-.App {
-  margin: 0px;
-  padding: 0px;
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-.page-wrap {
-  min-height: calc(100vh - 150px);
+.App {
+    margin: 0px;
+    padding: 0px;
 }
