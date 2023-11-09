@@ -105,6 +105,10 @@ const Menu = () => {
   useEffect(() => {
       getMenu();
   },[]);
+
+  const addDrinks = () => {
+    console.log("hi");
+  };
   
   return (
     <div className="ingredient-container">
@@ -128,7 +132,7 @@ const Menu = () => {
                 ))}
                 </tbody>
             </table>
-              <button>Add</button>
+              <button onClick={addDrinks}>Add</button>
               <button>Remove</button>
               <button>Name</button>
               <button>Price</button>
