@@ -64,7 +64,7 @@ function Order() {
               </p>
               <button className='m-2 cursor-pointer'>+</button>
             </div>
-            <button className='bg-blue-500 rounded-full h-10 w-full m-6'>Add to Cart</button>
+            <button className='bg-blue-500 rounded-full h-10 w-full m-6' onClick={onClose}>Add to Cart</button>
           </div>
         </div>
       </div>
