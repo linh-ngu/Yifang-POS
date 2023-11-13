@@ -4,12 +4,20 @@ import "../styles/Cashier.css"
 class Cashier extends React.Component {
     constructor(props) {
         super(props);
+
+        // to store drink info from database
+        this.totPrice = 0;
+        this.drinkId = 0;
         this.drink = "N/A";
-        this.qty = 1;
+        this.qty = 0;
+        this.price = 0;
+        this.ingredients = []
+        this.drinks = []
 
-        this.order_table = [];
+        // to display ordered items
+        this.orderTable = [];
 
-        this.home_table = 
+        this.homeTable = 
             <div>
             <table>
                 <thead>
@@ -21,7 +29,7 @@ class Cashier extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.order_table.map((item) => (
+                    {this.orderTable.map((item) => (
                     <tr key={item.drinkId}>
                         <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
                         <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
@@ -32,7 +40,8 @@ class Cashier extends React.Component {
                 </tbody>
                 </table>
             </div>;
-        
+
+        // to display order items prices
         this.home_price = 
         <div> 
             <div class = "grid-container-topping">
@@ -63,6 +72,7 @@ class Cashier extends React.Component {
             </div>
         </div>;
 
+        //to display drink buttons on the right side of the screen
         this.home_right = 
             <div class = "grid-container-in">
                 <div>
@@ -90,11 +100,12 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.traditional)}><p>Seasonal</p></button>
                 </div>
             </div>;
-
+        
+        // states stored to tab between displays (and back)
         this.state = {
             staffId: props.staffId,
             curr_right: this.home_right,
-            curr_table: this.home_table,
+            curr_table: this.homeTable,
             curr_price: this.home_price,
             history_right: [],
             history_left:[],
@@ -300,17 +311,47 @@ class Cashier extends React.Component {
             this.setState({curr_right: this.state.history_right.pop()});
         }
     };
+
+    handleQtyChange = (event) => {
+        // Update the state with the new input value
+        this.qty = event.target.value;
+    };
+
+    handleToppingChange = (name, event) => {
+        if(!event.target.checked){
+            var index = this.ingredients.indexOf(name);
+            
+            if(index !== -1){
+                this.ingredients.splice(index, 1);
+                this.price -= .75;
+            }
+        }
+        else{
+            this.ingredients.push(name);
+            this.price += .75;
+        }
+    }
     
     saveDrink = () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
-        this.order_table.push({drinkId: 0, drinkName: this.drink, Qty: this.qty, Each: 5.75, Total: 5.75*this.qty});
-        this.changeCurrTable();
-        this.changeCurrPrice(5.75);
-        this.setState({curr_right: this.state.history_right.pop()});
+        if(this.qty > 0){
+            this.totPrice += this.price*this.qty
+            this.orderTable.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
+            this.changeCurrTable();
+            this.changeCurrPrice();
+            this.setState({curr_right: this.state.history_right.pop()});
+        }
+
+        // reset values
+        this.drinkId = 0;
+        this.drink = "N/A";
+        this.price = 0;
+        this.qty = 0;
+        this.ingredients = [];
     }
 
     changeCurrTable = () => {
-        this.home_table =  (
+        this.homeTable =  (
         <div>
             <table>
             <thead>
@@ -322,7 +363,7 @@ class Cashier extends React.Component {
                 </tr>
             </thead>
             <tbody>
-                {this.order_table.map((item) => (
+                {this.orderTable.map((item) => (
                 <tr key={item.drinkId}>
                     <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
                     <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
@@ -334,10 +375,10 @@ class Cashier extends React.Component {
             </table>
         </div>);
 
-        this.setState({ curr_table: this.home_table });
+        this.setState({ curr_table: this.homeTable });
     }
 
-    changeCurrPrice = (price) => {
+    changeCurrPrice = () => {
         this.home_price = (
         <div> 
             <div class = "grid-container-topping">
@@ -345,13 +386,13 @@ class Cashier extends React.Component {
                     Subtotal:
                 </div>
                 <div>
-                    {price.toFixed(2)}
+                    {this.totPrice.toFixed(2)}
                 </div>
                 <div>
                     Tax:
                 </div>
                 <div>
-                    {(price * 0.075).toFixed(2)}
+                    {(this.totPrice * 0.075).toFixed(2)}
                 </div>
                 <div>
                     Tips:
@@ -363,7 +404,7 @@ class Cashier extends React.Component {
                     Balance Due:
                 </div>
                 <div>
-                    {(price *(1+ 0.075)).toFixed(2)}
+                    {(this.totPrice*(1+ 0.075)).toFixed(2)}
                 </div>
             </div>
         </div>);
@@ -383,74 +424,78 @@ class Cashier extends React.Component {
                         Boba 
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("boba", event)}></input>
                     </div>
                     <div>
                         Lychee Coconut Jelly 
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("lychee coconut jelly", event)}></input>
                     </div>
                     <div>
                         Sago 
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("sago", event)}></input>
                     </div>
                     <div>
                         Aiyu
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("aiyu", event)}></input>
                     </div>
                     <div>
                         Agar Boba
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("agar boba", event)}></input>
                     </div>
                     <div>
                         Aloe Vera
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("aloe vera", event)}></input>
                     </div>
                     <div>
                         Cheese Foam
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("cheese foam", event)}></input>
                     </div>
                     <div>
                         Red Bean
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("red bean", event)}></input>
                     </div>
                     <div>
                         Black Glutinous Rice
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("black glutinous rice", event)}></input>
                     </div>
                     <div>
                         Grass Jelly
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("grass jelly", event)}></input>
                     </div>
                     <div>
                         Taro Mochi
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("Taro Mochi", event)}></input>
                     </div>
                 </div>
                     <div style={{textAlign: "center"}}>
-                        Qty <input type="number" style={{width:"40px", height:"10px"}}></input>
+                        Qty <input type="number" style={{width:"50px", height:"30px",  border:"2px solid #ccc", borderRadius:"3px"}} onChange={this.handleQtyChange}></input>
                     </div>
 
-                    <div style={{textAlign:"right", paddingRight:"10%"}}>
+                    <div style = {{float: "left", paddingLeft:"10%", display:"inline-block"}}>
+                        <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
+                    </div>
+
+                    <div style={{float:"right", paddingRight:"10%", display:"inline-block"}}>
                         <button class = "button-small" onClick={() => this.saveDrink()}> Save </button>
                     </div>
                 </div>
@@ -462,7 +507,7 @@ class Cashier extends React.Component {
     }
 
     payOrder = () => {
-        this.order_table = [] //clear table
+        this.orderTable = [] //clear table
         this.changeCurrTable();
         this.changeCurrPrice(0);
     }

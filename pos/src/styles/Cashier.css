@@ -9,9 +9,9 @@
   
 .grid-container-in {
     display:grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 200px 200px 200px;
     padding: 3px;
-    gap: 3px;
+    gap: 5px;
 }
 
 .grid-container-topping {
