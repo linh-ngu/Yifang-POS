@@ -6,6 +6,7 @@ class Cashier extends React.Component {
         super(props);
 
         // to store drink info from database
+        this.totPrice = 0;
         this.drinkId = 0;
         this.drink = "N/A";
         this.qty = 0;
@@ -14,9 +15,9 @@ class Cashier extends React.Component {
         this.drinks = []
 
         // to display ordered items
-        this.order_table = [];
+        this.orderTable = [];
 
-        this.home_table = 
+        this.homeTable = 
             <div>
             <table>
                 <thead>
@@ -28,7 +29,7 @@ class Cashier extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.order_table.map((item) => (
+                    {this.orderTable.map((item) => (
                     <tr key={item.drinkId}>
                         <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
                         <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
@@ -104,7 +105,7 @@ class Cashier extends React.Component {
         this.state = {
             staffId: props.staffId,
             curr_right: this.home_right,
-            curr_table: this.home_table,
+            curr_table: this.homeTable,
             curr_price: this.home_price,
             history_right: [],
             history_left:[],
@@ -334,9 +335,10 @@ class Cashier extends React.Component {
     saveDrink = () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
         if(this.qty > 0){
-            this.order_table.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
+            this.totPrice += this.price*this.qty
+            this.orderTable.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
             this.changeCurrTable();
-            this.changeCurrPrice(5.75);
+            this.changeCurrPrice();
             this.setState({curr_right: this.state.history_right.pop()});
         }
 
@@ -349,7 +351,7 @@ class Cashier extends React.Component {
     }
 
     changeCurrTable = () => {
-        this.home_table =  (
+        this.homeTable =  (
         <div>
             <table>
             <thead>
@@ -361,7 +363,7 @@ class Cashier extends React.Component {
                 </tr>
             </thead>
             <tbody>
-                {this.order_table.map((item) => (
+                {this.orderTable.map((item) => (
                 <tr key={item.drinkId}>
                     <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
                     <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
@@ -373,10 +375,10 @@ class Cashier extends React.Component {
             </table>
         </div>);
 
-        this.setState({ curr_table: this.home_table });
+        this.setState({ curr_table: this.homeTable });
     }
 
-    changeCurrPrice = (price) => {
+    changeCurrPrice = () => {
         this.home_price = (
         <div> 
             <div class = "grid-container-topping">
@@ -384,13 +386,13 @@ class Cashier extends React.Component {
                     Subtotal:
                 </div>
                 <div>
-                    {price.toFixed(2)}
+                    {this.totPrice.toFixed(2)}
                 </div>
                 <div>
                     Tax:
                 </div>
                 <div>
-                    {(price * 0.075).toFixed(2)}
+                    {(this.totPrice * 0.075).toFixed(2)}
                 </div>
                 <div>
                     Tips:
@@ -402,7 +404,7 @@ class Cashier extends React.Component {
                     Balance Due:
                 </div>
                 <div>
-                    {(price *(1+ 0.075)).toFixed(2)}
+                    {(this.totPrice*(1+ 0.075)).toFixed(2)}
                 </div>
             </div>
         </div>);
@@ -501,7 +503,7 @@ class Cashier extends React.Component {
     }
 
     payOrder = () => {
-        this.order_table = [] //clear table
+        this.orderTable = [] //clear table
         this.changeCurrTable();
         this.changeCurrPrice(0);
     }
