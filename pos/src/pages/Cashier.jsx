@@ -4,9 +4,15 @@ import "../styles/Cashier.css"
 class Cashier extends React.Component {
     constructor(props) {
         super(props);
-        this.drink = "N/A";
-        this.qty = 1;
 
+        // to store drink info from database
+        this.drink = "N/A";
+        this.qty = 0;
+        this.price = 0;
+        this.ingredients = []
+        this.drinks = []
+
+        // to display ordered items
         this.order_table = [];
 
         this.home_table = 
@@ -32,7 +38,8 @@ class Cashier extends React.Component {
                 </tbody>
                 </table>
             </div>;
-        
+
+        // to display order items prices
         this.home_price = 
         <div> 
             <div class = "grid-container-topping">
@@ -63,6 +70,7 @@ class Cashier extends React.Component {
             </div>
         </div>;
 
+        //to display drink buttons on the right side of the screen
         this.home_right = 
             <div class = "grid-container-in">
                 <div>
@@ -90,7 +98,8 @@ class Cashier extends React.Component {
                     <button class = "button"  onClick={() => this.changeCurrRight(this.traditional)}><p>Seasonal</p></button>
                 </div>
             </div>;
-
+        
+        // states stored to tab between displays (and back)
         this.state = {
             staffId: props.staffId,
             curr_right: this.home_right,
@@ -300,6 +309,11 @@ class Cashier extends React.Component {
             this.setState({curr_right: this.state.history_right.pop()});
         }
     };
+
+    handleQtyChange = (event) => {
+        // Update the state with the new input value
+        this.qty = event.target.value;
+    };
     
     saveDrink = () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
@@ -307,6 +321,12 @@ class Cashier extends React.Component {
         this.changeCurrTable();
         this.changeCurrPrice(5.75);
         this.setState({curr_right: this.state.history_right.pop()});
+
+        // reset values
+        this.drink = "N/A";
+        this.price = 0;
+        this.qty = 0;
+        this.ingredients = [];
     }
 
     changeCurrTable = () => {
@@ -447,7 +467,7 @@ class Cashier extends React.Component {
                     </div>
                 </div>
                     <div style={{textAlign: "center"}}>
-                        Qty <input type="number" style={{width:"40px", height:"10px"}}></input>
+                        Qty <input type="number" style={{width:"40px", height:"15px"}} onChange={this.handleQtyChange}></input>
                     </div>
 
                     <div style={{textAlign:"right", paddingRight:"10%"}}>
