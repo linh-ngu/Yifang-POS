@@ -422,61 +422,61 @@ class Cashier extends React.Component {
                         Boba 
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("boba", event)}></input>
                     </div>
                     <div>
                         Lychee Coconut Jelly 
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("lychee coconut jelly", event)}></input>
                     </div>
                     <div>
                         Sago 
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("sago", event)}></input>
                     </div>
                     <div>
                         Aiyu
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("aiyu", event)}></input>
                     </div>
                     <div>
                         Agar Boba
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("agar boba", event)}></input>
                     </div>
                     <div>
                         Aloe Vera
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("aloe vera", event)}></input>
                     </div>
                     <div>
                         Cheese Foam
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("cheese foam", event)}></input>
                     </div>
                     <div>
                         Red Bean
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("red bean", event)}></input>
                     </div>
                     <div>
                         Black Glutinous Rice
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("black glutinous rice", event)}></input>
                     </div>
                     <div>
                         Grass Jelly
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("grass jelly", event)}></input>
                     </div>
                     <div>
                         Taro Mochi
