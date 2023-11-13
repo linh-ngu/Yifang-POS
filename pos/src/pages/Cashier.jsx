@@ -488,10 +488,14 @@ class Cashier extends React.Component {
                     </div>
                 </div>
                     <div style={{textAlign: "center"}}>
-                        Qty <input type="number" style={{width:"40px", height:"15px"}} onChange={this.handleQtyChange}></input>
+                        Qty <input type="number" style={{width:"50px", height:"30px",  border:"2px solid #ccc", borderRadius:"3px"}} onChange={this.handleQtyChange}></input>
                     </div>
 
-                    <div style={{textAlign:"right", paddingRight:"10%"}}>
+                    <div style = {{float: "left", paddingLeft:"10%", display:"inline-block"}}>
+                        <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
+                    </div>
+
+                    <div style={{float:"right", paddingRight:"10%", display:"inline-block"}}>
                         <button class = "button-small" onClick={() => this.saveDrink()}> Save </button>
                     </div>
                 </div>
