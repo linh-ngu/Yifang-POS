@@ -6,6 +6,7 @@ class Cashier extends React.Component {
         super(props);
 
         // to store drink info from database
+        this.drinkId = 0;
         this.drink = "N/A";
         this.qty = 0;
         this.price = 0;
@@ -314,15 +315,33 @@ class Cashier extends React.Component {
         // Update the state with the new input value
         this.qty = event.target.value;
     };
+
+    handleToppingChange = (name, event) => {
+        if(!event.target.checked){
+            var index = this.ingredients.indexOf(name);
+            
+            if(index !== -1){
+                this.ingredients.splice(index, 1);
+                this.price -= .75;
+            }
+        }
+        else{
+            this.ingredients.push(name);
+            this.price += .75;
+        }
+    }
     
     saveDrink = () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
-        this.order_table.push({drinkId: 0, drinkName: this.drink, Qty: this.qty, Each: 5.75, Total: 5.75*this.qty});
-        this.changeCurrTable();
-        this.changeCurrPrice(5.75);
-        this.setState({curr_right: this.state.history_right.pop()});
+        if(this.qty > 0){
+            this.order_table.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
+            this.changeCurrTable();
+            this.changeCurrPrice(5.75);
+            this.setState({curr_right: this.state.history_right.pop()});
+        }
 
         // reset values
+        this.drinkId = 0;
         this.drink = "N/A";
         this.price = 0;
         this.qty = 0;
@@ -463,7 +482,7 @@ class Cashier extends React.Component {
                         Taro Mochi
                     </div>
                     <div>
-                        <input type = "checkbox"></input>
+                        <input type = "checkbox" onChange={(event) => this.handleToppingChange("Taro Mochi", event)}></input>
                     </div>
                 </div>
                     <div style={{textAlign: "center"}}>
