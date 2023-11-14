@@ -1,11 +1,14 @@
 import React from "react";
 import "../styles/Cashier.css"
+import BaseDrink from "../components/BaseDrink";
 
 class Cashier extends React.Component {
+    
     constructor(props) {
         super(props);
 
         // to store drink info from database
+        this.base = new BaseDrink();
         this.totPrice = 0;
         this.drinkId = 0;
         this.drink = "N/A";
@@ -122,7 +125,7 @@ class Cashier extends React.Component {
             <button class = "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div class = "grid-container-in">
                 <div>
-                    <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "sun moon lake black tea")}><p>sun moon lake black tea</p></button>
+                    <button class = "button"  onClick={() => this.changeCurrRight(this.customization, 'sun moon lake black tea')}><p>sun moon lake black tea</p></button>
                 </div>
                 <div>
                     <button class = "button"  onClick={() => this.changeCurrRight(this.customization, "pouchong green tea")}><p>pouchong green tea</p></button>
@@ -335,7 +338,10 @@ class Cashier extends React.Component {
     saveDrink = () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
         if(this.qty > 0){
-            this.totPrice += this.price*this.qty
+            this.price += this.base.findPrice(this.drink);
+            console.log(this.drink);
+            console.log("This is price: " + this.price);
+            this.totPrice += this.price*this.qty;
             this.orderTable.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
             this.changeCurrTable();
             this.changeCurrPrice();
@@ -507,6 +513,7 @@ class Cashier extends React.Component {
     }
 
     payOrder = () => {
+        this.totPrice = 0;
         this.orderTable = [] //clear table
         this.changeCurrTable();
         this.changeCurrPrice(0);
@@ -515,6 +522,7 @@ class Cashier extends React.Component {
     render() {
         return (
             <>
+                <BaseDrink></BaseDrink>
                 <div class = "grid-container-out">
                     <div>
                     <div class = "grid-container-left">
