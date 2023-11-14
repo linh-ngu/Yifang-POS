@@ -49,6 +49,14 @@ class BaseDrink extends Component {
   render() {
     return (
       <div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <table>
           <thead>
             <tr>
