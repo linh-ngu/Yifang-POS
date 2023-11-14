@@ -340,10 +340,13 @@ class Cashier extends React.Component {
         if(this.qty > 0){
             console.log("...about to get menu");
             await this.base.getMenu();
+
             console.log("...finished getting menu");
             this.price += this.base.findPrice(this.drink);
+
             console.log(this.drink);
             console.log("This is price: " + this.price);
+
             this.totPrice += this.price*this.qty;
             this.orderTable.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
             this.changeCurrTable();
@@ -525,7 +528,6 @@ class Cashier extends React.Component {
     render() {
         return (
             <>
-                <BaseDrink></BaseDrink>
                 <div class = "grid-container-out">
                     <div>
                     <div class = "grid-container-left">
