@@ -19,7 +19,9 @@ class BaseDrink extends Component {
       const response = await fetch("http://localhost:5000/cashier");
       const jsonData = await response.json();
 
+      console.log("...getting menu");
       this.setState({ menu: jsonData });
+      this.state.menu = jsonData;
 
       console.log(jsonData);
     } catch (err) {
@@ -29,12 +31,10 @@ class BaseDrink extends Component {
 
   findPrice = (name) => {
     const { menu } = this.state;
-    var new_name = "tea latte";
-    const foundRow = menu.find(row => row.name === new_name);
-    // console.log("hello");
-    // console.log("FOUNDROW: " + foundRow);
-    // console.log("ROWNAME: " + menu.find(row => row.base_id == 1).name);
-    // console.log("NAME: " + name);
+    // var new_name = "tea latte";
+    console.log(menu);
+    const foundRow = menu.find(row => row.name === name);
+    console.log("FOUNDROW: " + foundRow);
 
     if (foundRow) {
         console.log("hello");

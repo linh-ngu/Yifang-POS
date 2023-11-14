@@ -335,9 +335,12 @@ class Cashier extends React.Component {
         }
     }
     
-    saveDrink = () => {
+    saveDrink = async () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
         if(this.qty > 0){
+            console.log("...about to get menu");
+            await this.base.getMenu();
+            console.log("...finished getting menu");
             this.price += this.base.findPrice(this.drink);
             console.log(this.drink);
             console.log("This is price: " + this.price);
