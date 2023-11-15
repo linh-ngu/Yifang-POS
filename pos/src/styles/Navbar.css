@@ -10,9 +10,12 @@
 
 .navbar .navBarButtons {
     padding-right: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.navbar a {
+.navbar a, .navbar .bag {
     color: black;
     text-decoration: none;
     margin: 0 0 0 25px;
@@ -28,7 +31,7 @@
 
 .navbar .rightSide svg {  /*menu icon*/
     color: black;
-    font-size: 30px;
+    font-size: x-large;
 }
 
 .navbar #open {
@@ -47,7 +50,7 @@
     display: none;
 }
 
-.navbar #open a {
+.navbar #open a, .navbar #open .bag {
     margin: 1vw;
 }
 
@@ -57,7 +60,9 @@
     }
 
     .navbar .rightSide {
+        display: flex;
         justify-content: flex-end;
+        align-items: center;
     }
 
     .navbar .rightSide button {
@@ -69,7 +74,7 @@
     }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) { /**/
     .navbar .rightSide button {
         display: none;
     }
