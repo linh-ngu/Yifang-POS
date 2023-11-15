@@ -71,6 +71,28 @@ app.get('/manager/orderhistory', async (req, res) => {
   }
 });
 
+// order -> get ingredients
+app.get('/order/getIngredients', async (req, res) => {
+  try {
+    const { name } = req.query;
+    const result = await pool.query(`SELECT list_ingredients FROM base_drinks WHERE name = $1`, [name]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// order -> get drink names
+app.get('/order/getDrinks', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM base_drinks');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 // get a todo
 
 // update a todo
