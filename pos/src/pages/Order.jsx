@@ -4,7 +4,7 @@ import Footer from '../components/Footer'
 import Customization from '../components/Customization'
 
 function Order() {
-  const [drinks, setDrinks] = useState([])
+  const [drinks, setDrinks] = useState(drinksData)
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -26,7 +26,7 @@ function Order() {
   };
 
   const closeModal = () => {
-      setSelectedItem(null);
+    setSelectedItem(null);
   };
 
   useEffect(() => {
@@ -34,16 +34,13 @@ function Order() {
       try {
         const response = await fetch("http://localhost:5000/order/getDrinks");
         const jsonData = await response.json();
-
         setDrinks(jsonData);
-
-        console.log(jsonData);
       } catch (err) {
         console.error(err.message);
       }
     };
 
-    getDrinks();
+    // getDrinks();
   }, []);
 
   return (
@@ -74,16 +71,14 @@ function Order() {
               <div className='flex justify-between px-2 py-4 bg-white'>
                 <p className='font-bold'>{item.name}</p>
                 <p>
-                  <span className='bg-yellow-600 text-white p-2 rounded-full'>{item.price}</span>
+                  <span className='bg-yellow-600 text-white p-2 rounded-full'>${item.price}</span>
                 </p>
               </div>
             </div>
           ) )}
         </div>
-
         <Customization item={selectedItem} onClose={closeModal} />
       </div>
-
       <Footer />
     </div>
   )
