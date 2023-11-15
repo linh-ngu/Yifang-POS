@@ -106,6 +106,18 @@ const Ingredient = () => {
 
     return (
         <div className="ingredient-container">
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br>
+            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    
             <table className="ingredient-table">
                 <thead>
                     <tr>
