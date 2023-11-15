@@ -1,10 +1,10 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import {drinksData} from '../assets/drinks'
 import Footer from '../components/Footer'
 import Customization from '../components/Customization'
 
 function Order() {
-  const [drinks, setDrinks] = useState(drinksData)
+  const [drinks, setDrinks] = useState([])
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -28,6 +28,23 @@ function Order() {
   const closeModal = () => {
       setSelectedItem(null);
   };
+
+  useEffect(() => {
+    const getDrinks = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/order/getDrinks");
+        const jsonData = await response.json();
+
+        setDrinks(jsonData);
+
+        console.log(jsonData);
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+    getDrinks();
+  }, []);
 
   return (
     <div className='absolute top-[150px] w-full'>
