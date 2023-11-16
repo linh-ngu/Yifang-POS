@@ -1,15 +1,26 @@
-import React, {useState} from "react";
-import { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
-
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
+    const [user, setUser]= useState({});
 
     const [inputValue, setInputValue] = useState('');
     const navigate = useNavigate();
 
     function handleCallbackResponse(response) {
+        
         console.log("Encoded JWT ID token: " + response.credential);
+        var userObject = jwtDecode(response.credential);
+        console.log(userObject);
+        console.log(userObject.name);
+        setUser(userObject);
+        document.getElementById("signInDiv").hidden = true;
+    }
+
+    function handleSignOut(event) {
+        setUser({});
+        document.getElementById("signInDiv").hidden = false;
     }
 
     const handleInputChange = (event) => {
@@ -48,7 +59,12 @@ function Login() {
             document.getElementById("signInDiv"),
             { theme: "outline", size: "large"}
         )
+
+        google.accounts.id.prompt();
     }, []);
+
+    // If we have no user: sign in button
+    // If we have a user: show the log out button
 
     return (
         <div className='absolute top-[150px] w-full flex flex-col justify-center items-center p-4'>
@@ -62,4 +78,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;
