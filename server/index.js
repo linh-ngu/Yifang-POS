@@ -62,7 +62,7 @@ app.get('/manager/menu', async (req, res) => {
 //manager -> get orderhistory
 app.get('/manager/orderhistory', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM orders');
+    const result = await pool.query('SELECT * FROM orders LIMIT 20');
     res.json(result.rows);
     // console.log(req.params);
   } catch (err) {
@@ -85,6 +85,51 @@ app.get('/order/getIngredients', async (req, res) => {
 
 // order -> get drink names
 app.get('/order/getDrinks', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM base_drinks');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// report -> popularity analysis
+app.get('/report/popularityanalysis', async (req, res) => {
+  try {
+    //const result = await pool.query('SELECT d.name AS drink_name, SUM(d.price) AS total_sales FROM drinks d JOIN orders o ON d.order_id = o.order_id WHERE TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date' GROUP BY d.name ORDER BY total_sales DESC LIMIT 10 ');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// report -> sales report
+app.get('/report/sales report', async (req, res) => {
+  try {
+    //const result = await pool.query('SELECT d.name AS drink_name, SUM(d.price) AS total_sales FROM drinks d JOIN orders o ON d.order_id = o.order_id WHERE TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date' AND LOWER(TRIM(d.name)) ILIKE LOWER(TRIM('drink-anme')) GROUP BY d.name');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// report -> restock report
+app.get('/report/restockreport', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT name FROM ingredients WHERE stock_level <= 100');
+    res.json(result.rows);
+    console.log(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// report -> excess report
+app.get('/report/excessreport', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM base_drinks');
     res.json(result.rows);
