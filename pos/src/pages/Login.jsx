@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
+import Navbar from '../components/Navbar';
 
 function Login() {
     const [user, setUser]= useState({});
@@ -74,6 +75,22 @@ function Login() {
                 <button className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
                 <div id='signInDiv' className="p-2 rounded-sm"></div>
             </div>
+            { Object.keys(user).length != 0 &&
+                <div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <p>Signed In As {user.name}</p>
+                    <img src={user.picture} referrerPolicy="no-referrer"></img>
+                </div>
+
+            }
         </div>
     )
 }
