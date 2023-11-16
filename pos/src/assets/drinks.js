@@ -104,7 +104,7 @@ export const drinksData = [
     },
     {
       id: 9,
-      name: 'brown sugar pearl milk matcha latte',
+      name: 'brown sugar pearl matcha latte',
       category: 'Brown Sugar',
       image: bspmat,
       price: '6.45',
