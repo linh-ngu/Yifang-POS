@@ -1,4 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { ShopContext } from '../contexts/ShopContextProvider'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -6,19 +8,37 @@ const Bag = ({onClose}) => {
 
     const { bagItems, removeFromBag } = useContext(ShopContext);
     const totalPrice = Object.values(bagItems).reduce((total, item) => total + item.price, 0);
-    var order_id = parseInt(localStorage.getItem('order_id')) || 87005;
+    // var order_id = parseInt(localStorage.getItem('order_id')) || 87005;
     var staff_id = 9;
     var transaction_date = "2022-05-31";
-    var payment_method = "Card";
+    var payment_method = "Cash";
     var payment_amount = totalPrice;
     var timestamp = "18:50:19";
+    var[order_id, setOrder_id] = useState([]);
+
+    const getOrder_id = async() => {
+        try {
+            const response = await fetch("http://localhost:5000/order/getId");
+            const jsonData = await response.json();
+
+            setOrder_id(jsonData[0].order_id + 1);
+
+            console.log(jsonData[0].order_id);
+        } catch (err) {
+            console.error(err.message);
+        }
+    } 
+    
+    useEffect(() => {
+        getOrder_id();
+    },[]);
 
     const doCheckout = async e => {
         e.preventDefault();
         try {
           const body = { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp };
-          order_id++;
-          localStorage.setItem('order_id', order_id);
+        //   order_id++;
+        //   localStorage.setItem('order_id', order_id);
           const response = await fetch("http://localhost:5000/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -69,7 +89,6 @@ const Bag = ({onClose}) => {
                     <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
                         <span>Checkout</span>
                         <span>${totalPrice.toFixed(2)}</span>
-                        <span>{order_id}</span>
                     </button>
                 </div>
             </div>
