@@ -1,9 +1,12 @@
-import React from "react";
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
 
 function Login() {
     const [user, setUser]= useState({});
+
+    const [inputValue, setInputValue] = useState('');
+    const navigate = useNavigate();
 
     function handleCallbackResponse(response) {
         
@@ -19,6 +22,31 @@ function Login() {
         setUser({});
         document.getElementById("signInDiv").hidden = false;
     }
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+    };
+
+    const handleLogin = async () => {
+        const result = await checkStaff(inputValue);
+        if (result === 'manager') {
+            navigate('/redirect');
+        } else if (result === 'cashier') {
+            navigate('/cashier');
+        } else if (result === 'customer') {
+            navigate('/order');
+        }
+    };
+
+    const checkStaff = (id) => {
+        if (id < 10 && id > 1) {
+          return "cashier";
+        } else if (id == 10) {
+          return 'manager';
+        } else {
+          return "customer";
+        }
+    };
 
     useEffect(() => {
         /* global google */
@@ -39,29 +67,13 @@ function Login() {
     // If we have a user: show the log out button
 
     return (
-        <div>
-            <div id='signInDiv' className="absolute top-[150px] w-full flex justify-center"></div>
-            <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            { Object.keys(user).length != 0 &&
-                <button onClick = {(e) => handleSignOut(e)}>Sign Out</button>
-            }
-            { user &&
-                <div>
-                    {/* <img src={user.picture}></img> */}
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <img src={user.picture} referrerPolicy="no-referrer"></img>
-                    <p>{user.name}</p>
-                </div>
-            }
-
+        <div className='absolute top-[150px] w-full flex flex-col justify-center items-center p-4'>
+            <h1 className='font-bold text-4xl text-center m-4'>Log In</h1>
+            <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
+            <div className="flex">
+                <button className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
+                <div id='signInDiv' className="p-2 rounded-sm"></div>
+            </div>
         </div>
     )
 }

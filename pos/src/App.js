@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Manager from "./pages/Manager";
 import Cashier from './pages/Cashier';
 import Order from './pages/Order';
+import Redirect from './pages/Redirect';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShopContextProvider } from './contexts/ShopContextProvider';
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/manager" element={<Manager />} />
             <Route path="/cashier" element={<Cashier />} />
             <Route path="/order" element={<Order />} />
+            <Route path="/redirect" element={<Redirect />} />
           </Routes>
         </BrowserRouter>
       </ShopContextProvider>

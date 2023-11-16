@@ -24,7 +24,7 @@ export const ShopContextProvider = (props) => {
   };
 
   const contextValue = {bagItems, addToBag, removeFromBag};
-  console.log(bagItems);
+  
   return (
     <ShopContext.Provider value={contextValue}>{props.children}</ShopContext.Provider>
   )

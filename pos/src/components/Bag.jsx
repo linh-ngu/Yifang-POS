@@ -47,7 +47,7 @@ const Bag = ({onClose}) => {
                             </div>
                         ) : (
                             Object.entries(bagItems).map(([key, item]) => (
-                                <div key={key} className='flex pr-2 py-2'>
+                                <div key={key} className='flex pr-2 py-2 bg-red-500'>
                                     <div className='w-full'>
                                         <div className='flex justify-between items-center'>
                                             <h3 className='font-semibold'>{item.name} ({item.count})</h3>

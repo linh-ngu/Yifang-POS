@@ -63,8 +63,8 @@ const Customization = ({ item, onClose }) => {
   if (!item) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8" onClick={() => {onClose(); setCount(1); setSelectedToppings([]);}}>
-      <div className="relative bg-white rounded-lg overflow-y-scroll max-h-[calc(100vh-200px)]" onClick={(e) => e.stopPropagation()}>
-        <img src={item.image} alt={item.name} className='h-[300px] w-[600px] object-cover rounded-t-lg'/>
+      <div className="relative bg-white rounded-lg overflow-y-scroll max-h-[calc(100vh-200px)] w-[600px]" onClick={(e) => e.stopPropagation()}>
+        <img src={item.image} alt={item.name} className='h-[300px] w-full object-cover rounded-t-lg'/>
         <div className='px-8'>
           <h2 className="text-xl font-bold pt-4 pb-2">{item.name}</h2>
           <p className='pb-4'>{ingredients.join(', ')}</p>
