@@ -28,8 +28,6 @@ const Navbar = () => {
                 <div className='hiddenLinks'>
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
-                    <Link to='/manager'>Manager</Link>
-                    <Link to='/cashier'>Cashier</Link>
                     <Link to='/login'><AccountCircleOutlinedIcon/></Link>
                 </div>
             </div>
@@ -37,8 +35,6 @@ const Navbar = () => {
                 <div className='navBarButtons'>
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
-                    <Link to='/manager'>Manager</Link>
-                    <Link to='/cashier'>Cashier</Link>
                     <Link to='/login'><AccountCircleOutlinedIcon/></Link>
                     <button onClick={toggleNavbar}><MenuIcon/></button>
                     <ShoppingBagOutlinedIcon className='bag cursor-pointer' onClick={() => setIsBagOpen(!isBagOpen)}/>
