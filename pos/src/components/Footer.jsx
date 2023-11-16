@@ -5,25 +5,25 @@ import getWeather from '../apirequests/AccuWeather'
 
 function Footer() {
 
-  const googleTranslateElementInit = () => {
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: "en",
-        autoDisplay: false
-      },
-      "google_translate_element"
-    );
-  };
+  // const googleTranslateElementInit = () => {
+  //   new window.google.translate.TranslateElement(
+  //     {
+  //       pageLanguage: "en",
+  //       autoDisplay: false
+  //     },
+  //     "google_translate_element"
+  //   );
+  // };
 
-  useEffect(() => {
-    var addScript = document.createElement("script");
-    addScript.setAttribute(
-      "src",
-      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    );
-    document.body.appendChild(addScript);
-    window.googleTranslateElementInit = googleTranslateElementInit;
-  }, []);
+  // useEffect(() => {
+  //   var addScript = document.createElement("script");
+  //   addScript.setAttribute(
+  //     "src",
+  //     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+  //   );
+  //   document.body.appendChild(addScript);
+  //   window.googleTranslateElementInit = googleTranslateElementInit;
+  // }, []);
 
   const [weatherText, setWeatherText] = useState('');
   const [translatedText] = useState('');
@@ -40,7 +40,7 @@ function Footer() {
       <Link to="/">
           <img src={Logo} alt='Logo' className='w-[150px]'/>
       </Link>
-      <p id="google_translate_element" className='border-4'>{translatedText}</p>
+      {/* <p id="google_translate_element" className='border-4'>{translatedText}</p> */}
       <div className='max-w-[200px]'>
         <button className='bg-[#ADD8E6] p-[10px] rounded-xl' onClick={handleWeather}>Weather</button>
         <p>{weatherText}</p>
@@ -49,4 +49,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default Footer;

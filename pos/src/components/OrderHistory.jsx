@@ -99,7 +99,7 @@ const OrderHistory = () => {
   } 
   
   useEffect(() => {
-      getOrder();
+        getOrder();
   },[]);
   
   return (

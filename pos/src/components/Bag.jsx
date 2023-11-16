@@ -6,6 +6,31 @@ const Bag = ({onClose}) => {
 
     const { bagItems, removeFromBag } = useContext(ShopContext);
     const totalPrice = Object.values(bagItems).reduce((total, item) => total + item.price, 0);
+    var order_id = parseInt(localStorage.getItem('order_id')) || 87005;
+    var staff_id = 9;
+    var transaction_date = "2022-05-31";
+    var payment_method = "Card";
+    var payment_amount = totalPrice;
+    var timestamp = "18:50:19";
+
+    const doCheckout = async e => {
+        e.preventDefault();
+        try {
+          const body = { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp };
+          order_id++;
+          localStorage.setItem('order_id', order_id);
+          const response = await fetch("http://localhost:5000/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+          console.log(response);
+    
+        //   window.location = "/";
+        } catch (err) {
+          console.error(err.message);
+        }
+    };
 
     return (
         <div className="absolute inset-0 z-50 h-screen w-screen" onClick={onClose}>
@@ -22,7 +47,7 @@ const Bag = ({onClose}) => {
                             </div>
                         ) : (
                             Object.entries(bagItems).map(([key, item]) => (
-                                <div key={key} className='flex pr-2 py-2'>
+                                <div key={key} className='flex pr-2 py-2 bg-red-500'>
                                     <div className='w-full'>
                                         <div className='flex justify-between items-center'>
                                             <h3 className='font-semibold'>{item.name} ({item.count})</h3>
@@ -41,9 +66,10 @@ const Bag = ({onClose}) => {
                     </div>
                 </div> 
                 <div className='mx-4 mb-4'>
-                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between'>
+                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
                         <span>Checkout</span>
                         <span>${totalPrice.toFixed(2)}</span>
+                        <span>{order_id}</span>
                     </button>
                 </div>
             </div>
