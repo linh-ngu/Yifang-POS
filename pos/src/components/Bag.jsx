@@ -8,12 +8,11 @@ const Bag = ({onClose}) => {
 
     const { bagItems, removeFromBag } = useContext(ShopContext);
     const totalPrice = Object.values(bagItems).reduce((total, item) => total + item.price, 0);
-    // var order_id = parseInt(localStorage.getItem('order_id')) || 87005;
     var staff_id = 9;
-    var transaction_date = "2022-05-31";
-    var payment_method = "Cash";
+    var transaction_date = new Date().toLocaleDateString();
+    var payment_method = "Card";
     var payment_amount = totalPrice;
-    var timestamp = "18:50:19";
+    var timestamp = new Date().toLocaleTimeString('en-GB');
     var[order_id, setOrder_id] = useState([]);
 
     const getOrder_id = async() => {
@@ -23,7 +22,7 @@ const Bag = ({onClose}) => {
 
             setOrder_id(jsonData[0].order_id + 1);
 
-            console.log(jsonData[0].order_id);
+            console.log(jsonData[0].order_id + 1);
         } catch (err) {
             console.error(err.message);
         }
@@ -37,14 +36,13 @@ const Bag = ({onClose}) => {
         e.preventDefault();
         try {
           const body = { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp };
-        //   order_id++;
-        //   localStorage.setItem('order_id', order_id);
           const response = await fetch("http://localhost:5000/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
           });
           console.log(response);
+          onClose();
     
         //   window.location = "/";
         } catch (err) {
