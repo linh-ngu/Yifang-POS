@@ -23,24 +23,14 @@ class Cashier extends React.Component {
         this.homeTable = 
             <div>
             <table>
-                <thead>
-                    <tr>
-                    <th style={{ paddingLeft: "40%", paddingTop: "15%"}}>Name</th>
-                    <th style={{ paddingLeft: "60%", paddingTop: "15%" }}>Qty</th>
-                    <th style={{ paddingLeft: "75%", paddingTop: "15%"}}>Each</th>
-                    <th style={{ paddingLeft: "90%", paddingTop: "15%" }}>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.orderTable.map((item) => (
-                    <tr key={item.drinkId}>
-                        <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
-                        <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
-                        <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
-                        <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
-                    </tr>
-                    ))}
-                </tbody>
+                <div className="flex justify-between w-[45vw]">
+                    <p className="p-7 font-bold">Name</p>
+                    <div className="flex">
+                        <p className="p-7 font-bold">Qty</p>
+                        <p className="p-7 font-bold">Each</p>
+                        <p className="p-7 font-bold">Total</p>
+                    </div>
+                </div>
                 </table>
             </div>;
 
@@ -340,12 +330,7 @@ class Cashier extends React.Component {
         if(this.qty > 0){
             // console.log("...about to get menu");
             await this.base.getMenu();
-<<<<<<< HEAD
             // console.log("...finished getting menu");
-=======
-
-            console.log("...finished getting menu");
->>>>>>> 65086961e7ad3fee6d3eb069f8ebf8012b08cfb0
             this.price += this.base.findPrice(this.drink);
 
             console.log(this.drink);
@@ -370,22 +355,39 @@ class Cashier extends React.Component {
         this.homeTable =  (
         <div>
             <table>
-            <thead>
+            {/* <thead>
                 <tr>
                 <th style={{ paddingLeft: "40%" }}s>Name</th>
                 <th style={{ paddingLeft: "60%" }}>Qty</th>
                 <th style={{ paddingLeft: "75%" }}>Each</th>
                 <th style={{ paddingLeft: "90%" }}>Total</th>
                 </tr>
-            </thead>
+            </thead> */}
+            <div className="flex justify-between w-[45vw]">
+                <p className="px-7 font-bold">Name</p>
+                <div className="flex">
+                    <p className="px-7 font-bold">Qty</p>
+                    <p className="px-7 font-bold">Each</p>
+                    <p className="px-7 font-bold">Total</p>
+                </div>
+            </div>
             <tbody>
-                {this.orderTable.map((item) => (
-                <tr key={item.drinkId}>
-                    <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
-                    <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
-                    <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
-                    <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
-                </tr>
+                {this.orderTable.map((item, index) => (
+                // <tr key={item.drinkId}>
+                //     <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
+                //     <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
+                //     <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
+                //     <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
+                //     <button style={{ float: "right"}}>remove</button>
+                // </tr>
+                <div key={index} className="flex justify-between w-[45vw]">
+                    <p className="px-7">{item.drinkName}</p>
+                    <div className="flex">
+                        <p className="px-7">{item.Qty}</p>
+                        <p className="px-7">{item.Each}</p>
+                        <p  className="px-7">{item.Total}</p>
+                    </div>
+                </div>
                 ))}
             </tbody>
             </table>
