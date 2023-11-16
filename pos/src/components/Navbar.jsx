@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
-import Logo from '../assets/YifangLogo.png'
-import { Link } from 'react-router-dom'
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom'
 import '../styles/Navbar.css'
+import Logo from '../assets/YifangLogo.png'
+import Bag from './Bag';
 
-function Navbar() {
+const Navbar = () => {
     const [openLinks, setOpenLinks] = useState(false);
+    const [isBagOpen, setIsBagOpen] = useState(false);
+
     const toggleNavbar = () => {
         setOpenLinks(!openLinks)
     }
+
+    const closeBag = () => {
+        setIsBagOpen(false);
+    };
+
     return (
         <div className='navbar w-full h-[150px] flex justify-between absolute z-10 backdrop-blur-sm'>
             <div className='flex items-center justify-center' id={openLinks ? "open" : "close"}>
@@ -18,23 +28,23 @@ function Navbar() {
                 <div className='hiddenLinks'>
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
-                    <Link to='/login'>Login</Link>
                     <Link to='/manager'>Manager</Link>
                     <Link to='/cashier'>Cashier</Link>
+                    <Link to='/login'><AccountCircleOutlinedIcon/></Link>
                 </div>
             </div>
             <div className='rightSide'>
                 <div className='navBarButtons'>
                     <Link to='/menu'>Menu</Link>
                     <Link to='/order'>Order</Link>
-                    <Link to='/login'>Login</Link>
                     <Link to='/manager'>Manager</Link>
                     <Link to='/cashier'>Cashier</Link>
-                    <button onClick={toggleNavbar}>
-                        <MenuIcon/>
-                    </button>
+                    <Link to='/login'><AccountCircleOutlinedIcon/></Link>
+                    <button onClick={toggleNavbar}><MenuIcon/></button>
+                    <ShoppingBagOutlinedIcon className='bag cursor-pointer' onClick={() => setIsBagOpen(!isBagOpen)}/>
                 </div>
             </div>
+            {isBagOpen && <Bag onClose={closeBag} />}
         </div>
     )
 }

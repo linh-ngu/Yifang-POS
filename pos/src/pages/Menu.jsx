@@ -34,7 +34,7 @@ function Menu() {
                     <div className='flex justify-between px-2 py-4 bg-white'>
                         <p className='font-bold'>{item.name}</p>
                         <p>
-                            <span className='bg-yellow-600 text-white p-2 rounded-full'>{item.price}</span>
+                            <span className='bg-yellow-600 text-white p-2 rounded-full'>${item.price}</span>
                         </p>
                     </div>
                 </div>
