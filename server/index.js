@@ -93,7 +93,33 @@ app.get('/order/getDrinks', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+// get last order_id
+app.get('/order/getId', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT order_id FROM orders ORDER BY order_id DESC LIMIT 1');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // get a todo
+
+app.post('/checkout', async (req, res) => {
+  try {
+    const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = req.body;
+    const newOrder = await pool.query("INSERT INTO orders VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+    [order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp]
+    );
+    res.json(newOrder.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 // update a todo
 
