@@ -23,7 +23,7 @@ class Cashier extends React.Component {
         this.homeTable = 
             <div>
             <table>
-                <div className="flex justify-between w-[45vw]">
+                <div className="flex justify-between w-[35vw]">
                     <p className="p-7 font-bold">Name</p>
                     <div className="flex">
                         <p className="p-7 font-bold">Qty</p>
@@ -299,6 +299,8 @@ class Cashier extends React.Component {
         );
     }
 
+    
+
     handleGoBack = () => {
         if(this.state.history_right.length > 0){
             this.setState({curr_right: this.state.history_right.pop()});
@@ -353,18 +355,17 @@ class Cashier extends React.Component {
         this.ingredients = [];
     }
 
+    removeFromOrder = (key) => {
+        this.totPrice = this.totPrice - this.orderTable[key].Total;
+        delete this.orderTable[key];
+        this.changeCurrTable();
+        this.changeCurrPrice();
+    }
+
     changeCurrTable = () => {
         this.homeTable =  (
         <div>
             <table>
-            {/* <thead>
-                <tr>
-                <th style={{ paddingLeft: "40%" }}s>Name</th>
-                <th style={{ paddingLeft: "60%" }}>Qty</th>
-                <th style={{ paddingLeft: "75%" }}>Each</th>
-                <th style={{ paddingLeft: "90%" }}>Total</th>
-                </tr>
-            </thead> */}
             <div className="flex justify-between w-[45vw]">
                 <p className="px-7 font-bold">Name</p>
                 <div className="flex">
@@ -375,20 +376,16 @@ class Cashier extends React.Component {
             </div>
             <tbody>
                 {this.orderTable.map((item, index) => (
-                // <tr key={item.drinkId}>
-                //     <td style={{ width:"auto", marginLeft: "5%", textAlign:"center" }}>{item.drinkName}</td>
-                //     <td style={{ paddingLeft: "60%", textAlign:"center" }}>{item.Qty}</td>
-                //     <td style={{ paddingLeft: "75%", textAlign:"center" }}>{item.Each}</td>
-                //     <td style={{ paddingLeft: "90%", textAlign:"center" }}>{item.Total}</td>
-                //     <button style={{ float: "right"}}>remove</button>
-                // </tr>
-                <div key={index} className="flex justify-between w-[45vw]">
-                    <p className="px-7">{item.drinkName}</p>
-                    <div className="flex">
-                        <p className="px-7">{item.Qty}</p>
-                        <p className="px-7">{item.Each}</p>
-                        <p  className="px-7">{item.Total}</p>
+                <div>
+                    <div key={index} className="flex justify-between w-[45vw]">
+                        <p className="px-7">{item.drinkName}</p>
+                        <div className="flex">
+                            <p className="px-7">{item.Qty}</p>
+                            <p className="px-7">{item.Each}</p>
+                            <p  className="px-7">{item.Total}</p>
+                        </div>
                     </div>
+                    <button className="button-small" onClick={() => this.removeFromOrder(index)}>remove</button>
                 </div>
                 ))}
             </tbody>
