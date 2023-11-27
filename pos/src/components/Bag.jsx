@@ -93,7 +93,7 @@ const Bag = ({onClose}) => {
                         <p className='font-semibold'>Sales Tax</p>
                         <p>${(totalPrice * 0.0825).toFixed(2)}</p>
                     </div>
-                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between'>
+                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
                         <span>Checkout</span>
                         <span>${(totalPrice + (totalPrice * 0.0825)).toFixed(2)}</span>
                     </button>
