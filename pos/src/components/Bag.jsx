@@ -17,7 +17,7 @@ const Bag = ({onClose}) => {
 
     const getOrder_id = async() => {
         try {
-            const response = await fetch("http://localhost:5000/order/getId");
+            const response = await fetch("https://yifang-backend.onrender.com/order/getId");
             const jsonData = await response.json();
 
             setOrder_id(jsonData[0].order_id + 1);
@@ -36,7 +36,7 @@ const Bag = ({onClose}) => {
         e.preventDefault();
         try {
           const body = { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp };
-          const response = await fetch("http://localhost:5000/checkout", {
+          const response = await fetch("https://yifang-backend.onrender.com/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)

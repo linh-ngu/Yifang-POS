@@ -34,7 +34,7 @@ const Customization = ({ item, onClose }) => {
 
   const getIngredients = async (drinkName) => {
     try {
-      const response = await fetch(`http://localhost:5000/order/getIngredients?name=${encodeURIComponent(drinkName)}`);
+      const response = await fetch(`https://yifang-backend.onrender.com/order/getIngredients?name=${encodeURIComponent(drinkName)}`);
       const jsonData = await response.json();
       return jsonData[0].list_ingredients;
     } catch (err) {
