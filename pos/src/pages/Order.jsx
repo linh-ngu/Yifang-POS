@@ -45,22 +45,22 @@ function Order() {
   }, []);
 
   return (
-    <div className='absolute top-[150px] w-full'>
+    <div className='absolute top-[130px] w-full'>
       <div className='max-w-[1640px] m-auto px-16 py-4'>
         <h1 className='font-bold text-4xl text-center'>Ordering Menu</h1>
         <div className='flex flex-col justify-between py-4'> {/*filter row*/}
           <div> {/*filter type*/}
             <p className='font-bold text-gray-700'>Filter Type</p>
             <div className='flex flex-wrap'>
-              <button onClick={() => handleFilter('All')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'All' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>All</button>
-              <button onClick={() => handleFilter('Tea')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Tea' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Tea</button>
-              <button onClick={() => handleFilter('Brown Sugar')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Brown Sugar' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Brown Sugar</button>
-              <button onClick={() => handleFilter('Milk Tea')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Milk Tea' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Milk Tea</button>
-              <button onClick={() => handleFilter('Fruits')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Fruits' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Fruits</button>
-              <button onClick={() => handleFilter('Fresh Sugarcane')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Fresh Sugarcane' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Fresh Sugarcane</button>
-              <button onClick={() => handleFilter('Fresh Taro/Red Bean')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Fresh Taro/Red Bean' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Fresh Taro/Red Bean</button>
-              <button onClick={() => handleFilter('Traditional')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Traditional' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Traditional</button>
-              <button onClick={() => handleFilter('Seasonal')} className={`rounded-lg m-2 p-2 border border-yellow-600 ${activeFilter === 'Seasonal' ? 'bg-yellow-600 text-white' : 'text-yellow-600 hover:bg-yellow-600 hover:text-white'}`}>Seasonal</button>
+              <button onClick={() => handleFilter('All')} className={`rounded-lg m-3 p-2 border border-black shadow-md ${activeFilter === 'All' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>All</button>
+              <button onClick={() => handleFilter('Tea')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Tea' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Tea</button>
+              <button onClick={() => handleFilter('Brown Sugar')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Brown Sugar' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Brown Sugar</button>
+              <button onClick={() => handleFilter('Milk Tea')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Milk Tea' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Milk Tea</button>
+              <button onClick={() => handleFilter('Fruits')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Fruits' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Fruits</button>
+              <button onClick={() => handleFilter('Fresh Sugarcane')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Fresh Sugarcane' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Fresh Sugarcane</button>
+              <button onClick={() => handleFilter('Fresh Taro/Red Bean')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Fresh Taro/Red Bean' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Fresh Taro/Red Bean</button>
+              <button onClick={() => handleFilter('Traditional')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Traditional' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Traditional</button>
+              <button onClick={() => handleFilter('Seasonal')} className={`rounded-lg m-2 p-2 border border-black shadow-md ${activeFilter === 'Seasonal' ? 'bg-black text-white font-thin' : 'text-black font-thin hover:bg-black hover:text-white duration-300'}`}>Seasonal</button>
             </div>
           </div>
         </div>
@@ -69,10 +69,10 @@ function Order() {
           {drinks.map((item, index) => (
             <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300 cursor-pointer' onClick={() => openModal(item)}>
               <img src={item.image} alt={item.name} className='w-full h-[200px] lg:h-[400px] object-cover rounded-t-lg' />
-              <div className='flex justify-between px-2 py-4 bg-white'>
-                <p className='font-bold'>{item.name}</p>
+              <div className='flex justify-between px-2 py-4 bg-white rounded-b-lg'>
+                <p className='font-normal'>{item.name}</p>
                 <p>
-                  <span className='bg-yellow-600 text-white p-2 rounded-full'>${item.price}</span>
+                  <span className='border border-black text-black font-thin p-2 rounded-full'>${item.price}</span>
                 </p>
               </div>
             </div>
