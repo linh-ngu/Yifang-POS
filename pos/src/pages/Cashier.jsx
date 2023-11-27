@@ -358,13 +358,14 @@ class Cashier extends React.Component {
         // e.preventDefault();
         try {
           const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = this;
-          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: this.state.curr_price, timestamp };
+          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: (this.totPrice*(1+ 0.075)).toFixed(2), timestamp };
           const response = await fetch("http://localhost:5000/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
           });
           console.log(response);
+          this.payOrder();
         //   onClose();
     
         //   window.location = "/";
