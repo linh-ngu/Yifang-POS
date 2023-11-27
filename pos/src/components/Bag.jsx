@@ -6,7 +6,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const Bag = ({onClose}) => {
 
-    const { bagItems, removeFromBag } = useContext(ShopContext);
+    const { bagItems, removeFromBag, clearBag } = useContext(ShopContext);
     const totalPrice = Object.values(bagItems).reduce((total, item) => total + item.price, 0);
     var staff_id = 9;
     var transaction_date = new Date().toLocaleDateString();
@@ -42,6 +42,7 @@ const Bag = ({onClose}) => {
             body: JSON.stringify(body)
           });
           console.log(response);
+          clearBag();
           onClose();
     
         //   window.location = "/";
