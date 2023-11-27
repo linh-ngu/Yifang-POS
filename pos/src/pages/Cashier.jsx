@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import "../styles/Cashier.css"
-import BaseDrink from "../components/BaseDrink";
+import BaseDrink from "../components/BaseDrink";             
 
 class Cashier extends React.Component {
-    
+
+    componentDidMount() {
+        this.getOrder_id();
+    }
+
     constructor(props) {
         super(props);
 
@@ -16,6 +22,12 @@ class Cashier extends React.Component {
         this.price = 0;
         this.ingredients = []
         this.drinks = []
+        this.order_id = this.getOrder_id();
+        this.staff_id = 9;
+        this.transaction_date = new Date().toLocaleDateString();
+        this.payment_method = "Card";
+        this.payment_amount = 5;
+        this.timestamp = new Date().toLocaleTimeString('en-GB');
 
         // to display ordered items
         this.orderTable = [];
@@ -324,6 +336,40 @@ class Cashier extends React.Component {
             this.price += .75;
         }
     }
+
+    getOrder_id = async() => {
+        try {
+            const response = await fetch("http://localhost:5000/order/getId");
+            const jsonData = await response.json();
+
+            // this.state.order_id = jsonData[0].order_id + 1;
+
+            // setOrder_id(jsonData[0].order_id + 1);
+            this.setState({order_id: jsonData[0].order_id + 1});
+            console.log(jsonData[0].order_id + 1);
+        } catch (err) {
+            console.error(err.message);
+        }
+    } 
+
+    doCheckout = async e => {
+        // e.preventDefault();
+        try {
+          const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = this;
+          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: this.state.curr_price, timestamp };
+          const response = await fetch("http://localhost:5000/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+          console.log(response);
+        //   onClose();
+    
+        //   window.location = "/";
+        } catch (err) {
+          console.error(err.message);
+        }
+    };
     
     saveDrink = async () => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
@@ -545,7 +591,8 @@ class Cashier extends React.Component {
                         <div> 
                             {this.state.curr_price}
                             <div style = {{textAlign:"right", paddingRight:"10%"}}>
-                                <button className= "button-small" onClick={() => this.payOrder()}>Pay Now</button>
+                                {/* <button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}</button> */}
+                                <button className= "button-small" onClick={() => this.doCheckout()}>Pay Now</button>
                             </div>
                         </div>
                     </div>;
