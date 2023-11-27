@@ -52,7 +52,7 @@ const Ingredient = () => {
                 <tbody>
                     {ingredient.map((my_ingredient, index) => (
                         <tr key={index}>
-                            <td>{my_ingredient.id}</td>
+                            <td>{my_ingredient.ingredient_id}</td>
                             <td>{my_ingredient.name}</td>
                             <td>{my_ingredient.stock_level}</td>
                             <td>{my_ingredient.restock_date}</td>

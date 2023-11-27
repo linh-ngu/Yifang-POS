@@ -62,7 +62,7 @@ app.get('/manager/menu', async (req, res) => {
 //manager -> get orderhistory
 app.get('/manager/orderhistory', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM orders LIMIT 20');
+    const result = await pool.query('SELECT * FROM orders');
     res.json(result.rows);
     // console.log(req.params);
   } catch (err) {
