@@ -6,12 +6,12 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const Bag = ({onClose}) => {
 
-    const { bagItems, removeFromBag } = useContext(ShopContext);
+    const { bagItems, removeFromBag, clearBag } = useContext(ShopContext);
     const totalPrice = Object.values(bagItems).reduce((total, item) => total + item.price, 0);
     var staff_id = 9;
     var transaction_date = new Date().toLocaleDateString();
     var payment_method = "Card";
-    var payment_amount = totalPrice;
+    var payment_amount = (totalPrice * 0.0825).toFixed(2);
     var timestamp = new Date().toLocaleTimeString('en-GB');
     var[order_id, setOrder_id] = useState([]);
 
@@ -42,6 +42,7 @@ const Bag = ({onClose}) => {
             body: JSON.stringify(body)
           });
           console.log(response);
+          clearBag();
           onClose();
     
         //   window.location = "/";
@@ -93,7 +94,7 @@ const Bag = ({onClose}) => {
                         <p className='font-semibold'>Sales Tax</p>
                         <p>${(totalPrice * 0.0825).toFixed(2)}</p>
                     </div>
-                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between'>
+                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
                         <span>Checkout</span>
                         <span>${(totalPrice + (totalPrice * 0.0825)).toFixed(2)}</span>
                     </button>

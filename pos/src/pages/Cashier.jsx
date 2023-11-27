@@ -202,7 +202,7 @@ class Cashier extends React.Component {
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "watermelon coconut agar cooler")}><p>watermelon coconut agar cooler</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passion gruit tea")}><p>kumquat passion gruit tea</p></button>
+                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passionfruit tea")}><p>kumquat passionfruit tea</p></button>
                 </div>
                 <div>
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "green plum green tea")}><p>green plum green tea</p></button>
@@ -223,7 +223,7 @@ class Cashier extends React.Component {
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "yakult fruit tea")}><p>yakult fruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "passion fruit green tea")}><p>passion fruit green tea</p></button>
+                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "passionfruit green tea")}><p>passionfruit green tea</p></button>
                 </div>
                 <div>
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "pineapple green tea")}><p>pineapple green tea</p></button>
@@ -341,7 +341,7 @@ class Cashier extends React.Component {
 
     getOrder_id = async() => {
         try {
-            const response = await fetch("https://yifang-backend.onrender.com/order/getId");
+            const response = await fetch("http://localhost:5000/order/getId");
             const jsonData = await response.json();
 
             // this.state.order_id = jsonData[0].order_id + 1;
@@ -358,13 +358,14 @@ class Cashier extends React.Component {
         // e.preventDefault();
         try {
           const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = this;
-          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: this.state.curr_price, timestamp };
-          const response = await fetch("https://yifang-backend.onrender.com/checkout", {
+          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: (this.totPrice*(1+ 0.075)).toFixed(2), timestamp };
+          const response = await fetch("http://localhost:5000/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
           });
           console.log(response);
+          this.payOrder();
         //   onClose();
     
         //   window.location = "/";
