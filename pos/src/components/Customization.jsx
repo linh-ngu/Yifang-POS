@@ -89,11 +89,11 @@ const Customization = ({ item, onClose }) => {
           <div className='flex justify-center items-center m-4'>
             <button className='m-2 cursor-pointer' onClick={() => handleClick('decrement')}>-</button>
             <p>
-              <span className='bg-blue-200 text-black p-2 rounded-full'>{count}</span>
+              <span className='bg-gray-300 text-black p-2 rounded-full'>{count}</span>
             </p>
             <button className='m-2 cursor-pointer' onClick={() => handleClick('increment')}>+</button>
           </div>
-          <button className='bg-blue-500 text-white rounded-full h-10 w-full m-6' onClick={() => {handleAddToBag(item)}}>Add to Bag - ${price.toFixed(2)}</button>
+          <button className='bg-black text-white rounded-full h-10 w-full m-6' onClick={() => {handleAddToBag(item)}}>Add to Bag - ${price.toFixed(2)}</button>
         </div>
       </div>
     </div>
