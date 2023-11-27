@@ -5,22 +5,22 @@ import Footer from '../components/Footer'
 function Menu() {
   const [drinks, setDrinks] = useState(drinksData)
 
-  useEffect(() => {
-    const getDrinks = async () => {
-      try {
-        const response = await fetch("https://yifang-backend.onrender.com/order/getDrinks");
-        const jsonData = await response.json();
+  // useEffect(() => {
+  //   const getDrinks = async () => {
+  //     try {
+  //       const response = await fetch("https://yifang-backend.onrender.com/order/getDrinks");
+  //       const jsonData = await response.json();
 
-        setDrinks(jsonData);
+  //       setDrinks(jsonData);
 
-        console.log(jsonData);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
+  //       console.log(jsonData);
+  //     } catch (err) {
+  //       console.error(err.message);
+  //     }
+  //   };
 
-    getDrinks();
-  }, []);
+  //   getDrinks();
+  // }, []);
 
   return (
     <div className='absolute w-full top-[120px]'>
