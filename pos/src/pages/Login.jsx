@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
-import Navbar from '../components/Navbar';
+import Footer from "../components/Footer";
 
 function Login() {
+    
     const [user, setUser]= useState({});
-
     const [inputValue, setInputValue] = useState('');
     const navigate = useNavigate();
+    const [isSignedIn, setIsSignedIn] = useState(false);
 
     function handleCallbackResponse(response) {
         
@@ -32,10 +33,12 @@ function Login() {
         const result = await checkStaff(inputValue);
         if (result === 'manager') {
             navigate('/redirect');
+            setIsSignedIn(true);
         } else if (result === 'cashier') {
             navigate('/cashier');
-        } else if (result === 'customer') {
-            navigate('/order');
+            setIsSignedIn(true);
+        } else {
+            // ...
         }
     };
 
@@ -53,7 +56,7 @@ function Login() {
         /* global google */
         google.accounts.id.initialize({
             client_id: "659412670449-bqubbteq6sk1dfk903m8mdh7onu59j4r.apps.googleusercontent.com",
-            callback: handleCallbackResponse
+            // callback: handleCallbackResponse
         });
 
         google.accounts.id.renderButton(
@@ -68,30 +71,34 @@ function Login() {
     // If we have a user: show the log out button
 
     return (
-        <div className='absolute top-[150px] w-full flex flex-col justify-center items-center p-4'>
-            <h1 className='font-bold text-4xl text-center m-4'>Log In</h1>
-            <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
-            <div className="flex">
-                <button className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
-                <div id='signInDiv' className="p-2 rounded-sm"></div>
-            </div>
-            { Object.keys(user).length != 0 &&
-                <div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <p>Signed In As {user.name}</p>
-                    <img src={user.picture} referrerPolicy="no-referrer"></img>
+            <div className='absolute top-[150px] w-full h-[calc(100%-150px)] flex justify-center'>
+                <div className="-translate-y-[150px] flex flex-col justify-center items-center p-4">
+                    <h1 className='font-bold text-4xl text-center m-4'>Log In</h1>
+                    <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
+                    <div className="flex">
+                        <button className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
+                        <div id='signInDiv' className="p-2 rounded-sm"></div>
+                    </div>
                 </div>
-
-            }
-        </div>
+                { Object.keys(user).length != 0 &&
+                    <div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p>Signed In As {user.name}</p>
+                        <img src={user.picture} referrerPolicy="no-referrer"></img>
+                    </div>
+                }
+                <div className='absolute bottom-0 w-full'>
+                    <Footer />
+                </div>
+            </div>
     )
 }
 

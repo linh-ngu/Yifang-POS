@@ -65,7 +65,7 @@ const Bag = ({onClose}) => {
                             </div>
                         ) : (
                             Object.entries(bagItems).map(([key, item]) => (
-                                <div key={key} className='flex pr-2 py-2 bg-red-500'>
+                                <div key={key} className='flex pr-2 py-2'>
                                     <div className='w-full'>
                                         <div className='flex justify-between items-center'>
                                             <h3 className='font-semibold'>{item.name} ({item.count})</h3>
@@ -83,10 +83,19 @@ const Bag = ({onClose}) => {
                         )}
                     </div>
                 </div> 
-                <div className='mx-4 mb-4'>
-                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
+                <hr className='solid w-[92%] mx-auto'></hr>
+                <div className='p-4'>
+                    <div className='flex justify-between items-center pr-2'>
+                        <p className='font-semibold'>Subtotal</p>
+                        <p>${totalPrice.toFixed(2)}</p>
+                    </div>
+                    <div className='flex justify-between items-center pr-2 py-2 pb-4'>
+                        <p className='font-semibold'>Sales Tax</p>
+                        <p>${(totalPrice * 0.0825).toFixed(2)}</p>
+                    </div>
+                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between'>
                         <span>Checkout</span>
-                        <span>${totalPrice.toFixed(2)}</span>
+                        <span>${(totalPrice + (totalPrice * 0.0825)).toFixed(2)}</span>
                     </button>
                 </div>
             </div>
