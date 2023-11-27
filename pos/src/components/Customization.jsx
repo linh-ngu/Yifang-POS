@@ -34,7 +34,7 @@ const Customization = ({ item, onClose }) => {
 
   const getIngredients = async (drinkName) => {
     try {
-      const response = await fetch(`http://localhost:5000/order/getIngredients?name=${encodeURIComponent(drinkName)}`);
+      const response = await fetch(`https://yifang-backend.onrender.com/order/getIngredients?name=${encodeURIComponent(drinkName)}`);
       const jsonData = await response.json();
       return jsonData[0].list_ingredients;
     } catch (err) {
@@ -72,7 +72,7 @@ const Customization = ({ item, onClose }) => {
           <h3 className='py-4 font-bold'>Add Toppings (additional charge)</h3>
           <div className='grid grid-cols-2 gap-3 pt-2 pb-5'>
             {toppings.map((item, index) => (
-              <div key={index} className={`border shadow-lg rounded-lg hover:scale-105 duration-300 ${selectedToppings.includes(item.name) ? 'bg-blue-500 text-white' : ''}`} onClick={() => handleToppingClick(item.name)}>
+              <div key={index} className={`border shadow-lg rounded-lg hover:scale-105 duration-300 ${selectedToppings.includes(item.name) ? 'bg-black text-white' : ''}`} onClick={() => handleToppingClick(item.name)}>
                 <div className='flex justify-between px-2 py-4'>
                   <p className='font-medium px-2'>{item.name}</p>
                   <p className='font-medium px-2'>+$0.75</p>
@@ -89,11 +89,11 @@ const Customization = ({ item, onClose }) => {
           <div className='flex justify-center items-center m-4'>
             <button className='m-2 cursor-pointer' onClick={() => handleClick('decrement')}>-</button>
             <p>
-              <span className='bg-blue-200 text-black p-2 rounded-full'>{count}</span>
+              <span className='bg-gray-300 text-black p-2 rounded-full'>{count}</span>
             </p>
             <button className='m-2 cursor-pointer' onClick={() => handleClick('increment')}>+</button>
           </div>
-          <button className='bg-blue-500 text-white rounded-full h-10 w-full m-6' onClick={() => {handleAddToBag(item)}}>Add to Bag - ${price.toFixed(2)}</button>
+          <button className='bg-black text-white rounded-full h-10 w-full m-6' onClick={() => {handleAddToBag(item)}}>Add to Bag - ${price.toFixed(2)}</button>
         </div>
       </div>
     </div>

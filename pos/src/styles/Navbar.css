@@ -54,6 +54,27 @@
     margin: 1vw;
 }
 
+.styled-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.styled-hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    background: black;
+    transition: all 0.1s;
+}
+
+.styled-hover:hover::after {
+    left: 0;
+    right: 0;
+}
+
 @media only screen and (max-width: 600px) {
     .navbar .rightSide a {
         display: none;

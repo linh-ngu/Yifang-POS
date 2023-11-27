@@ -3,24 +3,25 @@
     padding: 0;
 }
 
+/* Manager.css */
+
 .manager-wrap {
-    background-color: lightblue;
-    position: absolute;
-    top: 150px;
-    width: 100vw;
+  background-color: lightblue;
+  position: absolute;
+  top: 150px; /* Adjust as needed based on your upper navbar height */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1; /* Add this line to ensure the manager-wrap is above other elements */
+  margin: 0;
+  padding: 0;
+  align-items: flex-start;
 }
 
-/* Manager.css */
-/* Manager.css */
-
-.manager-wrap {
-    font-family: Arial, sans-serif;
-    width: 100%; /* Ensure the manager wrap takes full width */
-    display: flex;
-    justify-content: center; /* Center the tabs container horizontally */
-    align-items: center; /* Center the tabs container vertically */
-    height: 100px; /* Adjust the height as necessary */
-  }
   
   .navbar-container {
     display: flex; /* Use flexbox to align children inline */
@@ -38,7 +39,7 @@
     justify-content: center; /* Centers the list items */
     align-items: center; /* Centers the list items vertically */
   }
-  
+
   .manager-navbar li {
     padding: 10px 16px; /* Adjust padding to control the spacing of the text */
     margin: 0 4px; /* Space between tabs */
@@ -62,20 +63,19 @@
   .tab-content {
     /* display: none; Hide all tab content by default */
     padding: 20px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    display: block; 
+    text-align: center;
     padding: 10px;
     background-color: #f1f1f1;
     border-radius: 20px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: auto;
-    /* Add other styles for your tab content as needed */
   }
   
   /* Specific class to display the active content */
   .tab-content.active {
     display: block; /* Show the active tab content */
+    min-height: 400px;
   }
   
   

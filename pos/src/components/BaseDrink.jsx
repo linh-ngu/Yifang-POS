@@ -16,7 +16,7 @@ class BaseDrink extends Component {
 
   getMenu = async () => {
     try {
-      const response = await fetch("http://localhost:5000/cashier");
+      const response = await fetch("https://yifang-backend.onrender.com/cashier");
       const jsonData = await response.json();
 
       console.log("...getting menu");

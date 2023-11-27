@@ -8,7 +8,7 @@ function Menu() {
   // useEffect(() => {
   //   const getDrinks = async () => {
   //     try {
-  //       const response = await fetch("http://localhost:5000/order/getDrinks");
+  //       const response = await fetch("https://yifang-backend.onrender.com/order/getDrinks");
   //       const jsonData = await response.json();
 
   //       setDrinks(jsonData);
@@ -23,18 +23,18 @@ function Menu() {
   // }, []);
 
   return (
-    <div className='absolute top-[150px] w-full'>
+    <div className='absolute w-full top-[120px]'>
       <div className='max-w-[1640px] m-auto px-16 py-4'>
-        <h1 className='font-bold text-4xl text-center'>Menu</h1>
+        <h1 className='font-bold text-4xl text-center p-4'>Menu</h1>
         <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4'>
             {drinks.map((item, index) => (
                 <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
                     <img src={item.image} alt={item.name}
                     className='w-full h-[200px] lg:h-[400px] object-cover rounded-t-lg' />
-                    <div className='flex justify-between px-2 py-4 bg-white'>
-                        <p className='font-bold'>{item.name}</p>
+                    <div className='flex justify-between px-2 py-4 bg-white rounded-b-lg'>
+                        <p className='font-normal'>{item.name}</p>
                         <p>
-                            <span className='bg-yellow-600 text-white p-2 rounded-full'>${item.price}</span>
+                            <span className='border border-black font-thin text-black p-2 rounded-full'>${item.price}</span>
                         </p>
                     </div>
                 </div>

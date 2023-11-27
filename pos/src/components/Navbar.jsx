@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom'
 import '../styles/Navbar.css'
@@ -10,6 +12,8 @@ import Bag from './Bag';
 const Navbar = () => {
     const [openLinks, setOpenLinks] = useState(false);
     const [isBagOpen, setIsBagOpen] = useState(false);
+    const [hoverLogin, setHoverLogin] = useState(false);
+    const [hoverBag, setHoverBag] = useState(false);
 
     const toggleNavbar = () => {
         setOpenLinks(!openLinks)
@@ -26,18 +30,27 @@ const Navbar = () => {
                 <img src={Logo} alt='Logo' className='w-[150px]'/>
             </Link>
                 <div className='hiddenLinks'>
-                    <Link to='/menu'>Menu</Link>
-                    <Link to='/order'>Order</Link>
-                    <Link to='/login'><AccountCircleOutlinedIcon/></Link>
+                    <Link to='/menu' className='styled-hover'>Menu</Link>
+                    <Link to='/order' className='styled-hover'>Order</Link>
+                    <Link to='/login' className='login' onMouseEnter={() => setHoverLogin(true)} onMouseLeave={() => setHoverLogin(false)}>
+                        {hoverLogin ? <AccountCircleIcon /> : <AccountCircleOutlinedIcon />}
+                    </Link>
                 </div>
             </div>
             <div className='rightSide'>
                 <div className='navBarButtons'>
-                    <Link to='/menu'>Menu</Link>
-                    <Link to='/order'>Order</Link>
-                    <Link to='/login'><AccountCircleOutlinedIcon/></Link>
+                    <Link to='/menu' className='styled-hover'>Menu</Link>
+                    <Link to='/order' className='styled-hover'>Order</Link>
+                    <Link to='/login' className='-translate-y-[2px]' onMouseEnter={() => setHoverLogin(true)} onMouseLeave={() => setHoverLogin(false)}>
+                        {hoverLogin ? <AccountCircleIcon /> : <AccountCircleOutlinedIcon />}
+                    </Link>
                     <button onClick={toggleNavbar}><MenuIcon/></button>
-                    <ShoppingBagOutlinedIcon className='bag cursor-pointer' onClick={() => setIsBagOpen(!isBagOpen)}/>
+                    {/* <div className='bag cursor-pointer -translate-y-[2px]' onMouseEnter={() => setHoverBag(true)} onMouseLeave={() => setHoverBag(false)}>
+                        {hoverBag ? <ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : <ShoppingBagOutlinedIcon onClick={() => setIsBagOpen(!isBagOpen)} />}
+                    </div> */}
+                    <div className='bag cursor-pointer -translate-y-[2px]' onMouseEnter={() => setHoverBag(true)} onMouseLeave={() => setHoverBag(false)}>
+                        {isBagOpen ? <ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : (hoverBag ? <ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : <ShoppingBagOutlinedIcon onClick={() => setIsBagOpen(!isBagOpen)} />)}
+                    </div>
                 </div>
             </div>
             {isBagOpen && <Bag onClose={closeBag} />}

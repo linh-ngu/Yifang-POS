@@ -19,3 +19,30 @@
     font-size:larger;
     font-style: italic;
 }
+
+/* IngredientStyles.css */
+
+.ingredient-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    margin-top: 20px;
+}
+
+.ingredient-table {
+    width: 70%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.ingredient-table th, .ingredient-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+
