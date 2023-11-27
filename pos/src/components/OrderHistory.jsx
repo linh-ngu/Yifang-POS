@@ -87,7 +87,7 @@ const OrderHistory = () => {
 
   const getOrder = async() => {
       try {
-          const response = await fetch("http://localhost:5000/manager/orderhistory");
+          const response = await fetch("https://yifang-backend.onrender.com/manager/orderhistory");
           const jsonData = await response.json();
 
           setOrder(jsonData);

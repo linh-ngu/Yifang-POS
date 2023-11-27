@@ -6,7 +6,7 @@ const Report = () => {
 
     const handlePopularityAnalysis = async() => {
         try {
-            const response = await fetch("http://localhost:5000/manager/popularityanalysis");
+            const response = await fetch("https://yifang-backend.onrender.com/manager/popularityanalysis");
             const jsonData = await response.json();
   
             setReport(jsonData);
@@ -19,7 +19,7 @@ const Report = () => {
     
       const handleSalesReport = async() => {
         try {
-            const response = await fetch("http://localhost:5000/manager/salesreport");
+            const response = await fetch("https://yifang-backend.onrender.com/manager/salesreport");
             const jsonData = await response.json();
   
             setReport(jsonData);
@@ -32,7 +32,7 @@ const Report = () => {
     
       const handleRestockReport = async() => {
         try {
-            const response = await fetch("http://localhost:5000/manager/restcockreport");
+            const response = await fetch("https://yifang-backend.onrender.com/manager/restcockreport");
             const jsonData = await response.json();
   
             setReport(jsonData);
@@ -45,7 +45,7 @@ const Report = () => {
     
       const handleExcessReport = async() => {
         try {
-            const response = await fetch("http://localhost:5000/manager/excessreport");
+            const response = await fetch("https://yifang-backend.onrender.com/manager/excessreport");
             const jsonData = await response.json();
   
             setReport(jsonData);

@@ -32,7 +32,8 @@ function Order() {
   useEffect(() => {
     const getDrinks = async () => {
       try {
-        const response = await fetch("http://localhost:5000/order/getDrinks");
+        //const response = await fetch("http://localhost:5000/order/getDrinks");
+        const response = await fetch("https://yifang-backend.onrender.com/order/getDrinks");
         const jsonData = await response.json();
         setDrinks(jsonData);
       } catch (err) {
