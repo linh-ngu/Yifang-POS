@@ -72,7 +72,7 @@ const Customization = ({ item, onClose }) => {
           <h3 className='py-4 font-bold'>Add Toppings (additional charge)</h3>
           <div className='grid grid-cols-2 gap-3 pt-2 pb-5'>
             {toppings.map((item, index) => (
-              <div key={index} className={`border shadow-lg rounded-lg hover:scale-105 duration-300 ${selectedToppings.includes(item.name) ? 'bg-blue-500 text-white' : ''}`} onClick={() => handleToppingClick(item.name)}>
+              <div key={index} className={`border shadow-lg rounded-lg hover:scale-105 duration-300 ${selectedToppings.includes(item.name) ? 'bg-black text-white' : ''}`} onClick={() => handleToppingClick(item.name)}>
                 <div className='flex justify-between px-2 py-4'>
                   <p className='font-medium px-2'>{item.name}</p>
                   <p className='font-medium px-2'>+$0.75</p>
