@@ -11,7 +11,7 @@ const Bag = ({onClose}) => {
     var staff_id = 9;
     var transaction_date = new Date().toLocaleDateString();
     var payment_method = "Card";
-    var payment_amount = (totalPrice * 0.0825).toFixed(2);
+    var payment_amount = (totalPrice + (totalPrice * 0.0825)).toFixed(2);
     var timestamp = new Date().toLocaleTimeString('en-GB');
     var[order_id, setOrder_id] = useState([]);
 
