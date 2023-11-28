@@ -392,14 +392,14 @@ class Cashier extends React.Component {
             this.changeCurrTable();
             this.changeCurrPrice();
             this.setState({curr_right: this.state.history_right.pop()});
-        }
 
-        // reset values
-        this.drinkId = 0;
-        this.drink = "N/A";
-        this.price = 0;
-        this.qty = 0;
-        this.ingredients = [];
+             // reset values
+            this.drinkId = 0;
+            this.drink = "N/A";
+            this.price = 0;
+            this.qty = 0;
+            this.ingredients = [];
+        }
     }
 
     removeFromOrder = (key) => {
