@@ -30,7 +30,7 @@ function Login() {
     };
 
     const handleLogin = async () => {
-        const result = await checkStaff(inputValue);
+        const result = checkStaff(inputValue);
         if (result === 'manager') {
             navigate('/redirect');
             setIsSignedIn(true);
