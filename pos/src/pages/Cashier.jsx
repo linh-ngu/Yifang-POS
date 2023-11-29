@@ -433,6 +433,7 @@ class Cashier extends React.Component {
                         </div>
                     </div>
                     <button className="button-small" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button className="button-small" onClick={() => this.removeFromOrder(index)}>remove</button>
                 </div>
                 ))}
             </tbody>
