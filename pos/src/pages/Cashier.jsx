@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import "../styles/Cashier.css"
-import BaseDrink from "../components/BaseDrink";             
+import BaseDrink from "../components/BaseDrink";   
+import Tips from "../components/Tips";          
 
 class Cashier extends React.Component {
 
@@ -114,6 +115,7 @@ class Cashier extends React.Component {
             curr_price: this.home_price,
             history_right: [],
             history_left:[],
+            showTips: false,
         };
 
         this.customization = (
@@ -311,7 +313,9 @@ class Cashier extends React.Component {
         );
     }
 
-    
+    handleShowTips = () => {
+        this.setState(prevState => ({ showTips: !prevState.showTips }));
+    };
 
     handleGoBack = () => {
         if(this.state.history_right.length > 0){
@@ -588,9 +592,11 @@ class Cashier extends React.Component {
                         </div>
                         <div> 
                             {this.state.curr_price}
-                            <div style = {{textAlign:"right", paddingRight:"10%"}}>
+                            <div className='ml-7 pb-7 flex justify-between' style = {{textAlign:"right", paddingRight:"10%"}}>
                                 {/* <button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}</button> */}
+                                <button className='button-small' onClick={this.handleShowTips}>Add Tips</button>
                                 <button className= "button-small" onClick={() => this.doCheckout()}>Pay Now</button>
+                                {this.state.showTips && <Tips onClose={this.handleShowTips}/>}
                             </div>
                         </div>
                     </div>;
