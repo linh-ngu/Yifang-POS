@@ -32,7 +32,7 @@ const Report = () => {
     
       const handleRestockReport = async() => {
         try {
-            const response = await fetch("https://yifang-backend.onrender.com/manager/restcockreport");
+            const response = await fetch("https://yifang-backend.onrender.com/report/restockreport");
             const jsonData = await response.json();
   
             setReport(jsonData);
