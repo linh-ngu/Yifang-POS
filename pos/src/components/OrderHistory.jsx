@@ -19,41 +19,42 @@ const OrderHistory = () => {
   
   useEffect(() => {
     getOrder().catch(error => console.error(error));
-}, []);
+  }, []);
   
   return (
-    <div className="ingredient-container">
-            <table className="ingredient-table">
-                <thead>
-                    <tr>
-                      <th>Order ID</th>
-                      <th>Staff ID</th>
-                      <th>Transaction Date</th>
-                      <th>Payment Method</th>
-                      <th>Payment Amount</th>
-                      <th>Timestamp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {order.map((my_order, index) => (
-                  <tr key={index}>
-                      <td>{my_order.order_id}</td>
-                      <td>{my_order.staff_id}</td>
-                      <td>{my_order.transaction_date}</td>
-                      <td>{my_order.payment_method}</td>
-                      <td>{my_order.payment_amount}</td>
-                      <td>{my_order.timestamp}</td>
-                  </tr>
-                ))}
-                </tbody>
-            </table>
-              <button>Total # of Orders</button>
-              <button>Best Seller</button>
-              <button>Payment Method</button>
-              <button>Peak Day</button>
-              <button>Slow Day</button>
-        </div>
-
+    <div className=''>
+      <table className='w-full text-center border border-black mb-4'>
+          <thead>
+            <tr>
+              <th className='p-1'>Order ID</th>
+              <th className='p-1'>Staff ID</th>
+              <th className='p-1'>Transaction Date</th>
+              <th className='p-1'>Payment Method</th>
+              <th className='p-1'>Payment Amount</th>
+              <th className='p-1'>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody>
+          {order.map((my_order, index) => (
+            <tr key={index}>
+              <td className='p-1'>{my_order.order_id}</td>
+              <td className='p-1'>{my_order.staff_id}</td>
+              <td className='p-1'>{my_order.transaction_date}</td>
+              <td className='p-1'>{my_order.payment_method}</td>
+              <td className='p-1'>{my_order.payment_amount}</td>
+              <td className='p-1'>{my_order.timestamp}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className='flex justify-center'>
+        <button className='border border-black p-2 m-4'>Total # of Orders</button>
+        <button className='border border-black p-2 m-4'>Best Seller</button>
+        <button className='border border-black p-2 m-4'>Payment Method</button>
+        <button className='border border-black p-2 m-4'>Peak Day</button>
+        <button className='border border-black p-2 m-4'>Slow Day</button> 
+      </div>
+    </div>
   )
 };
 

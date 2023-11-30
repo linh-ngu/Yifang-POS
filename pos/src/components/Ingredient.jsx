@@ -1,14 +1,12 @@
 //import '../styles/IngredientStyles.css'; // Include your custom CSS file
 // import { useState } from 'react';
 import React, { useEffect, useState } from 'react'
-import AddIngredients from './tableButtons/addIngredients';
-import RemoveIngredients from './tableButtons/removeIngredients';
-import ChangeRestockDate from './tableButtons/changeRestockDate';
-import ChangeSupplier from './tableButtons/changeSupplier';
-import ChangeName from './tableButtons/changeName';
-import ChangeStockLevel from './tableButtons/changeStockLevel';
-// import Customization from './Customization';
-// import '../styles/Manager.css'
+import AddIngredients from './ingredientsTableButtons/addIngredients';
+import RemoveIngredients from './ingredientsTableButtons/removeIngredients';
+import ChangeRestockDate from './ingredientsTableButtons/changeRestockDate';
+import ChangeSupplier from './ingredientsTableButtons/changeSupplier';
+import ChangeName from './ingredientsTableButtons/changeName';
+import ChangeStockLevel from './ingredientsTableButtons/changeStockLevel';
 
 const Ingredient = () => {
     const[ingredient, setIngredient] = useState([]);
