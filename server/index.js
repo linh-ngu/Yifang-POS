@@ -106,7 +106,7 @@ app.get('/order/getId', async (req, res) => {
 });
 
 // report -> popularity analysis
-app.get('/report/popularityanalysis', async (req, res) => {
+app.get('/manager/popularityanalysis', async (req, res) => {
   try {
     const result = await pool.query(`
   SELECT
@@ -131,7 +131,7 @@ app.get('/report/popularityanalysis', async (req, res) => {
 });
 
 // report -> sales report
-app.get('/report/salesreport', async (req, res) => {
+app.get('/manager/salesreport', async (req, res) => {
   try {
     const result = await pool.query(`
   SELECT
@@ -167,7 +167,7 @@ app.get('/manager/restockreport', async (req, res) => {
 });
 
 // report -> excess report
-app.get('/report/excessreport', async (req, res) => {
+app.get('/manager/excessreport', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM base_drinks');
     res.json(result.rows);
