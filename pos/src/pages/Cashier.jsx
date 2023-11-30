@@ -374,7 +374,7 @@ class Cashier extends React.Component {
         }
     };
     
-    saveDrink = async () => {
+    saveDrink = async (key) => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
         if(this.qty > 0){
             // console.log("...about to get menu");
@@ -393,12 +393,15 @@ class Cashier extends React.Component {
             this.changeCurrPrice();
             this.setState({curr_right: this.state.history_right.pop()});
 
-             // reset values
+            // reset values
             this.drinkId = 0;
             this.drink = "N/A";
             this.price = 0;
             this.qty = 0;
             this.ingredients = [];
+        }
+        if (key != -1){
+            this.removeFromOrder(key);
         }
     }
 
@@ -407,6 +410,11 @@ class Cashier extends React.Component {
         delete this.orderTable[key];
         this.changeCurrTable();
         this.changeCurrPrice();
+    }
+
+    editDrink = (key) => {
+        var prevLength = this.orderTable.length;
+        this.changeCurrRight(this.customization, this.orderTable[key].drinkName, key);
     }
 
     changeCurrTable = () => {
@@ -432,8 +440,8 @@ class Cashier extends React.Component {
                             <p  className="px-7">{item.Total}</p>
                         </div>
                     </div>
-                    <button className="button-small" onClick={() => this.removeFromOrder(index)}>remove</button>
-                    <button className="button-small" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button className="button-small ml-7" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button className="button-small ml-7" onClick={() => this.editDrink(index)}>edit</button>
                 </div>
                 ))}
             </tbody>
@@ -477,7 +485,7 @@ class Cashier extends React.Component {
         this.setState({curr_price: this.home_price});
     }
 
-    changeCurrRight = (newContent, newDrink = "None") => {
+    changeCurrRight = (newContent, newDrink = "None", key = -1) => {
         this.state.history_right.push(this.state.curr_right);
         if(newDrink !== "None"){
             this.drink = newDrink;
@@ -561,7 +569,7 @@ class Cashier extends React.Component {
                     </div>
 
                     <div style={{float:"right", paddingRight:"10%", display:"inline-block"}}>
-                        <button className= "button-small" onClick={() => this.saveDrink()}> Save </button>
+                        <button className= "button-small" onClick={() => this.saveDrink(key)}> Save </button>
                     </div>
                 </div>
             );
