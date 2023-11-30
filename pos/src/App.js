@@ -9,25 +9,29 @@ import Order from './pages/Order';
 import Redirect from './pages/Redirect';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShopContextProvider } from './contexts/ShopContextProvider';
+import { UserContextProvider } from './contexts/UserContextProvider';
 
 function App() {
 
   return (
     <div className='App'>
-      <ShopContextProvider>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/manager" element={<Manager />} />
-            <Route path="/cashier" element={<Cashier />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/redirect" element={<Redirect />} />
-          </Routes>
-        </BrowserRouter>
-      </ShopContextProvider>
+      <UserContextProvider>
+        <ShopContextProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/manager" element={<Manager />} />
+              <Route path="/cashier" element={<Cashier />} />
+              <Route path="/order" element={<Order />} />
+              <Route path="/redirect" element={<Redirect />} />
+            </Routes>
+          </BrowserRouter>
+        </ShopContextProvider>
+      </UserContextProvider>
+      
     </div>
   );
 }
