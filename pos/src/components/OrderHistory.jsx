@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/IngredientStyles.css';
+// import '../styles/IngredientStyles.css';
 
 const OrderHistory = () => {
   const[order, setOrder] = useState([]);

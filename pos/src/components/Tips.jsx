@@ -8,7 +8,7 @@ function Tips({ onClose }) {
         <button onClick={() => { onClose();}} className='bg-white absolute top-2 right-3 m-2 rounded-full p-2'><CloseOutlinedIcon/></button>
             <div className='flex flex-col justify-center'>
                 <h1 className='text-center font-bold text-3xl p-6'>Tip Amount</h1>
-                <input className='mx-auto w-1/2 p-1 text-center' type="text" />
+                <input className='border border-black mx-auto w-1/2 p-1 text-center' type="text" />
             </div>
             <div className='flex flex-col justify-center mt-10'>
                 <h1 className='text-center font-bold text-2xl p-4'>Payment Method</h1>
