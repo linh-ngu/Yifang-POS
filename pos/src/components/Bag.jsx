@@ -8,10 +8,10 @@ const Bag = ({onClose}) => {
 
     const { bagItems, removeFromBag, clearBag } = useContext(ShopContext);
     const totalPrice = Object.values(bagItems).reduce((total, item) => total + item.price, 0);
-    var staff_id = 9;
+    var staff_id = 10;
     var transaction_date = new Date().toLocaleDateString();
     var payment_method = "Card";
-    var payment_amount = totalPrice;
+    var payment_amount = (totalPrice + (totalPrice * 0.0825)).toFixed(2);
     var timestamp = new Date().toLocaleTimeString('en-GB');
     var[order_id, setOrder_id] = useState([]);
 

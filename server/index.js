@@ -106,9 +106,23 @@ app.get('/order/getId', async (req, res) => {
 });
 
 // report -> popularity analysis
-app.get('/report/popularityanalysis', async (req, res) => {
+app.get('/manager/popularityanalysis', async (req, res) => {
   try {
-    //const result = await pool.query('SELECT d.name AS drink_name, SUM(d.price) AS total_sales FROM drinks d JOIN orders o ON d.order_id = o.order_id WHERE TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date' GROUP BY d.name ORDER BY total_sales DESC LIMIT 10 ');
+    const result = await pool.query(`
+  SELECT
+    d.name AS drink_name,
+    SUM(d.price) AS total_sales
+  FROM
+    drinks d
+    JOIN orders o ON d.order_id = o.order_id
+  WHERE
+    TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date'
+  GROUP BY
+    d.name
+  ORDER BY
+    total_sales DESC
+  LIMIT 10
+`);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -117,9 +131,21 @@ app.get('/report/popularityanalysis', async (req, res) => {
 });
 
 // report -> sales report
-app.get('/report/sales report', async (req, res) => {
+app.get('/manager/salesreport', async (req, res) => {
   try {
-    //const result = await pool.query('SELECT d.name AS drink_name, SUM(d.price) AS total_sales FROM drinks d JOIN orders o ON d.order_id = o.order_id WHERE TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date' AND LOWER(TRIM(d.name)) ILIKE LOWER(TRIM('drink-anme')) GROUP BY d.name');
+    const result = await pool.query(`
+  SELECT
+    d.name AS drink_name,
+    SUM(d.price) AS total_sales
+  FROM
+    drinks d
+    JOIN orders o ON d.order_id = o.order_id
+  WHERE
+    TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date'
+    AND LOWER(TRIM(d.name)) ILIKE LOWER(TRIM('drink-anme'))
+  GROUP BY
+    d.name
+`);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -128,11 +154,12 @@ app.get('/report/sales report', async (req, res) => {
 });
 
 // report -> restock report
-app.get('/report/restockreport', async (req, res) => {
+app.get('/manager/restockreport', async (req, res) => {
   try {
+    //console.log("Endpoint hit: /manager/restockreport");
     const result = await pool.query('SELECT name FROM ingredients WHERE stock_level <= 100');
+    console.log(result.rows); // Log the result
     res.json(result.rows);
-    console.log(result.rows);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -140,7 +167,7 @@ app.get('/report/restockreport', async (req, res) => {
 });
 
 // report -> excess report
-app.get('/report/excessreport', async (req, res) => {
+app.get('/manager/excessreport', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM base_drinks');
     res.json(result.rows);

@@ -30,7 +30,7 @@ function Login() {
     };
 
     const handleLogin = async () => {
-        const result = await checkStaff(inputValue);
+        const result = checkStaff(inputValue);
         if (result === 'manager') {
             navigate('/redirect');
             setIsSignedIn(true);
@@ -56,7 +56,7 @@ function Login() {
         /* global google */
         google.accounts.id.initialize({
             client_id: "659412670449-bqubbteq6sk1dfk903m8mdh7onu59j4r.apps.googleusercontent.com",
-            // callback: handleCallbackResponse
+            callback: handleCallbackResponse
         });
 
         google.accounts.id.renderButton(

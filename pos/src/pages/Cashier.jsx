@@ -204,7 +204,7 @@ class Cashier extends React.Component {
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "watermelon coconut agar cooler")}><p>watermelon coconut agar cooler</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passion gruit tea")}><p>kumquat passion gruit tea</p></button>
+                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passionfruit tea")}><p>kumquat passionfruit tea</p></button>
                 </div>
                 <div>
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "green plum green tea")}><p>green plum green tea</p></button>
@@ -225,7 +225,7 @@ class Cashier extends React.Component {
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "yakult fruit tea")}><p>yakult fruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "passion fruit green tea")}><p>passion fruit green tea</p></button>
+                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "passionfruit green tea")}><p>passionfruit green tea</p></button>
                 </div>
                 <div>
                     <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "pineapple green tea")}><p>pineapple green tea</p></button>
@@ -345,7 +345,7 @@ class Cashier extends React.Component {
 
     getOrder_id = async() => {
         try {
-            const response = await fetch("http://localhost:5000/order/getId");
+            const response = await fetch("https://yifang-backend.onrender.com/order/getId");
             const jsonData = await response.json();
 
             // this.state.order_id = jsonData[0].order_id + 1;
@@ -363,7 +363,7 @@ class Cashier extends React.Component {
         try {
           const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = this;
           const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: (this.totPrice*(1+ 0.075)).toFixed(2), timestamp };
-          const response = await fetch("http://localhost:5000/checkout", {
+          const response = await fetch("https://yifang-backend.onrender.com/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
@@ -378,7 +378,7 @@ class Cashier extends React.Component {
         }
     };
     
-    saveDrink = async () => {
+    saveDrink = async (key) => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
         if(this.qty > 0){
             // console.log("...about to get menu");
@@ -396,14 +396,17 @@ class Cashier extends React.Component {
             this.changeCurrTable();
             this.changeCurrPrice();
             this.setState({curr_right: this.state.history_right.pop()});
-        }
 
-        // reset values
-        this.drinkId = 0;
-        this.drink = "N/A";
-        this.price = 0;
-        this.qty = 0;
-        this.ingredients = [];
+            // reset values
+            this.drinkId = 0;
+            this.drink = "N/A";
+            this.price = 0;
+            this.qty = 0;
+            this.ingredients = [];
+        }
+        if (key != -1){
+            this.removeFromOrder(key);
+        }
     }
 
     removeFromOrder = (key) => {
@@ -411,6 +414,11 @@ class Cashier extends React.Component {
         delete this.orderTable[key];
         this.changeCurrTable();
         this.changeCurrPrice();
+    }
+
+    editDrink = (key) => {
+        var prevLength = this.orderTable.length;
+        this.changeCurrRight(this.customization, this.orderTable[key].drinkName, key);
     }
 
     changeCurrTable = () => {
@@ -436,7 +444,8 @@ class Cashier extends React.Component {
                             <p  className="px-7">{item.Total}</p>
                         </div>
                     </div>
-                    <button className="button-small" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button className="button-small ml-7" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button className="button-small ml-7" onClick={() => this.editDrink(index)}>edit</button>
                 </div>
                 ))}
             </tbody>
@@ -480,7 +489,7 @@ class Cashier extends React.Component {
         this.setState({curr_price: this.home_price});
     }
 
-    changeCurrRight = (newContent, newDrink = "None") => {
+    changeCurrRight = (newContent, newDrink = "None", key = -1) => {
         this.state.history_right.push(this.state.curr_right);
         if(newDrink !== "None"){
             this.drink = newDrink;
@@ -564,7 +573,7 @@ class Cashier extends React.Component {
                     </div>
 
                     <div style={{float:"right", paddingRight:"10%", display:"inline-block"}}>
-                        <button className= "button-small" onClick={() => this.saveDrink()}> Save </button>
+                        <button className= "button-small" onClick={() => this.saveDrink(key)}> Save </button>
                     </div>
                 </div>
             );
