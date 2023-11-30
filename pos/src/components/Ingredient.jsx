@@ -1,14 +1,17 @@
 //import '../styles/IngredientStyles.css'; // Include your custom CSS file
 // import { useState } from 'react';
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
-import '../styles/Manager.css'
-import Customization from './Customization';
+import React, { useEffect, useState } from 'react'
+import AddIngredients from './tableButtons/addIngredients';
+import RemoveIngredients from './tableButtons/removeIngredients';
+import ChangeRestockDate from './tableButtons/changeRestockDate';
+import ChangeSupplier from './tableButtons/changeSupplier';
+import ChangeName from './tableButtons/changeName';
+import ChangeStockLevel from './tableButtons/changeStockLevel';
+// import Customization from './Customization';
+// import '../styles/Manager.css'
 
 const Ingredient = () => {
     const[ingredient, setIngredient] = useState([]);
-    const[task, setTask] = useState(null);
 
     const getIngredient = async() => {
         try {
@@ -18,7 +21,6 @@ const Ingredient = () => {
 
             setIngredient(jsonData);
 
-            console.log(jsonData);
         } catch (err) {
             console.error(err.message);
         }
@@ -28,48 +30,54 @@ const Ingredient = () => {
         getIngredient();
     },[]);
 
-    const openModal = () => {
-        setTask(8);
+    const [showModel, setShowModel] = useState("");
+
+    const openModel = (val) => {
+        setShowModel(val);
     };
 
-    const closeModal = () => {
-        setTask(null);
+    const closeModel = () => {
+        setShowModel("");
     };
 
     return (
-        <div className="ingredient-container">
-            
-            <div className="data-container">
-            <table className="ingredient-table">
+        <div className=''> 
+            <table className='w-full text-center border border-black mb-4'>
                 <thead>
                     <tr>
-                        <th>Ingredient ID</th>
-                        <th>Name</th>
-                        <th>Stock Level</th>
-                        <th>Restock Date</th>
-                        <th>Supplier</th>
+                        <th className='p-1'>Ingredient ID</th>
+                        <th className='p-1'>Name</th>
+                        <th className='p-1'>Stock Level</th>
+                        <th className='p-1'>Restock Date</th>
+                        <th className='p-1'>Supplier</th>
                     </tr>
                 </thead>
                 <tbody>
                     {ingredient.map((my_ingredient, index) => (
                         <tr key={index}>
-                            <td>{my_ingredient.ingredient_id}</td>
-                            <td>{my_ingredient.name}</td>
-                            <td>{my_ingredient.stock_level}</td>
-                            <td>{my_ingredient.restock_date}</td>
-                            <td>{my_ingredient.supplier}</td>
+                            <td className='p-1'>{my_ingredient.ingredient_id}</td>
+                            <td className='p-1'>{my_ingredient.name}</td>
+                            <td className='p-1'>{my_ingredient.stock_level}</td>
+                            <td className='p-1'>{my_ingredient.restock_date}</td>
+                            <td className='p-1'>{my_ingredient.supplier}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <button className="add-button" onClick={() => openModal()}>Add Ingredient</button>
-            <button className="remove-button">Remove Ingredient</button>
-            <button className="restock-button">Change Restock Date</button>
-            <button className="supplier-button">Change Supplier</button>
-            <button className="name-button">Change Name</button>
-            <button className="stock-button">Change Stock Level</button>
-            <Customization item={task} onClose={closeModal} />
-        </div>
+            <div className='flex justify-center'>
+                <button className='border border-black p-2 m-4' onClick={() => openModel("addIngredients")}>Add Ingredient</button>
+                <button className='border border-black p-2 m-4' onClick={() => openModel("removeIngredients")}>Remove Ingredient</button>
+                <button className='border border-black p-2 m-4' onClick={() => openModel("changeRestockDate")}>Change Restock Date</button>
+                <button className='border border-black p-2 m-4' onClick={() => openModel("changeSupplier")}>Change Supplier</button>
+                <button className='border border-black p-2 m-4' onClick={() => openModel("changeName")}>Change Name</button>
+                <button className='border border-black p-2 m-4' onClick={() => openModel("changeStockLevel")}>Change Stock Level</button>
+            </div>
+            {showModel === 'addIngredients' && <AddIngredients onClose={closeModel} />}
+            {showModel === 'removeIngredients' && <RemoveIngredients onClose={closeModel} />}
+            {showModel === 'changeRestockDate' && <ChangeRestockDate onClose={closeModel} />}
+            {showModel === 'changeSupplier' && <ChangeSupplier onClose={closeModel} />}
+            {showModel === 'changeName' && <ChangeName onClose={closeModel} />}
+            {showModel === 'changeStockLevel' && <ChangeStockLevel onClose={closeModel} />}
         </div>
     )
 };

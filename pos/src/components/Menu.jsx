@@ -3,7 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 // import './MenuStyles.css';
-import '../styles/IngredientStyles.css';
+// import '../styles/IngredientStyles.css';
 
 // class Menu extends Component {
 //   constructor() {
