@@ -30,16 +30,16 @@ const Report = () => {
         }
       };
     
-      const handleRestockReport = async() => {
+      const handleRestockReport = async () => {
         try {
-            const response = await fetch("https://yifang-backend.onrender.com/manager/restcockreport");
-            const jsonData = await response.json();
-  
-            setReport(jsonData);
-  
-            console.log(jsonData);
+          const response = await fetch("https://yifang-backend.onrender.com/manager/restockreport");
+          const jsonData = await response.json();
+      
+          setReport(jsonData);
+      
+          console.log(jsonData);
         } catch (err) {
-            console.error(err.message);
+          console.error(err.message);
         }
       };
     
@@ -71,6 +71,25 @@ const Report = () => {
       <div>
         <button onClick={handleExcessReport}>Excess Report</button>
       </div>
+      {report.length > 0 && (
+        <div>
+          <h2>Restock Report</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Ingredient Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {report.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
