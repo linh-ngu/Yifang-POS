@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// import '../styles/IngredientStyles.css';
+import TotalOrders from './orderHistoryTableButtons/totalOrders';
+import BestSeller from './orderHistoryTableButtons/bestSeller';
+import PaymentMethod from './orderHistoryTableButtons/paymentMethod';
+import PeakDay from './orderHistoryTableButtons/peakDay';
+import SlowDay from './orderHistoryTableButtons/slowDay';
 
 const OrderHistory = () => {
   const[order, setOrder] = useState([]);
@@ -11,7 +15,6 @@ const OrderHistory = () => {
 
           setOrder(jsonData);
 
-          console.log(jsonData);
       } catch (err) {
           console.error(err.message);
       }
@@ -20,6 +23,16 @@ const OrderHistory = () => {
   useEffect(() => {
     getOrder().catch(error => console.error(error));
   }, []);
+
+  const [showModel, setShowModel] = useState("");
+
+  const openModel = (val) => {
+      setShowModel(val);
+  };
+
+  const closeModel = () => {
+      setShowModel("");
+  };
   
   return (
     <div className=''>
@@ -48,12 +61,17 @@ const OrderHistory = () => {
         </tbody>
       </table>
       <div className='flex justify-center'>
-        <button className='border border-black p-2 m-4'>Total # of Orders</button>
-        <button className='border border-black p-2 m-4'>Best Seller</button>
-        <button className='border border-black p-2 m-4'>Payment Method</button>
-        <button className='border border-black p-2 m-4'>Peak Day</button>
-        <button className='border border-black p-2 m-4'>Slow Day</button> 
+        <button className='border border-black p-2 m-4' onClick={() => openModel("totalOrders")}>Total # of Orders</button>
+        <button className='border border-black p-2 m-4' onClick={() => openModel("bestSeller")}>Best Seller</button>
+        <button className='border border-black p-2 m-4' onClick={() => openModel("paymentMethod")}>Payment Method</button>
+        <button className='border border-black p-2 m-4' onClick={() => openModel("peakDay")}>Peak Day</button>
+        <button className='border border-black p-2 m-4' onClick={() => openModel("slowDay")}>Slow Day</button> 
       </div>
+      {showModel === "totalOrders" && <TotalOrders onClose={closeModel} />}
+      {showModel === "bestSeller" && <BestSeller onClose={closeModel} />}
+      {showModel === "paymentMethod" && <PaymentMethod onClose={closeModel} />}
+      {showModel === "peakDay" && <PeakDay onClose={closeModel} />}
+      {showModel === "slowDay" && <SlowDay onClose={closeModel} />}
     </div>
   )
 };
