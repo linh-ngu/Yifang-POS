@@ -63,12 +63,12 @@ const Ingredient = () => {
                 </tbody>
             </table>
             <div className='flex justify-center'>
-                <button className='border border-black p-2 m-4' onClick={() => openModel("addIngredients")}>Add Ingredient</button>
-                <button className='border border-black p-2 m-4' onClick={() => openModel("removeIngredients")}>Remove Ingredient</button>
-                <button className='border border-black p-2 m-4' onClick={() => openModel("changeRestockDate")}>Change Restock Date</button>
-                <button className='border border-black p-2 m-4' onClick={() => openModel("changeSupplier")}>Change Supplier</button>
-                <button className='border border-black p-2 m-4' onClick={() => openModel("changeName")}>Change Name</button>
-                <button className='border border-black p-2 m-4' onClick={() => openModel("changeStockLevel")}>Change Stock Level</button>
+                <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("addIngredients")}>Add Ingredient</button>
+                <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("removeIngredients")}>Remove Ingredient</button>
+                <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeRestockDate")}>Change Restock Date</button>
+                <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeSupplier")}>Change Supplier</button>
+                <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeName")}>Change Name</button>
+                <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeStockLevel")}>Change Stock Level</button>
             </div>
             {showModel === 'addIngredients' && <AddIngredients onClose={closeModel} />}
             {showModel === 'removeIngredients' && <RemoveIngredients onClose={closeModel} />}
