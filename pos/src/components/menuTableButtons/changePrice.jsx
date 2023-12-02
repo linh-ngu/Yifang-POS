@@ -60,7 +60,7 @@ const ChangePrice = ({onClose}) => {
           <input
             className='border border-black p-1 mx-auto my-4'
             type="text"
-            placeholder="New Restock Date"
+            placeholder="New Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
