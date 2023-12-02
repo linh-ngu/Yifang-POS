@@ -191,6 +191,45 @@ app.post('/checkout', async (req, res) => {
   }
 });
 
+// add ingredient to ingredients table
+app.post('/inventory/addIngredient', async (req, res) => {
+  try {
+    const { ingredient_id, name, stock_level, restock_date, supplier } = req.body;
+    const newIngredient = await pool.query("INSERT INTO ingredients VALUES($1, $2, $3, $4, $5) RETURNING *",
+    [ingredient_id, name, stock_level, restock_date, supplier]
+    );
+    res.json(newIngredient.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// get last ingredient_id
+app.get('/inventory/getIngredientId', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT ingredient_id FROM ingredients ORDER BY ingredient_id DESC LIMIT 1');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// remove ingredient from inventory
+app.delete('/inventory/deleteIngredient', async (req, res) => {
+  try {
+    const { name } = req.body;
+    const deleteIngredient = await pool.query("DELETE FROM ingredients WHERE name = $1",
+    [name]
+    );
+    res.json("Ingredient was deleted.")
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 
 
