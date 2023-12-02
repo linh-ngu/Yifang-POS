@@ -244,6 +244,20 @@ app.put('/inventory/changeRestockDate', async (req, res) => {
   }
 });
 
+// change ingredient supplier
+app.put('/inventory/changeSupplier', async (req, res) => {
+  try {
+    const { supplier, name } = req.body;
+    const updateSupplier = await pool.query("UPDATE ingredients SET supplier = $1 where name = $2",
+    [supplier, name]
+    );
+    res.json("Supplier was updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 
 
