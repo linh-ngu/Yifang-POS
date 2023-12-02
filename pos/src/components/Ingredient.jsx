@@ -1,5 +1,3 @@
-//import '../styles/IngredientStyles.css'; // Include your custom CSS file
-// import { useState } from 'react';
 import React, { useEffect, useState } from 'react'
 import AddIngredients from './ingredientsTableButtons/addIngredients';
 import RemoveIngredients from './ingredientsTableButtons/removeIngredients';
