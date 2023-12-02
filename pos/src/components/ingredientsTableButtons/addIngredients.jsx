@@ -29,7 +29,7 @@ const AddIngredients = ({ onClose }) => {
 
   const getIngredient_id = async() => {
       try {
-          // const response = await fetch("https://yifang-backend.onrender.com/order/getId");
+          // const response = await fetch("https://yifang-backend.onrender.com/inventory/getIngredientId");
           const response = await fetch("http://localhost:5000/inventory/getIngredientId");
           const jsonData = await response.json();
 
