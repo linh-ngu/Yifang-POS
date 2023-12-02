@@ -363,6 +363,17 @@ app.put('/menu/changeIngredients', async (req, res) => {
   }
 });
 
+// get last ingredient_id
+app.get('/menu/getBaseID', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT base_id FROM base_drinks ORDER BY base_id DESC LIMIT 1');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.listen(5000, () => {
     console.log("server has started on port 5000");
