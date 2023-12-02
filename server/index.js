@@ -62,7 +62,7 @@ app.get('/manager/menu', async (req, res) => {
 //manager -> get orderhistory
 app.get('/manager/orderhistory', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM orders LIMIT 20');
+    const result = await pool.query('SELECT * FROM orders ORDER BY order_id DESC');
     res.json(result.rows);
     // console.log(req.params);
   } catch (err) {
@@ -190,6 +190,8 @@ app.post('/checkout', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
 
 
 // update a todo

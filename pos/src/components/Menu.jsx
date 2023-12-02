@@ -58,11 +58,11 @@ const Menu = () => {
           </tbody>
       </table>
       <div className='flex justify-center'>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("addItem")}>Add</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("removeItem")}>Remove</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeName")}>Name</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changePrice")}>Price</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeIngredients")}>Ingredients</button>
+        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("addItem")}>Add Menu Item</button>
+        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("removeItem")}>Remove Menu Item</button>
+        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeName")}>Change Name</button>
+        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changePrice")}>Change Price</button>
+        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeIngredients")}>Change Ingredients List</button>
       </div>
       {showModel === 'addItem' && <AddItem onClose={closeModel} />}
       {showModel === 'removeItem' && <RemoveItem onClose={closeModel} />}
