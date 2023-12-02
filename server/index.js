@@ -223,7 +223,21 @@ app.delete('/inventory/deleteIngredient', async (req, res) => {
     const deleteIngredient = await pool.query("DELETE FROM ingredients WHERE name = $1",
     [name]
     );
-    res.json("Ingredient was deleted.")
+    res.json("Ingredient was deleted.");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// change ingredient restock date
+app.put('/inventory/changeRestockDate', async (req, res) => {
+  try {
+    const { restock_date, name } = req.body;
+    const updateRestockDate = await pool.query("UPDATE ingredients SET restock_date = $1 where name = $2",
+    [restock_date, name]
+    );
+    res.json("Restock Date was updated");
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
