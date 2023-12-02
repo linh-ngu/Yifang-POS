@@ -105,6 +105,17 @@ app.get('/order/getId', async (req, res) => {
   }
 });
 
+// get last menu id
+app.get('/menu/getbaseID', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT base_id FROM base_drinks ORDER BY base_id DESC LIMIT 1');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // report -> popularity analysis
 app.get('/manager/popularityanalysis', async (req, res) => {
   try {
@@ -306,7 +317,7 @@ app.post('/menu/addmenuitem', async (req, res) => {
     const newItem = await pool.query("INSERT INTO base_drinks VALUES($1, $2, $3, $4) RETURNING *",
     [base_id, name, price, list_ingredients]
     );
-    res.json(newMenu.rows[0]);
+    res.json(newItem.rows[0]);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
