@@ -45,7 +45,7 @@ const ChangeSupplier = ({onClose}) => {
     } catch (err) {
       console.error(err.message);
     }
-};
+  };
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
