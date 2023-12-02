@@ -4,8 +4,8 @@ const AddItem = ({ onClose }) => {
   // State to store input values
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [listIngredients, setIngredients] = useState('');
-  const [baseID, setID] = useState([]);
+  const [list_ingredients, setIngredients] = useState('');
+  const [base_id, setID] = useState([]);
 
   const getID = async () => {
     try {
@@ -26,7 +26,7 @@ const AddItem = ({ onClose }) => {
 
   const doAddItem = async () => {
     try {
-      const body = { name, price, listIngredients, baseID };
+      const body = { name, price, list_ingredients, base_id };
       const response = await fetch("https://yifang-backend.onrender.com/menu/addmenuitem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -78,7 +78,7 @@ const AddItem = ({ onClose }) => {
           className='border border-black p-1 mx-auto my-4'
           type="text"
           placeholder="Ingredients List"
-          value={listIngredients}
+          value={list_ingredients}
           onChange={(e) => setIngredients(e.target.value)}
         />
         <div className='flex justify-center'>
