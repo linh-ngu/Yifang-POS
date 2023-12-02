@@ -9,7 +9,7 @@ const AddItem = ({ onClose }) => {
 
   const getID = async () => {
     try {
-      const response = await fetch("http://localhost:5000/menu/getbaseID");
+      const response = await fetch("https://yifang-backend.onrender.com/menu/getbaseID");
       const jsonData = await response.json();
 
       setID(jsonData[0].base_id + 1);
@@ -27,7 +27,7 @@ const AddItem = ({ onClose }) => {
   const doAddItem = async () => {
     try {
       const body = { name, price, listIngredients, baseID };
-      const response = await fetch("http://localhost:5000/menu/addmenuitem", {
+      const response = await fetch("https://yifang-backend.onrender.com/menu/addmenuitem", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
