@@ -286,12 +286,71 @@ app.put('/inventory/changeStockLevel', async (req, res) => {
   }
 });
 
+// change ingredient supplier
+app.put('/inventory/changeName', async (req, res) => {
+  try {
+    const { new_name, name } = req.body;
+    const updateSupplier = await pool.query("UPDATE ingredients SET name = $1 WHERE name = $2",
+    [new_name, name]
+    );
+    res.json("Name was updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
+app.post('/menu/addmenuitem', async (req, res) => {
+  try {
+    const { base_id, name, price, list_ingredients } = req.body;
+    const newItem = await pool.query("INSERT INTO base_drinks VALUES($1, $2, $3, $4) RETURNING *",
+    [base_id, name, price, list_ingredients]
+    );
+    res.json(newMenu.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
+app.delete('/menu/deleteitem', async (req, res) => {
+  try {
+    const { name } = req.body;
+    const deleteItem = await pool.query("DELETE FROM base_drinks WHERE name = $1",
+    [name]
+    );
+    res.json("Menu Item was deleted.");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
-// update a todo
+app.put('/menu/changePrice', async (req, res) => {
+  try {
+    const { price, name } = req.body;
+    const updatePrice = await pool.query("UPDATE base_drinks SET price = $1 where name = $2",
+    [price, name]
+    );
+    res.json("Price was updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
-//delete a todo
+app.put('/menu/changeIngredients', async (req, res) => {
+  try {
+    const { list_ingredients, name } = req.body;
+    const updateIngredients = await pool.query("UPDATE base_drinks SET list_ingredients = $1 where name = $2",
+    [list_ingredients, name]
+    );
+    res.json("Ingredients were updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 
 app.listen(5000, () => {
