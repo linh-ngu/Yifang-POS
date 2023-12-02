@@ -262,10 +262,24 @@ app.put('/inventory/changeSupplier', async (req, res) => {
 app.put('/inventory/changeName', async (req, res) => {
   try {
     const { new_name, name } = req.body;
-    const updateSupplier = await pool.query("UPDATE ingredients SET name = $1 WHERE name = $2",
+    const updateName = await pool.query("UPDATE ingredients SET name = $1 WHERE name = $2",
     [new_name, name]
     );
     res.json("Name was updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// change ingredient stock level
+app.put('/inventory/changeStockLevel', async (req, res) => {
+  try {
+    const { stock_level, name } = req.body;
+    const updateStockLevel = await pool.query("UPDATE ingredients SET stock_level = $1 WHERE name = $2",
+    [stock_level, name]
+    );
+    res.json("Stock Level was updated");
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
