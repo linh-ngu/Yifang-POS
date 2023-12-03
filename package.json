@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "jwt-decode": "^4.0.0",
     "nodemon": "^3.0.1",
     "react-player": "^2.13.0"
