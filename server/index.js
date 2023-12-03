@@ -62,7 +62,7 @@ app.get('/manager/menu', async (req, res) => {
 //manager -> get orderhistory
 app.get('/manager/orderhistory', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM orders ORDER BY order_id DESC');
+    const result = await pool.query('SELECT * FROM orders ORDER BY order_id DESC LIMIT 100');
     res.json(result.rows);
     // console.log(req.params);
   } catch (err) {
@@ -367,6 +367,84 @@ app.put('/menu/changeIngredients', async (req, res) => {
 app.get('/menu/getBaseID', async (req, res) => {
   try {
     const result = await pool.query('SELECT base_id FROM base_drinks ORDER BY base_id DESC LIMIT 1');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.put('/menu/changeName', async (req, res) => {
+  try {
+    const { new_name, name } = req.body;
+    const updateItemName = await pool.query("UPDATE base_drinks SET name = $1 WHERE name = $2",
+    [new_name, name]
+    );
+    res.json("Name was updated");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/order/peakdays', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT transaction_date AS order_day, SUM(payment_amount) AS total_order_amount FROM orders GROUP BY transaction_date ORDER BY total_order_amount DESC LIMIT 10');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/order/slowdays', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT transaction_date AS order_day, SUM(payment_amount) AS total_order_amount FROM orders GROUP BY transaction_date ORDER BY total_order_amount ASC LIMIT 10');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/order/paymentmethod', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT payment_method, COUNT(*) AS payment_count FROM orders GROUP BY payment_method ORDER BY payment_count DESC LIMIT 1');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/order/bestseller', async (req, res) => {
+  try {
+    const result = await pool.query(`
+    SELECT
+    d.name AS lowest_selling_drink,
+    COUNT(*) AS total_orders
+FROM
+    drinks d
+JOIN
+    orders o ON d.order_id = o.order_id
+GROUP BY
+    d.name
+ORDER BY
+    total_orders ASC
+LIMIT 1;
+    `);
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.get('/order/totalorders', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT COUNT(*) AS row_count FROM orders');
     res.json(result.rows);
   } catch (err) {
     console.error(err);
