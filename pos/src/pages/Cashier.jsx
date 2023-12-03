@@ -16,7 +16,9 @@ class Cashier extends React.Component {
 
         // to store drink info from database
         this.base = new BaseDrink();
+        this.tipMenu = <Tips onClose={this.handleShowTips} onConfirm={this.handleConfirm}/>;
         this.totPrice = 0;
+        this.tips = 0;
         this.drinkId = 0;
         this.drink = "N/A";
         this.qty = 0;
@@ -313,6 +315,12 @@ class Cashier extends React.Component {
         );
     }
 
+    handleConfirm = (vals) => {
+        this.tips = vals.tips;
+        this.payment_method = vals.method;
+        this.changeCurrPrice();
+    }
+
     handleShowTips = () => {
         this.setState(prevState => ({ showTips: !prevState.showTips }));
     };
@@ -380,6 +388,9 @@ class Cashier extends React.Component {
     
     saveDrink = async (key) => {
         // EDIT THIS AFTER CONNECTION WITH DATABASE
+        if (key != -1){
+            this.removeFromOrder(key);
+        }
         if(this.qty > 0){
             // console.log("...about to get menu");
             await this.base.getMenu();
@@ -403,9 +414,6 @@ class Cashier extends React.Component {
             this.price = 0;
             this.qty = 0;
             this.ingredients = [];
-        }
-        if (key != -1){
-            this.removeFromOrder(key);
         }
     }
 
@@ -475,13 +483,13 @@ class Cashier extends React.Component {
                     Tips:
                 </div>
                 <div>
-                    0.00
+                    {this.tips.toFixed(2)}
                 </div>
                 <div>
                     Balance Due:
                 </div>
                 <div>
-                    {(this.totPrice*(1+ 0.075)).toFixed(2)}
+                    {(this.totPrice*(1+ 0.075) + this.tips).toFixed(2)}
                 </div>
             </div>
         </div>);
@@ -585,6 +593,7 @@ class Cashier extends React.Component {
 
     payOrder = () => {
         this.totPrice = 0;
+        this.tips = 0;
         this.orderTable = [] //clear table
         this.changeCurrTable();
         this.changeCurrPrice(0);
@@ -605,7 +614,7 @@ class Cashier extends React.Component {
                                 {/* <button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}</button> */}
                                 <button className='button-small' onClick={this.handleShowTips}>Add Tips</button>
                                 <button className= "button-small" onClick={() => this.doCheckout()}>Pay Now</button>
-                                {this.state.showTips && <Tips onClose={this.handleShowTips}/>}
+                                {this.state.showTips && this.tipMenu}
                             </div>
                         </div>
                     </div>;
