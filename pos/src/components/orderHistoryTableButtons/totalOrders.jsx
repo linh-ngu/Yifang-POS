@@ -6,7 +6,7 @@ const TotalOrders = ({ onClose }) => {
   useEffect(() => {
     const fetchTotalOrders = async () => {
       try {
-        const response = await fetch('/order/totalorders');
+        const response = await fetch('http://localhost:5000/order/totalorders');
         const data = await response.json();
 
         // Directly set the value without checking array and length

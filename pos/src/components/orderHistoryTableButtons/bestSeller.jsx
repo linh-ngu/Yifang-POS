@@ -7,6 +7,7 @@ const BestSeller = ({ onClose }) => {
     try {
       const response = await fetch('http://localhost:5000/order/bestseller');
       const data = await response.json();
+      console.log(data);
       setBestSellerData(data);
     } catch (error) {
       console.error(error);

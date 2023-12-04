@@ -3,18 +3,20 @@ import React, { useState, useEffect } from 'react';
 const PeakDay = ({ onClose }) => {
   const [peakDaysData, setPeakDaysData] = useState(null);
 
+  const fetchPeakDaysData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/order/peakdays');
+      const data = await response.json();
+
+      console.log(data);
+
+      setPeakDaysData(data);
+    } catch (error) {
+      console.error('Error fetching peak days data:', error.message);
+    }
+  };
+
   useEffect(() => {
-    const fetchPeakDaysData = async () => {
-      try {
-        const response = await fetch('/order/peakdays');
-        const data = await response.json();
-
-        setPeakDaysData(data);
-      } catch (error) {
-        console.error('Error fetching peak days data:', error.message);
-      }
-    };
-
     fetchPeakDaysData();
   }, []);
 
@@ -24,11 +26,13 @@ const PeakDay = ({ onClose }) => {
         {peakDaysData ? (
           <div>
             <p>Peak Days:</p>
+            <br></br>
             <ul>
               {peakDaysData.map((day, index) => (
                 <li key={index}>
                   <p>Order Day: {day.order_day}</p>
                   <p>Total Order Amount: {day.total_order_amount}</p>
+                  <br></br>
                 </li>
               ))}
             </ul>
