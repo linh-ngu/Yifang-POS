@@ -117,23 +117,26 @@ app.get('/menu/getbaseID', async (req, res) => {
 });
 
 // report -> popularity analysis
-app.get('/manager/popularityanalysis', async (req, res) => {
+app.post('/manager/popularityanalysis', async (req, res) => {
   try {
+    const { start_date, end_date } = req.body;
     const result = await pool.query(`
-  SELECT
-    d.name AS drink_name,
-    SUM(d.price) AS total_sales
-  FROM
-    drinks d
-    JOIN orders o ON d.order_id = o.order_id
-  WHERE
-    TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date'
-  GROUP BY
-    d.name
-  ORDER BY
-    total_sales DESC
-  LIMIT 10
-`);
+        SELECT
+          d.name AS drink_name,
+          SUM(d.price) AS total_sales
+        FROM
+          drinks d
+          JOIN orders o ON d.order_id = o.order_id
+        WHERE
+          TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN $1 AND $2
+        GROUP BY
+          d.name
+        ORDER BY
+          total_sales DESC
+        LIMIT 10
+      `,
+      [start_date, end_date]
+    );
     res.json(result.rows);
   } catch (err) {
     console.error(err);
