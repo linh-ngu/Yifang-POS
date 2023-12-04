@@ -22,7 +22,7 @@ const OrderHistory = () => {
   
   useEffect(() => {
     getOrder().catch(error => console.error(error));
-  }, []);
+  });
 
   const [showModel, setShowModel] = useState("");
 
