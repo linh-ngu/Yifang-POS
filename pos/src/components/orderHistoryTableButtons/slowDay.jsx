@@ -20,13 +20,13 @@ const SlowDay = ({ onClose }) => {
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
-      <div className='relative bg-white rounded-lg h-[500px] w-[500px]'>
+      <div className='relative bg-white rounded-lg h-[500px] w-[500px] overflow-auto'>
         {slowDaysData ? (
           <div>
             <p>Slow Days:</p>
             <ul>
               {slowDaysData.map((day, index) => (
-                <li key={index}>
+                <li key={index} className='px-8 py-2'>
                   <p>Order Day: {day.order_day}</p>
                   <p>Total Order Amount: {day.total_order_amount}</p>
                 </li>
