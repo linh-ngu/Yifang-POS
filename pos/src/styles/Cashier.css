@@ -12,6 +12,8 @@
     grid-template-columns: 200px 200px 200px;
     padding: 3px;
     gap: 5px;
+    height:615px;
+    overflow-y:scroll;
 }
 
 .grid-container-topping {
@@ -29,7 +31,7 @@
 
 .grid-container-left {
     display:grid;
-    grid-template-rows: 140% auto;
+    grid-template-rows: 100% auto;
     padding: 3px;
     gap: 3px;
 }
