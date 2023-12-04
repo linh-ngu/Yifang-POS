@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const PopularityAnalysis = ({onClose}) => {
 
@@ -94,7 +94,7 @@ const PopularityAnalysis = ({onClose}) => {
             </ul>
           </div>
         ) : (
-          <p>Loading...</p>
+          <p></p>
         )}
         <div className='flex justify-center'>
           <button aria-label="Cancel" className='border border-black rounded-lg p-2 mx-2' onClick={handleCancel}>Cancel</button>

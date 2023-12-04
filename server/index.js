@@ -146,6 +146,7 @@ app.post('/manager/popularityanalysis', async (req, res) => {
 
 // report -> sales report
 app.get('/manager/salesreport', async (req, res) => {
+  const { start_date, end_date, drink_name } = req.body;
   try {
     const result = await pool.query(`
   SELECT
@@ -155,11 +156,13 @@ app.get('/manager/salesreport', async (req, res) => {
     drinks d
     JOIN orders o ON d.order_id = o.order_id
   WHERE
-    TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN 'start-date' AND 'end-date'
-    AND LOWER(TRIM(d.name)) ILIKE LOWER(TRIM('drink-anme'))
+    TO_DATE(o.transaction_date, 'YYYY-MM-DD') BETWEEN $1 AND $2
+    AND LOWER(TRIM(d.name)) ILIKE LOWER(TRIM($3))
   GROUP BY
     d.name
-`);
+`,
+  [start_date, end_date, drink_name]
+);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
