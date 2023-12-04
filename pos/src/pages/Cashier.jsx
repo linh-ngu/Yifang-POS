@@ -27,7 +27,8 @@ class Cashier extends React.Component {
         this.drinks = []
         this.order_id = this.getOrder_id();
         this.staff_id = 9;
-        this.transaction_date = new Date().toLocaleDateString();
+        // this.transaction_date = new Date().toLocaleDateString();
+        this.transaction_date = new Date().toISOString().split('T')[0];
         this.payment_method = "Card";
         this.payment_amount = 5;
         this.timestamp = new Date().toLocaleTimeString('en-GB');
