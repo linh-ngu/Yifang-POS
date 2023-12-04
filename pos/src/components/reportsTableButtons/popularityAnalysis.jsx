@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const PopularityAnalysis = ({onClose}) => {
 
@@ -6,6 +6,7 @@ const PopularityAnalysis = ({onClose}) => {
   const [end_date, setEndDate] = useState('');
   const [startDateVisible, setStartDateVisible] = useState(true);
   const [endDateVisible, setEndDateVisible] = useState(true);
+  const [enterVisible, setEnterVisible] = useState(true);
   const [popularityData, setPopularityData] = useState(null);
 
   const handleCancel = () => {
@@ -25,6 +26,7 @@ const PopularityAnalysis = ({onClose}) => {
     setEndDate('');
     setStartDateVisible(false);
     setEndDateVisible(false);
+    setEnterVisible(false);
     doPopularityAnalysis();
     // onClose();
   };
@@ -94,11 +96,14 @@ const PopularityAnalysis = ({onClose}) => {
             </ul>
           </div>
         ) : (
-          <p>Loading...</p>
+          <p></p>
         )}
         <div className='flex justify-center'>
           <button aria-label="Cancel" className='border border-black rounded-lg p-2 mx-2' onClick={handleCancel}>Cancel</button>
-          <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button>
+          {/* <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button> */}
+          {enterVisible && (
+            <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button>
+          )}
         </div>
       </div>
     </div>

@@ -10,7 +10,8 @@ const Menu = () => {
 
   const getMenu = async() => {
       try {
-          const response = await fetch("https://yifang-backend.onrender.com/manager/menu");
+          // const response = await fetch("https://yifang-backend.onrender.com/manager/menu");
+          const response = await fetch("http://localhost:5000/manager/menu");
           const jsonData = await response.json();
 
           setMenu(jsonData);
@@ -23,7 +24,7 @@ const Menu = () => {
   
   useEffect(() => {
       getMenu();
-  },[]);
+  });
 
   const [showModel, setShowModel] = useState("");
 
@@ -52,7 +53,8 @@ const Menu = () => {
               <td className='p-1'>{base_drink.base_id}</td>
               <td className='p-1'>{base_drink.name}</td>
               <td className='p-1'>{base_drink.price.toFixed(2)}</td>
-              <td className='p-1'>{base_drink.list_ingredients}</td>
+              {/* <td className='p-1'>{base_drink.list_ingredients}</td> */}
+              <td className='p-1'>{base_drink.list_ingredients.join(', ')}</td>
             </tr>
           ))}
           </tbody>

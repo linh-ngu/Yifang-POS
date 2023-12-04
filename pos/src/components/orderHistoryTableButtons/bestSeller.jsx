@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const BestSeller = ({ onClose }) => {
   const [bestSellerData, setBestSellerData] = useState(null);
@@ -14,6 +14,10 @@ const BestSeller = ({ onClose }) => {
     }
   };
 
+  useEffect(() => {
+    fetchBestSellerData();
+  }, []);
+
   const handleCancel = () => {
     onClose();
   };
@@ -21,22 +25,25 @@ const BestSeller = ({ onClose }) => {
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
       <div className='relative bg-white rounded-lg h-[500px] w-[500px]'>
-        <button aria-label = "Best Seller" onClick={fetchBestSellerData}>Best Seller</button>
-        <button aria-label="Cancel" onClick={handleCancel}>Cancel</button>
-
+        {/* <button aria-label = "Best Seller" onClick={fetchBestSellerData}>Best Seller</button> */}
         {/* Render the best seller data */}
         {bestSellerData && (
           <div>
-            <h2>Best Seller</h2>
             <ul>
-              {bestSellerData.map((item) => (
-                <li key={item.drink_name}>
-                  {item.drink_name}: ${item.total_sales}
+              {bestSellerData.map((item, index) => (
+                // <li key={item.best_selling_drink}>
+                //   {item.drink_name}: ${item.total_orders}
+                // </li>
+                <li key={index}>
+                  <p>Best Selling Drink: {item.best_selling_drink}</p>
+                  <p>Total Order Amount: {item.total_orders}</p>
+                  {/* <br></br> */}
                 </li>
               ))}
             </ul>
           </div>
         )}
+        <button aria-label="Cancel" onClick={handleCancel}>Cancel</button>
       </div>
     </div>
   );
