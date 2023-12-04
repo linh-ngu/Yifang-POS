@@ -117,7 +117,7 @@ app.get('/menu/getbaseID', async (req, res) => {
 });
 
 // report -> popularity analysis
-app.get('/manager/popularityanalysis', async (req, res) => {
+app.post('/manager/popularityanalysis', async (req, res) => {
   try {
     const { start_date, end_date } = req.body;
     const result = await pool.query(`
