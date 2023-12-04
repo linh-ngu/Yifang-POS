@@ -38,7 +38,7 @@ app.get('/cashier', async (req, res) => {
 // manager -> get ingredients
 app.get('/manager', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM ingredients');
+    const result = await pool.query('SELECT * FROM ingredients ORDER BY ingredient_id');
     res.json(result.rows);
     // res.send("hello");
   } catch (err) {

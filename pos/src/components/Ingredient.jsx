@@ -15,6 +15,8 @@ const Ingredient = () => {
             // const response = await fetch("http://localhost:5000/manager");
             const jsonData = await response.json();
 
+            console.log(jsonData);
+
             setIngredient(jsonData);
 
         } catch (err) {
