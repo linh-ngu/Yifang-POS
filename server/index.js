@@ -50,7 +50,7 @@ app.get('/manager', async (req, res) => {
 // manager -> get menu (base_drinks)
 app.get('/manager/menu', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM base_drinks');
+    const result = await pool.query('SELECT * FROM base_drinks ORDER BY base_id');
     res.json(result.rows);
     // console.log(req.params);
   } catch (err) {

@@ -10,7 +10,8 @@ const Menu = () => {
 
   const getMenu = async() => {
       try {
-          const response = await fetch("https://yifang-backend.onrender.com/manager/menu");
+          // const response = await fetch("https://yifang-backend.onrender.com/manager/menu");
+          const response = await fetch("http://localhost:5000/manager/menu");
           const jsonData = await response.json();
 
           setMenu(jsonData);
@@ -23,7 +24,7 @@ const Menu = () => {
   
   useEffect(() => {
       getMenu();
-  },[]);
+  });
 
   const [showModel, setShowModel] = useState("");
 
