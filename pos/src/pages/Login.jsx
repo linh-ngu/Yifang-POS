@@ -6,12 +6,13 @@ import { UserContext } from '../contexts/UserContextProvider';
 
 function Login() {
     
-    // const [user, setUser]= useState({});
+    // const [myUser, setUser]= useState({});
     const [inputValue, setInputValue] = useState('');
     const navigate = useNavigate();
-    const [isSignedIn, setIsSignedIn] = useState(false);
+    const [isSignedIn, setIsSignedIn] = useState(true);
     const { handleCallbackResponse } = useContext(UserContext);
     const { user } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
     // function handleCallbackResponse(response) {
         
@@ -23,10 +24,11 @@ function Login() {
     //     document.getElementById("signInDiv").hidden = true;
     // }
 
-    // function handleSignOut(event) {
-    //     setUser({});
-    //     document.getElementById("signInDiv").hidden = false;
-    // }
+    function handleSignOut(event) {
+        // setUser({});
+        // setIsSignedIn(false);
+        // document.getElementById("signInDiv").hidden = false;
+    }
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
@@ -80,10 +82,12 @@ function Login() {
                     <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
                     <div className="flex">
                         <button aria-label="Log in" className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
+                        {/* <button aria-label="Sign Out" className="border m-2 p-2 rounded-sm" onClick={() => {handleSignOut();}}>Sign Out</button> */}
                         <div id='signInDiv' className="p-2 rounded-sm"></div>
                     </div>
                 </div>
-                { Object.keys(user).length != 0 &&
+                {isSignedIn ? (
+                    Object.keys(user).length != 0 &&
                     <div>
                         <br></br>
                         <br></br>
@@ -97,7 +101,24 @@ function Login() {
                         <p>Signed In As {user.name}</p>
                         <img src={user.picture} referrerPolicy="no-referrer"></img>
                     </div>
-                }
+                    ) : (
+                    handleSignOut()
+                )}
+                {/* { Object.keys(user).length != 0 &&
+                    <div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <p>Signed In As {user.name}</p>
+                        <img src={user.picture} referrerPolicy="no-referrer"></img>
+                    </div>
+                } */}
                 <div className='absolute bottom-0 w-full'>
                     <Footer />
                 </div>

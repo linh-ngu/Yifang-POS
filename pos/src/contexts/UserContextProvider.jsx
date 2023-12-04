@@ -26,7 +26,7 @@ export const UserContextProvider = (props) => {
         document.getElementById("signInDiv").hidden = true;
     };
 
-    const contextValue = {user, handleCallbackResponse};
+    const contextValue = {user, setUser, handleCallbackResponse};
 
     return (
         <UserContext.Provider value={contextValue}>{props.children}</UserContext.Provider>
