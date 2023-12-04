@@ -58,7 +58,7 @@ const Bag = ({onClose}) => {
                 <div className='pt-8 px-4'>
                     <div className='flex items-center justify-between pb-2'>
                         <h1 className='text-2xl font-bold'>Your Order</h1>
-                        <button onClick={() => { onClose(); }}><CloseOutlinedIcon/></button>
+                        <button aria-label="Close" onClick={() => { onClose(); }}><CloseOutlinedIcon/></button>
                     </div>
                     <div className='py-2'>
                         {Object.keys(bagItems).length === 0 ? (
@@ -78,7 +78,7 @@ const Bag = ({onClose}) => {
                                                 <p key={index} className='text-xs font-extralight py-0.5'>{topping}</p>
                                             ))}
                                         </div>
-                                        <button className='text-xs my-2 text-blue-900' onClick={() => removeFromBag(key)}>Remove</button>
+                                        <button aria-label="Remove" className='text-xs my-2 text-blue-900' onClick={() => removeFromBag(key)}>Remove</button>
                                     </div>
                                 </div>
                             ))
@@ -95,7 +95,7 @@ const Bag = ({onClose}) => {
                         <p className='font-semibold'>Sales Tax</p>
                         <p>${(totalPrice * 0.0825).toFixed(2)}</p>
                     </div>
-                    <button className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
+                    <button aria-label="Checkout" className='bg-black text-white rounded-full py-2 px-4 w-full flex justify-between' onClick={doCheckout}>
                         <span>Checkout</span>
                         <span>${(totalPrice + (totalPrice * 0.0825)).toFixed(2)}</span>
                     </button>

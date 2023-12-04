@@ -79,7 +79,7 @@ function Login() {
                     <h1 className='font-bold text-4xl text-center m-4'>Log In</h1>
                     <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
                     <div className="flex">
-                        <button className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
+                        <button aria-label="Log in" className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
                         <div id='signInDiv' className="p-2 rounded-sm"></div>
                     </div>
                 </div>

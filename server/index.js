@@ -425,7 +425,7 @@ app.get('/order/bestseller', async (req, res) => {
   try {
     const result = await pool.query(`
     SELECT
-    d.name AS lowest_selling_drink,
+    d.name AS best_selling_drink,
     COUNT(*) AS total_orders
 FROM
     drinks d
@@ -434,7 +434,7 @@ JOIN
 GROUP BY
     d.name
 ORDER BY
-    total_orders ASC
+    total_orders DESC
 LIMIT 1;
     `);
 

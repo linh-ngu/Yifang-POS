@@ -40,7 +40,7 @@ const PeakDay = ({ onClose }) => {
         ) : (
           <p>Loading...</p>
         )}
-        <button onClick={onClose}>Cancel</button>
+        <button aria-label="Cancel"onClick={onClose}>Cancel</button>
       </div>
     </div>
   );

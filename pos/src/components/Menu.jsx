@@ -58,11 +58,11 @@ const Menu = () => {
           </tbody>
       </table>
       <div className='flex justify-center'>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("addItem")}>Add Menu Item</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("removeItem")}>Remove Menu Item</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeName")}>Change Name</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changePrice")}>Change Price</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeIngredients")}>Change Ingredients List</button>
+        <button aria-label="Add menu item" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("addItem")}>Add Menu Item</button>
+        <button aria-label="Remove menu item" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("removeItem")}>Remove Menu Item</button>
+        <button aria-label="Change name" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeName")}>Change Name</button>
+        <button aria-label="Change price" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changePrice")}>Change Price</button>
+        <button aria-label="Change ingredients list" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("changeIngredients")}>Change Ingredients List</button>
       </div>
       {showModel === 'addItem' && <AddItem onClose={closeModel} />}
       {showModel === 'removeItem' && <RemoveItem onClose={closeModel} />}

@@ -84,16 +84,16 @@ const Customization = ({ item, onClose }) => {
           <h3 className='py-4 font-bold'>Special Instructions</h3>
           <textarea className='border rounded-lg w-full h-24 p-2'></textarea>
         </div>
-        <button onClick={() => { onClose(); setCount(1); }} className='bg-white absolute top-2 right-3 m-2 rounded-full p-2'><CloseOutlinedIcon/></button>
+        <button aria-label="Close" onClick={() => { onClose(); setCount(1); }} className='bg-white absolute top-2 right-3 m-2 rounded-full p-2'><CloseOutlinedIcon/></button>
         <div className='border bg-white h-[72px] sticky bottom-0 mt-2 flex justify-between items-center'>
           <div className='flex justify-center items-center m-4'>
-            <button className='m-2 cursor-pointer' onClick={() => handleClick('decrement')}>-</button>
+            <button aria-label="Decrement" className='m-2 cursor-pointer' onClick={() => handleClick('decrement')}>-</button>
             <p>
               <span className='bg-gray-300 text-black p-2 rounded-full'>{count}</span>
             </p>
-            <button className='m-2 cursor-pointer' onClick={() => handleClick('increment')}>+</button>
+            <button aria-label="Increment" className='m-2 cursor-pointer' onClick={() => handleClick('increment')}>+</button>
           </div>
-          <button className='bg-black text-white rounded-full h-10 w-full m-6' onClick={() => {handleAddToBag(item)}}>Add to Bag - ${price.toFixed(2)}</button>
+          <button aria-label="Add to bag" className='bg-black text-white rounded-full h-10 w-full m-6' onClick={() => {handleAddToBag(item)}}>Add to Bag - ${price.toFixed(2)}</button>
         </div>
       </div>
     </div>

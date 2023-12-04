@@ -42,7 +42,7 @@ function Footer() {
       </Link>
       {/* <p id="google_translate_element" className='border-4'>{translatedText}</p> */}
       <div className='max-w-[200px]'>
-        <button className='bg-[#ADD8E6] p-[10px] rounded-xl' onClick={handleWeather}>Weather</button>
+        <button aria-label="Weather" className='bg-[#ADD8E6] p-[10px] rounded-xl' onClick={handleWeather}>Weather</button>
         <p>{weatherText}</p>
       </div>
     </div>

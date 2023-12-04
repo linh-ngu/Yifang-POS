@@ -61,11 +61,11 @@ const OrderHistory = () => {
         </tbody>
       </table>
       <div className='flex justify-center'>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("totalOrders")}>Total # of Orders</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("bestSeller")}>Best Seller</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("paymentMethod")}>Payment Method</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("peakDay")}>Peak Day</button>
-        <button className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("slowDay")}>Slow Day</button> 
+        <button aria-label="Total number of orders" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("totalOrders")}>Total # of Orders</button>
+        <button aria-label="Best seller" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("bestSeller")}>Best Seller</button>
+        <button aria-label="Payment method" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("paymentMethod")}>Payment Method</button>
+        <button aria-label="Peak day" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("peakDay")}>Peak Day</button>
+        <button aria-label="Slow day" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("slowDay")}>Slow Day</button> 
       </div>
       {showModel === "totalOrders" && <TotalOrders onClose={closeModel} />}
       {showModel === "bestSeller" && <BestSeller onClose={closeModel} />}
