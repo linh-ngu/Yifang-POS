@@ -84,28 +84,28 @@ class Cashier extends React.Component {
         this.home_right = 
             <div className= "grid-container-in">
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.teas)}><p>Teas</p></button>
+                    <button aria-label="Teas" className = "button"  onClick={() => this.changeCurrRight(this.teas)}><p>Teas</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.bwsg)}><p>Brown Sugar</p></button>
+                    <button aria-label="Brown Sugar" className = "button"  onClick={() => this.changeCurrRight(this.bwsg)}><p>Brown Sugar</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.milkTea)}><p>Milk Tea</p></button>
+                    <button aria-label="Milk Tea" className = "button"  onClick={() => this.changeCurrRight(this.milkTea)}><p>Milk Tea</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.fruits)}><p>Fruits</p></button>
+                    <button aria-label="Fruits" className = "button"  onClick={() => this.changeCurrRight(this.fruits)}><p>Fruits</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.sugarcane)}><p>Fresh Sugarcane</p></button>
+                    <button aria-label="Fresh Sugarcane" className = "button"  onClick={() => this.changeCurrRight(this.sugarcane)}><p>Fresh Sugarcane</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.taroBean)}><p>Fresh Taro/Red Bean</p></button>
+                    <button aria-label="Fresh Taro or Red Bean" className = "button"  onClick={() => this.changeCurrRight(this.taroBean)}><p>Fresh Taro/Red Bean</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.traditional)}><p>Traditional</p></button>
+                    <button aria-label="Traditional" className = "button"  onClick={() => this.changeCurrRight(this.traditional)}><p>Traditional</p></button>
                 </div>
                 <div>
-                    <button className = "button"  onClick={() => this.changeCurrRight(this.traditional)}><p>Seasonal</p></button>
+                    <button aria-label="Seasonal" className = "button"  onClick={() => this.changeCurrRight(this.traditional)}><p>Seasonal</p></button>
                 </div>
             </div>;
         
@@ -128,22 +128,22 @@ class Cashier extends React.Component {
 
         this.teas = (
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, 'sun moon lake black tea')}><p>sun moon lake black tea</p></button>
+                    <button aria-label="sun moon lake black tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, 'sun moon lake black tea')}><p>sun moon lake black tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "pouchong green tea")}><p>pouchong green tea</p></button>
+                    <button aria-label="pouchong green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "pouchong green tea")}><p>pouchong green tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "songboling mountain tea")}><p>songboling mountain tea</p></button>
+                    <button aria-label="songboling mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "songboling mountain tea")}><p>songboling mountain tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "lugu oolong tea")}><p>lugu oolong tea</p></button>
+                    <button aria-label="lugu oolong tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "lugu oolong tea")}><p>lugu oolong tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "tea w/ original salty cream")}><p>tea w/ original salty cream</p></button>
+                    <button aria-label="tea w/ original salty cream" className= "button"  onClick={() => this.changeCurrRight(this.customization, "tea w/ original salty cream")}><p>tea w/ original salty cream</p></button>
                 </div>
             </div>
             </>
@@ -151,16 +151,16 @@ class Cashier extends React.Component {
 
         this.bwsg = (
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl latte")}><p>brown sugar pearl latte</p></button>
+                    <button aria-label="brown sugar pearl latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl latte")}><p>brown sugar pearl latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl milk tea")}><p>brown sugar pearl milk tea</p></button>
+                    <button aria-label="brown sugar pearl milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl milk tea")}><p>brown sugar pearl milk tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl matcha latte")}><p>brown sugar pearl matcha latte</p></button>
+                    <button aria-label="brown sugar pearl matcha latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl matcha latte")}><p>brown sugar pearl matcha latte</p></button>
                 </div>
             </div>
             </>
@@ -168,22 +168,22 @@ class Cashier extends React.Component {
 
         this.milkTea = (
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "traditional milk tea")}><p>traditional milk tea</p></button>
+                    <button aria-label="traditional milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "traditional milk tea")}><p>traditional milk tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio traditional milk tea")}><p>super trio traditional milk tea</p></button>
+                    <button aria-label="super trio traditional milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio traditional milk tea")}><p>super trio traditional milk tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "tea latte")}><p>tea latte</p></button>
+                    <button aria-label="tea latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "tea latte")}><p>tea latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "matcha latte")}><p>matcha latte</p></button>
+                    <button aria-label="matcha latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "matcha latte")}><p>matcha latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach green milk tea")}><p>peach green milk tea</p></button>
+                    <button aria-label="peach green milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach green milk tea")}><p>peach green milk tea</p></button>
                 </div>
             </div>
             </>
@@ -191,58 +191,58 @@ class Cashier extends React.Component {
 
         this.fruits = (
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "avocado mango agar cooler")}><p>avocado mango agar cooler</p></button>
+                    <button aria-label="avocado mango agar cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "avocado mango agar cooler")}><p>avocado mango agar cooler</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "mango pomelo sago cooler")}><p>mango pomelo sago cooler</p></button>
+                    <button aria-label="mango pomelo sago cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "mango pomelo sago cooler")}><p>mango pomelo sago cooler</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "yiFang taiwan fruit tea")}><p>yiFang taiwan fruit tea</p></button>
+                    <button aria-label="yiFang taiwan fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "yiFang taiwan fruit tea")}><p>yiFang taiwan fruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "watermelon coconut agar cooler")}><p>watermelon coconut agar cooler</p></button>
+                    <button aria-label="watermelon coconut agar cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "watermelon coconut agar cooler")}><p>watermelon coconut agar cooler</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passionfruit tea")}><p>kumquat passionfruit tea</p></button>
+                    <button aria-label="kumquat passionfruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passionfruit tea")}><p>kumquat passionfruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "green plum green tea")}><p>green plum green tea</p></button>
+                    <button aria-label="green plum green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "green plum green tea")}><p>green plum green tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach fruit tea")}><p>peach fruit tea</p></button>
+                    <button aria-label="peach fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach fruit tea")}><p>peach fruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach soda pop")}><p>peach soda pop</p></button>
+                    <button aria-label="peach soda pop" className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach soda pop")}><p>peach soda pop</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "strawberry fruit tea")}><p>strawberry fruit tea</p></button>
+                    <button aria-label="strawberry fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "strawberry fruit tea")}><p>strawberry fruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "strawberry milk (blended)")}><p>strawberry milk (blended)</p></button>
+                    <button aria-label="strawberry milk (blended)" className= "button"  onClick={() => this.changeCurrRight(this.customization, "strawberry milk (blended)")}><p>strawberry milk (blended)</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "yakult fruit tea")}><p>yakult fruit tea</p></button>
+                    <button aria-label="yakult fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "yakult fruit tea")}><p>yakult fruit tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "passionfruit green tea")}><p>passionfruit green tea</p></button>
+                    <button aria-label="passionfruit green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "passionfruit green tea")}><p>passionfruit green tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "pineapple green tea")}><p>pineapple green tea</p></button>
+                    <button aria-label="pineapple green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "pineapple green tea")}><p>pineapple green tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon lemon tea")}><p>wintermelon lemon tea</p></button>
+                    <button aria-label="wintermelon lemon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon lemon tea")}><p>wintermelon lemon tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "lemon mountain tea")}><p>lemon mountain tea</p></button>
+                    <button aria-label="lemon mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "lemon mountain tea")}><p>lemon mountain tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "lemon green tea")}><p>lemon green tea</p></button>
+                    <button aria-label="lemon green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "lemon green tea")}><p>lemon green tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "aiyu jelly lemon tea")}><p>aiyu jelly lemon tea</p></button>
+                    <button aria-label="aiyu jelly lemon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "aiyu jelly lemon tea")}><p>aiyu jelly lemon tea</p></button>
                 </div>
             </div>
             </>
@@ -250,13 +250,13 @@ class Cashier extends React.Component {
 
         this.sugarcane =(
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane mountain tea")}><p>sugarcane mountain tea</p></button>
+                    <button aria-label="sugarcane mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane mountain tea")}><p>sugarcane mountain tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane lemon mountain tea")}><p>sugarcane lemon mountain tea</p></button>
+                    <button aria-label="sugarcane lemon mountain tea"  className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane lemon mountain tea")}><p>sugarcane lemon mountain tea</p></button>
                 </div>
             </div>
             </>
@@ -264,25 +264,25 @@ class Cashier extends React.Component {
 
         this.taroBean = (
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro latte")}><p>fresh taro latte</p></button>
+                    <button aria-label="fresh taro latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro latte")}><p>fresh taro latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro green tea latte")}><p>fresh taro green tea latte</p></button>
+                    <button aria-label="fresh taro green tea latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro green tea latte")}><p>fresh taro green tea latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "sweet taro sago latte")}><p>sweet taro sago latte</p></button>
+                    <button aria-label="sweet taro sago latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "sweet taro sago latte")}><p>sweet taro sago latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean black glutinous rice with coconut latte")}><p>red bean black glutinous rice with coconut latte</p></button>
+                    <button aria-label="red bean black glutinous rice with coconut latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean black glutinous rice with coconut latte")}><p>red bean black glutinous rice with coconut latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean sago latte")}><p>red bean sago latte</p></button>
+                    <button aria-label="red bean sago latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean sago latte")}><p>red bean sago latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean match frappe with boba")}><p>red bean match frappe with boba</p></button>
+                    <button aria-label="red bean matcha frappe with boba" className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean matcha frappe with boba")}><p>red bean matcha frappe with boba</p></button>
                 </div>
             </div>
             </>
@@ -290,25 +290,25 @@ class Cashier extends React.Component {
 
         this.traditional = (
             <>
-            <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio wintermelon tea")}><p>super trio wintermelon tea</p></button>
+                    <button aria-label="super trio wintermelon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio wintermelon tea")}><p>super trio wintermelon tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon tea")}><p>wintermelon tea</p></button>
+                    <button aria-label="wintermelon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon tea")}><p>wintermelon tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon latte")}><p>wintermelon latte</p></button>
+                    <button aria-label="wintermelon latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon latte")}><p>wintermelon latte</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "grass jelly tea")}><p>grass jelly tea</p></button>
+                    <button aria-label="grass jelly tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "grass jelly tea")}><p>grass jelly tea</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "black sesame milk")}><p>black sesame milk</p></button>
+                    <button aria-label="black sesame milk" className= "button"  onClick={() => this.changeCurrRight(this.customization, "black sesame milk")}><p>black sesame milk</p></button>
                 </div>
                 <div>
-                    <button className= "button"  onClick={() => this.changeCurrRight(this.customization, "thai tea")}><p>thai tea</p></button>
+                    <button aria-label="thai tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "thai tea")}><p>thai tea</p></button>
                 </div>
             </div>
             </>
@@ -452,8 +452,8 @@ class Cashier extends React.Component {
                             <p  className="px-7">{item.Total}</p>
                         </div>
                     </div>
-                    <button className="button-small ml-7" onClick={() => this.removeFromOrder(index)}>remove</button>
-                    <button className="button-small ml-7" onClick={() => this.editDrink(index)}>edit</button>
+                    <button aria-label="Remove drink" className="button-small ml-7" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button aria-label="Edit drink" className="button-small ml-7" onClick={() => this.editDrink(index)}>edit</button>
                 </div>
                 ))}
             </tbody>
@@ -577,11 +577,11 @@ class Cashier extends React.Component {
                     </div>
 
                     <div style = {{float: "left", paddingLeft:"10%", display:"inline-block"}}>
-                        <button className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+                        <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
                     </div>
 
                     <div style={{float:"right", paddingRight:"10%", display:"inline-block"}}>
-                        <button className= "button-small" onClick={() => this.saveDrink(key)}> Save </button>
+                        <button aria-label="Save" className= "button-small" onClick={() => this.saveDrink(key)}> Save </button>
                     </div>
                 </div>
             );
@@ -612,8 +612,8 @@ class Cashier extends React.Component {
                             {this.state.curr_price}
                             <div className='ml-7 pb-7 flex justify-between' style = {{textAlign:"right", paddingRight:"10%"}}>
                                 {/* <button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}</button> */}
-                                <button className='button-small' onClick={this.handleShowTips}>Add Tips</button>
-                                <button className= "button-small" onClick={() => this.doCheckout()}>Pay Now</button>
+                                <button aria-label="Add Tips" className='button-small' onClick={this.handleShowTips}>Add Tips</button>
+                                <button aria-label="Pay Now" className= "button-small" onClick={() => this.doCheckout()}>Pay Now</button>
                                 {this.state.showTips && this.tipMenu}
                             </div>
                         </div>
