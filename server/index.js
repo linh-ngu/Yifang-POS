@@ -390,6 +390,7 @@ app.put('/menu/changeName', async (req, res) => {
 app.get('/order/peakdays', async (req, res) => {
   try {
     const result = await pool.query('SELECT transaction_date AS order_day, SUM(payment_amount) AS total_order_amount FROM orders GROUP BY transaction_date ORDER BY total_order_amount DESC LIMIT 10');
+    // console.log(result.rows[0])
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -421,7 +422,7 @@ app.get('/order/bestseller', async (req, res) => {
   try {
     const result = await pool.query(`
     SELECT
-    d.name AS lowest_selling_drink,
+    d.name AS best_selling_drink,
     COUNT(*) AS total_orders
 FROM
     drinks d
@@ -430,7 +431,7 @@ JOIN
 GROUP BY
     d.name
 ORDER BY
-    total_orders ASC
+    total_orders DESC
 LIMIT 1;
     `);
 
