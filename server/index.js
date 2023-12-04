@@ -145,7 +145,7 @@ app.post('/manager/popularityanalysis', async (req, res) => {
 });
 
 // report -> sales report
-app.get('/manager/salesreport', async (req, res) => {
+app.post('/manager/salesreport', async (req, res) => {
   const { start_date, end_date, drink_name } = req.body;
   try {
     const result = await pool.query(`
