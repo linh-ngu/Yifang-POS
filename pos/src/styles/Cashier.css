@@ -1,6 +1,6 @@
 .grid-container-out {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: auto auto;
     padding: 1px;
     gap:1px;
     padding-top: 150px;
@@ -9,10 +9,11 @@
   
 .grid-container-in {
     display:grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 180px 180px 180px;
     padding: 3px;
-    gap: 5px;
-    height:615px;
+    gap: 3px;
+    height:555px;
+    width:580px;
     overflow-y:scroll;
 }
 
@@ -38,8 +39,8 @@
 
 .button {
     display:inline-block;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     font-size:larger;
     font-style: italic;
     border-radius: 10px;
