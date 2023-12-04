@@ -44,7 +44,7 @@ const Navbar = () => {
                     <Link to='/login' className='-translate-y-[2px]' onMouseEnter={() => setHoverLogin(true)} onMouseLeave={() => setHoverLogin(false)}>
                         {hoverLogin ? <AccountCircleIcon /> : <AccountCircleOutlinedIcon />}
                     </Link>
-                    <button onClick={toggleNavbar}><MenuIcon/></button>
+                    <button aria-label="Shopping bag" onClick={toggleNavbar}><MenuIcon/></button>
                     <div className='bag cursor-pointer -translate-y-[2px]' onMouseEnter={() => setHoverBag(true)} onMouseLeave={() => setHoverBag(false)}>
                         {isBagOpen ? <ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : (hoverBag ? <ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : <ShoppingBagOutlinedIcon onClick={() => setIsBagOpen(!isBagOpen)} />)}
                     </div>

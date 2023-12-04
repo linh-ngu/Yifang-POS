@@ -69,10 +69,10 @@ const Report = () => {
   return (
     <div className='border border-black'>
       <div className='flex justify-center'>
-        <button className='border border-black rounded-lg shadow-md p-2 m-4' onClick={() => {handlePopularityAnalysis(); openModel("popularityAnalysis");}}>Popularity Analysis</button>
-        <button className='border border-black rounded-lg shadow-md p-2 m-4' onClick={() => {handleSalesReport(); openModel("salesReport");}}>Sales Report</button>
-        <button className='border border-black rounded-lg shadow-md p-2 m-4' onClick={handleRestockReport}>Restock Report</button>
-        <button className='border border-black rounded-lg shadow-md p-2 m-4' onClick={handleExcessReport}>Excess Report</button>
+        <button aria-label="Popularity analysis" className='border border-black rounded-lg shadow-md p-2 m-4' onClick={() => {handlePopularityAnalysis(); openModel("popularityAnalysis");}}>Popularity Analysis</button>
+        <button aria-label="Sales report" className='border border-black rounded-lg shadow-md p-2 m-4' onClick={() => {handleSalesReport(); openModel("salesReport");}}>Sales Report</button>
+        <button aria-label="Restock report" className='border border-black rounded-lg shadow-md p-2 m-4' onClick={handleRestockReport}>Restock Report</button>
+        <button aria-label="Excess report" className='border border-black rounded-lg shadow-md p-2 m-4' onClick={handleExcessReport}>Excess Report</button>
       </div>
       {showModel === "popularityAnalysis" && <PopularityAnalysis onClose={closeModel} />}
       {showModel === "salesReport" && <SalesReport onClose={closeModel} />}

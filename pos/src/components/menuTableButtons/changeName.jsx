@@ -63,8 +63,8 @@ const ChangeName = ({onClose}) => {
               onChange={(e) => setNewName(e.target.value)}
         />
         <div className='flex justify-center'>
-          <button className='border border-black rounded-lg p-2 mx-2' onClick={handleCancel}>Cancel</button>
-          <button className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button>
+          <button aria-label="Cancel" className='border border-black rounded-lg p-2 mx-2' onClick={handleCancel}>Cancel</button>
+          <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button>
         </div>
       </div>
     </div>
