@@ -1,7 +1,8 @@
 .grid-container-out {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 580px;
     padding: 1px;
+    padding-left: 20px;
     gap:1px;
     padding-top: 150px;
     min-height: 650px;
@@ -10,10 +11,11 @@
 .grid-container-in {
     display:grid;
     grid-template-columns: 180px 180px 180px;
-    padding: 3px;
-    gap: 3px;
+    padding-top: 3px;
+    padding-left: 10px;
+    gap:3px 3px;
     height:555px;
-    width:580px;
+    /* width:580px; */
     overflow-y:scroll;
 }
 
@@ -52,7 +54,7 @@
     display:-ms-flexbox;
     align-items: center;
     justify-content: center;
-    background-color: antiquewhite;
+    background-color: #faebd7;
     border-radius: 10px;
     width: 100px;
     height: 30px;

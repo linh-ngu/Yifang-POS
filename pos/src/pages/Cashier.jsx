@@ -371,7 +371,7 @@ class Cashier extends React.Component {
         // e.preventDefault();
         try {
           const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = this;
-          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: (this.totPrice*(1+ 0.075)).toFixed(2), timestamp };
+          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: (this.totPrice*(1+ 0.075) + this.tips).toFixed(2), timestamp };
           const response = await fetch("https://yifang-backend.onrender.com/checkout", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -606,10 +606,10 @@ class Cashier extends React.Component {
                 <div className= "grid-container-out">
                     <div>
                     <div className= "grid-container-left">
-                        <div>
+                        <div className="bg-[#faebd7] rounded-xl">
                             {this.state.curr_table}
                         </div>
-                        <div> 
+                        <div>  
                             {this.state.curr_price}
                             <div className='ml-7 pb-7 flex justify-between' style = {{textAlign:"right", paddingRight:"10%"}}>
                                 {/* <button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}</button> */}
