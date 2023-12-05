@@ -5,7 +5,13 @@ import "../styles/Cashier.css"
 import BaseDrink from "../components/BaseDrink";   
 import Tips from "../components/Tips";          
 
+/**
+ * @class renders the cashier interface, supporting all of its functions including drink customization, ordering, and payment. 
+ */
 class Cashier extends React.Component {
+    /**
+     * @returns returns and renders the html code that builds the cashier interface.
+     */
 
     componentDidMount() {
         this.getOrder_id();
@@ -606,7 +612,7 @@ class Cashier extends React.Component {
                 <div className= "grid-container-out">
                     <div>
                     <div className= "grid-container-left">
-                        <div className="bg-[#faebd7] rounded-xl">
+                        <div className="border-2 rounded-xl">
                             {this.state.curr_table}
                         </div>
                         <div>  
@@ -618,7 +624,7 @@ class Cashier extends React.Component {
                                 {this.state.showTips && this.tipMenu}
                             </div>
                         </div>
-                    </div>;
+                    </div>
                     </div>
                     <div>
                         {this.state.curr_right}

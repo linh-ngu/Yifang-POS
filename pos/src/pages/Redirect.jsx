@@ -1,5 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+/**
+ * 
+ * @returns returns and renders the redirect menu when user logs in as a manager. The user will be able to chose to process as a manager or a cashier.
+ */
 
 function Redirect() {
 

@@ -2,6 +2,10 @@ import React, { useState, useEffect} from 'react'
 import {drinksData} from '../assets/drinks'
 import Footer from '../components/Footer'
 import Customization from '../components/Customization'
+/**
+ * 
+ * @returns returns and renders the ordering menu with drink filters and pop-up customization
+ */
 
 function Order() {
   const [drinks, setDrinks] = useState(drinksData)
