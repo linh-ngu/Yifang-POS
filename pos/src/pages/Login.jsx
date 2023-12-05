@@ -18,6 +18,8 @@ function Login() {
     const { handleCallbackResponse } = useContext(UserContext);
     const { user } = useContext(UserContext);
     const { setUser } = useContext(UserContext);
+    const [staff, setStaff] = useState('');
+    var email = user.email;
 
     // function handleCallbackResponse(response) {
         
@@ -28,10 +30,37 @@ function Login() {
     //     setUser(userObject);
     //     document.getElementById("signInDiv").hidden = true;
     // }
+    const getStaffID = async() => {
+        try {
+            const body = { email };
+            // const response = await fetch("https://yifang-backend.onrender.com/inventory/addIngredient", {
+            //   method: "POST",
+            //   headers: { "Content-Type": "application/json" },
+            //   body: JSON.stringify(body)
+            // });
+            const response = await fetch("http://localhost:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+            const data = await response.json();
+            console.log("HELLO: " + data[0].staff_id);
+            setStaff(data[0].staff_id);
+            // onClose();
+        
+            //   window.location = "/";
+        } catch (err) {
+        console.error(err.message);
+        }
+    }
+
+    useEffect(() => {
+        getStaffID();
+    });
 
     function handleSignOut(event) {
-        // setUser({});
-        // setIsSignedIn(false);
+        setUser({});
+        setIsSignedIn(false);
         // document.getElementById("signInDiv").hidden = false;
     }
 
@@ -40,7 +69,12 @@ function Login() {
     };
 
     const handleLogin = async () => {
-        const result = checkStaff(inputValue);
+        // await getStaffID();
+        // setIsSignedIn(true);
+        // console.log("SIGNED IN: " + isSignedIn);
+        console.log("THIS IS STAFFID: " + staff);
+        const result = checkStaff(staff);
+        console.log("THIS IS STAFF: " + result);
         if (result === 'manager') {
             navigate('/redirect');
             setIsSignedIn(true);
@@ -55,7 +89,7 @@ function Login() {
     const checkStaff = (id) => {
         if (id < 10 && id > 1) {
           return "cashier";
-        } else if (id == 10) {
+        } else if (id == 10 || id == 11) {
           return 'manager';
         } else {
           return "customer";
@@ -64,6 +98,7 @@ function Login() {
 
     useEffect(() => {
         /* global google */
+        setIsSignedIn(true);
         google.accounts.id.initialize({
             client_id: "659412670449-bqubbteq6sk1dfk903m8mdh7onu59j4r.apps.googleusercontent.com",
             callback: handleCallbackResponse
@@ -75,7 +110,7 @@ function Login() {
         )
 
         google.accounts.id.prompt();
-    }, []);
+    }, [isSignedIn]);
 
     // If we have no user: sign in button
     // If we have a user: show the log out button
@@ -87,11 +122,11 @@ function Login() {
                     <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
                     <div className="flex">
                         <button aria-label="Log in" className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
-                        {/* <button aria-label="Sign Out" className="border m-2 p-2 rounded-sm" onClick={() => {handleSignOut();}}>Sign Out</button> */}
+                        <button aria-label="Sign Out" className="border m-2 p-2 rounded-sm" onClick={() => {handleSignOut();}}>Sign Out</button>
                         <div id='signInDiv' className="p-2 rounded-sm"></div>
                     </div>
                 </div>
-                {isSignedIn ? (
+                { isSignedIn && 
                     Object.keys(user).length != 0 &&
                     <div>
                         <br></br>
@@ -106,9 +141,7 @@ function Login() {
                         <p>Signed In As {user.name}</p>
                         <img src={user.picture} referrerPolicy="no-referrer"></img>
                     </div>
-                    ) : (
-                    handleSignOut()
-                )}
+                }
                 {/* { Object.keys(user).length != 0 &&
                     <div>
                         <br></br>
