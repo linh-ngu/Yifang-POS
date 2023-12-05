@@ -459,6 +459,20 @@ app.get('/order/totalorders', async (req, res) => {
   }
 });
 
+// getting the associated staff_id given email
+app.post('/login', async (req, res) => {
+  const { email } = req.body;
+  try {
+    const result = await pool.query('SELECT staff_id FROM staff WHERE email=$1',
+      [email]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.listen(5000, () => {
     console.log("server has started on port 5000");

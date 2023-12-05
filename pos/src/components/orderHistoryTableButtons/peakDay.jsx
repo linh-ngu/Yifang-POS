@@ -32,7 +32,6 @@ const PeakDay = ({ onClose }) => {
                 <li key={index}>
                   <p>Order Day: {day.order_day}</p>
                   <p>Total Order Amount: {day.total_order_amount}</p>
-                  {/* <br></br> */}
                 </li>
               ))}
             </ul>
