@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-
 const ChangeName = ({onClose}) => {
+/**
+ * @returns updated database with name of ingredient changed
+
+ */
 
   const [new_name, setNewName] = useState('');
   const [name, setName] = useState('');

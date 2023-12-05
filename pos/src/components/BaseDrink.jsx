@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+/**
+ * @returns base drink options for menu interface
+ */
 class BaseDrink extends Component {
   constructor(props) {
     super(props);

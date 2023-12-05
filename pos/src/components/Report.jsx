@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PopularityAnalysis from './reportsTableButtons/popularityAnalysis';
 import SalesReport from './reportsTableButtons/salesReport';
+/**
+ * @returns different report categories 
+ */
 
 const Report = () => {
     const[report, setReport] = useState([]);

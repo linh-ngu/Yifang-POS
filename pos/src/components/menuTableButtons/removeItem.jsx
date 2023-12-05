@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-
 const RemoveItem = ({onClose}) => {
+/**
+ * @returns updated database with menu item removed
+
+ */
 
   const [name, setName] = useState('');
 

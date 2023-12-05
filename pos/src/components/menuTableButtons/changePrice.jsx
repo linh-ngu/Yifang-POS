@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-
 const ChangePrice = ({onClose}) => {
+/**
+ * @returns updated database with price of menu item changed
+
+ */
 
   const [price, setPrice] = useState('');
   const [name, setName] = useState('');

@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {toppingsData} from '../assets/toppings'
 import { ShopContext } from '../contexts/ShopContextProvider';
+/**
+ * @returns customization popup tab for customer interface
+ */
 
 const Customization = ({ item, onClose }) => {
 

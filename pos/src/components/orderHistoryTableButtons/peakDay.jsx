@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const PeakDay = ({ onClose }) => {
+  /**
+   * @returns 10 dates with max sales
+
+   */
+
   const [peakDaysData, setPeakDaysData] = useState(null);
 
   const fetchPeakDaysData = async () => {

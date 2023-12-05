@@ -5,7 +5,9 @@ import ChangeRestockDate from './ingredientsTableButtons/changeRestockDate';
 import ChangeSupplier from './ingredientsTableButtons/changeSupplier';
 import ChangeName from './ingredientsTableButtons/changeName';
 import ChangeStockLevel from './ingredientsTableButtons/changeStockLevel';
-
+/**
+ * @returns inventory data as a table
+ */
 const Ingredient = () => {
     const[ingredient, setIngredient] = useState([]);
 

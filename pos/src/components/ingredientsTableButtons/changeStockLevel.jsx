@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-
 const ChangeStockLevel = ({onClose}) => {
+/**
+ * @returns updated database with stock level changed
+
+ */
 
   const [stock_level, setStockLevel] = useState('');
   const [name, setName] = useState('');

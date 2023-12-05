@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-
+/**
+ * @returns and maintains current state of checkout bag
+ */
 export const ShopContext = React.createContext(null);
 
 export const ShopContextProvider = (props) => {

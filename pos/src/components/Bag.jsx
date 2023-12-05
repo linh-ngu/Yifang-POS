@@ -3,6 +3,9 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { ShopContext } from '../contexts/ShopContextProvider'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+/**
+ * @returns bag of data for customer checkout
+ */
 
 const Bag = ({onClose}) => {
 

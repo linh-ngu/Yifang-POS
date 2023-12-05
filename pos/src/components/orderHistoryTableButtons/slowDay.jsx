@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const SlowDay = ({ onClose }) => {
+  /**
+   * @returns 10 slowest dates in terms of sales
+
+   */
+
   const [slowDaysData, setSlowDaysData] = useState(null);
 
   useEffect(() => {

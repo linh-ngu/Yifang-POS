@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const PaymentMethod = ({ onClose }) => {
+  /**
+   * @returns sales generated from most used payment method
+
+   */
+
   const [paymentData, setPaymentData] = useState(null);
 
   useEffect(() => {

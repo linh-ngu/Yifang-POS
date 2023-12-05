@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 const AddItem = ({ onClose }) => {
+  /**
+   * @returns updated database with new menu item added
+
+   */
   // State to store input values
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');

@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
-
+/**
+ * @returns and maintains current state of user for login purposes
+ */
 export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {

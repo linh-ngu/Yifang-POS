@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const TotalOrders = ({ onClose }) => {
+  /**
+   * @returns sales from total orders
+
+   */
+
   const [totalOrders, setTotalOrders] = useState(null);
 
   useEffect(() => {

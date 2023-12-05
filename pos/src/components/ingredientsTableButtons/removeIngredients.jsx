@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-
 const RemoveIngredients = ({onClose}) => {
+/**
+ * @returns updated database with ingredient removed
+ */
 
   const [name, setName] = useState('');
 

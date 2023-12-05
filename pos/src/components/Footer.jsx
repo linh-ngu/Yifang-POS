@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/YifangLogo.png'
 import getWeather from '../apirequests/AccuWeather'
-
+/**
+ * @returns footer with apis and logos
+ */
 function Footer() {
 
   const [weatherText, setWeatherText] = useState('');

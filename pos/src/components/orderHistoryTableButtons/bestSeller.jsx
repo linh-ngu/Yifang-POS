@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const BestSeller = ({ onClose }) => {
+  /**
+   * @returns best selling drink with corresponding sales amount
+
+   */
+
   const [bestSellerData, setBestSellerData] = useState(null);
 
   const fetchBestSellerData = async () => {

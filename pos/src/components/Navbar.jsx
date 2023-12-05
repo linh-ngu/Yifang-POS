@@ -8,7 +8,9 @@ import { Link } from 'react-router-dom'
 import '../styles/Navbar.css'
 import Logo from '../assets/YifangLogo.png'
 import Bag from './Bag';
-
+/**
+ * @returns navbar with access to different interfaces
+ */
 const Navbar = () => {
     const [openLinks, setOpenLinks] = useState(false);
     const [isBagOpen, setIsBagOpen] = useState(false);

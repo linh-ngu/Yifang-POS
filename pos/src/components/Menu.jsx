@@ -4,7 +4,9 @@ import RemoveItem from './menuTableButtons/removeItem';
 import ChangeName from './menuTableButtons/changeName';
 import ChangePrice from './menuTableButtons/changePrice';
 import ChangeIngredients from './menuTableButtons/changeIngredients';
-
+/**
+ * @returns data from menu as a table
+ */
 const Menu = () => {
   const[menu, setMenu] = useState([]);
 

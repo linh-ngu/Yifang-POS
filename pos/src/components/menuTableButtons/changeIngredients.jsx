@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
 const ChangeIngredients = ({onClose}) => {
+/**
+ * @returns updated database with ingredient list changed
+
+ */
 
   const [list_ingredients, setIngredients] = useState('');
   const [name, setName] = useState('');

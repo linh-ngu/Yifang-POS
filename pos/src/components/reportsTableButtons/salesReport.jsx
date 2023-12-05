@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-
 const SalesReport = ({onClose}) => {
+/**
+ * @returns sales generated between 2 particular dates
+ */
 
   const [start_date, setStartDate] = useState('');
   const [end_date, setEndDate] = useState('');

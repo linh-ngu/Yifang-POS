@@ -4,6 +4,9 @@ import BestSeller from './orderHistoryTableButtons/bestSeller';
 import PaymentMethod from './orderHistoryTableButtons/paymentMethod';
 import PeakDay from './orderHistoryTableButtons/peakDay';
 import SlowDay from './orderHistoryTableButtons/slowDay';
+/**
+ * @returns data from order history as a table
+ */
 
 const OrderHistory = () => {
   const[order, setOrder] = useState([]);

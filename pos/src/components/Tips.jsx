@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import PropTypes from 'prop-types';
-
+/**
+ * @returns tip popup box on cashier interface
+ */
 const Tips = ({ onClose, onConfirm }) => {
     // var tips = 0;
     // var method = "N/A"

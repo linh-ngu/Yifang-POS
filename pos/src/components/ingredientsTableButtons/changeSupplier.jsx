@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
 const ChangeSupplier = ({onClose}) => {
+/** 
+ * @returns updated database with supplier name changed
 
+*/
   const [supplier, setSupplier] = useState('');
   const [name, setName] = useState('');
 

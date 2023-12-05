@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-
 const ChangeRestockDate = ({onClose}) => {
-
+/**
+ * @returns updated database with restock date changed
+ */
   const [restock_date, setRestockDate] = useState('');
   const [name, setName] = useState('');
 
