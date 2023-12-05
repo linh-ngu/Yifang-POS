@@ -612,7 +612,7 @@ class Cashier extends React.Component {
                 <div className= "grid-container-out">
                     <div>
                     <div className= "grid-container-left">
-                        <div className="bg-[#faebd7] rounded-xl">
+                        <div className="border-2 rounded-xl">
                             {this.state.curr_table}
                         </div>
                         <div>  
