@@ -43,7 +43,7 @@ const BestSeller = ({ onClose }) => {
             </ul>
           </div>
         )}
-        <button aria-label="Cancel" onClick={handleCancel}>Cancel</button>
+        <button className='border border-black p-2 m-2' aria-label="Cancel" onClick={handleCancel}>Cancel</button>
       </div>
     </div>
   );
