@@ -68,7 +68,13 @@ function Login() {
         // setIsSignedIn(true);
         // console.log("SIGNED IN: " + isSignedIn);
         console.log("THIS IS STAFFID: " + staff);
-        const result = checkStaff(staff);
+        var result = '';
+        if (staff != null) {
+            result = checkStaff(staff);
+        } else {
+            result = checkStaff(inputValue);
+        }
+        
         console.log("THIS IS STAFF: " + result);
         if (result === 'manager') {
             navigate('/redirect');
@@ -77,16 +83,18 @@ function Login() {
             navigate('/cashier');
             setIsSignedIn(true);
         } else {
+            navigate('/menu');
+            setIsSignedIn(true);
             // ...
         }
     };
 
     const checkStaff = (id) => {
-        if (id < 10 && id > 1) {
+        if (id < 10) {
           return "cashier";
-        } else if (id == 10 || id == 11) {
+        } else if (id >= 10 && id < 20) {
           return 'manager';
-        } else {
+        } else if (id >= 20) {
           return "customer";
         }
     };
@@ -114,7 +122,7 @@ function Login() {
             <div className='absolute top-[150px] w-full h-[calc(100%-150px)] flex justify-center'>
                 <div className="-translate-y-[150px] flex flex-col justify-center items-center p-4">
                     <h1 className='font-bold text-4xl text-center m-4'>Log In</h1>
-                    <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/>
+                    {/* <input className="border m-2 p-1 text-center" type="text" value={inputValue} onChange={handleInputChange}/> */}
                     <div className="flex">
                         <button aria-label="Log in" className="border m-2 p-2 rounded-sm" onClick={() => {handleLogin();}}>Log In</button>
                         <button aria-label="Sign Out" className="border m-2 p-2 rounded-sm" onClick={() => {handleSignOut();}}>Sign Out</button>
