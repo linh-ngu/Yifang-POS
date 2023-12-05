@@ -31,7 +31,7 @@ const PaymentMethod = ({ onClose }) => {
         ) : (
           <p>Loading...</p>
         )}
-        <button aria-label="Cancel" onClick={onClose}>Cancel</button>
+        <button className='border border-black p-2 m-2' aria-label="Cancel" onClick={onClose}>Cancel</button>
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ const TotalOrders = ({ onClose }) => {
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
       <div className='relative bg-white rounded-lg h-[200px] w-[200px]'>
         <p>Total Orders: {totalOrders}</p>
-        <button aria-label="Cancel" onClick={handleCancel}>Cancel</button>
+        <button className='border border-black p-2 m-2' aria-label="Cancel" onClick={handleCancel}>Cancel</button>
       </div>
     </div>
   );
