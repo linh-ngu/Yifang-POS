@@ -5,26 +5,6 @@ import getWeather from '../apirequests/AccuWeather'
 
 function Footer() {
 
-  // const googleTranslateElementInit = () => {
-  //   new window.google.translate.TranslateElement(
-  //     {
-  //       pageLanguage: "en",
-  //       autoDisplay: false
-  //     },
-  //     "google_translate_element"
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   var addScript = document.createElement("script");
-  //   addScript.setAttribute(
-  //     "src",
-  //     "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-  //   );
-  //   document.body.appendChild(addScript);
-  //   window.googleTranslateElementInit = googleTranslateElementInit;
-  // }, []);
-
   const [weatherText, setWeatherText] = useState('');
   const [translatedText] = useState('');
 
@@ -36,14 +16,13 @@ function Footer() {
   }
 
   return (
-    <div className='flex bottom-0 h-[150px] p-0 m-0 justify-center items-center'>
+    <div className='flex flex-col bottom-0 min-h-[150px] p-0 m-0 justify-center items-center'>
       <Link to="/">
-          <img src={Logo} alt='Logo' className='w-[150px]'/>
+          <img src={Logo} alt='Logo' className='w-[150px] p-2'/>
       </Link>
-      {/* <p id="google_translate_element" className='border-4'>{translatedText}</p> */}
-      <div className='max-w-[200px]'>
-        <button aria-label="Weather" className='bg-[#ADD8E6] p-[10px] rounded-xl' onClick={handleWeather}>Weather</button>
-        <p>{weatherText}</p>
+      <div className='flex justify-center items-center'>
+        <button aria-label="Weather" className='border border-black p-2 m-2 rounded-xl' onClick={handleWeather}>Weather</button>
+        <p className='border border-black rounded-xl text-center p-2'>{weatherText}</p>
       </div>
     </div>
   )

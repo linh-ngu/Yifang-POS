@@ -62,7 +62,7 @@ const PopularityAnalysis = ({onClose}) => {
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
-      <div className='relative bg-white rounded-lg h-[500px] w-[500px] flex flex-col justify-center items-center'>
+      <div className='relative bg-white rounded-lg h-[500px] w-[500px] flex flex-col justify-center items-center overflow-auto'>
         {startDateVisible && (
           <input
             className='border border-black p-1 mx-auto my-4'
@@ -100,7 +100,6 @@ const PopularityAnalysis = ({onClose}) => {
         )}
         <div className='flex justify-center'>
           <button aria-label="Cancel" className='border border-black rounded-lg p-2 mx-2' onClick={handleCancel}>Cancel</button>
-          {/* <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button> */}
           {enterVisible && (
             <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button>
           )}
