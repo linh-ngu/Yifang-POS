@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react'
 import {drinksData} from '../assets/drinks'
 import Footer from '../components/Footer'
 
+/**
+ * 
+ * @returns returns and renders the menu for viewing
+ */
+
 function Menu() {
   const [drinks, setDrinks] = useState(drinksData)
 

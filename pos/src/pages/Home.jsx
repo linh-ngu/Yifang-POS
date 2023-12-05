@@ -3,6 +3,10 @@ import Video from '../assets/Yifang.mov'
 import '../styles/Home.css'
 import Footer from '../components/Footer';
 
+/**
+ * 
+ * @returns returns and renders the html code that builds the landing page of the website.
+ */
 function Home() {
   return (
     <div className='flex flex-col justify-center items-center p-0 m-0'>

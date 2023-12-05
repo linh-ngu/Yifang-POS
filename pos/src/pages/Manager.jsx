@@ -5,6 +5,11 @@ import Menu from '../components/Menu';
 import OrderHistory from '../components/OrderHistory';
 import Reports from '../components/Report';
 
+/**
+ * 
+ * @returns and renders the html code that builds the manager interface.
+ */
+
 const Manager = () => {
      const[activeTab, setActiveTab] = useState([]);
      const changeTab = (tab) => {

@@ -4,6 +4,11 @@ import { jwtDecode } from "jwt-decode";
 import Footer from "../components/Footer";
 import { UserContext } from '../contexts/UserContextProvider';
 
+/**
+ * 
+ * @returns and renders the html code that builds the login page using Google OAuth
+ */
+
 function Login() {
     
     // const [myUser, setUser]= useState({});

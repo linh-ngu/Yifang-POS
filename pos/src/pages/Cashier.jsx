@@ -5,7 +5,13 @@ import "../styles/Cashier.css"
 import BaseDrink from "../components/BaseDrink";   
 import Tips from "../components/Tips";          
 
+/**
+ * @class renders the cashier interface, supporting all of its functions including drink customization, ordering, and payment. 
+ */
 class Cashier extends React.Component {
+    /**
+     * @returns returns and renders the html code that builds the cashier interface.
+     */
 
     componentDidMount() {
         this.getOrder_id();
