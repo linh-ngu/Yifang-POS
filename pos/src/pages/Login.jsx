@@ -61,6 +61,7 @@ function Login() {
     function handleSignOut(event) {
         setUser({});
         setIsSignedIn(false);
+        setStaff('');
         // document.getElementById("signInDiv").hidden = false;
     }
 
