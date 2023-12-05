@@ -624,7 +624,7 @@ class Cashier extends React.Component {
                                 {this.state.showTips && this.tipMenu}
                             </div>
                         </div>
-                    </div>;
+                    </div>
                     </div>
                     <div>
                         {this.state.curr_right}
