@@ -54,7 +54,7 @@ const OrderHistory = () => {
               <td className='p-1'>{my_order.staff_id}</td>
               <td className='p-1'>{my_order.transaction_date}</td>
               <td className='p-1'>{my_order.payment_method}</td>
-              <td className='p-1'>{my_order.payment_amount.toFixed(2)}</td>
+              <td className='p-1'>${my_order.payment_amount.toFixed(2)}</td>
               <td className='p-1'>{my_order.timestamp}</td>
             </tr>
           ))}

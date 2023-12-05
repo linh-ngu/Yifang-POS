@@ -52,8 +52,7 @@ const Menu = () => {
             <tr key={index}>
               <td className='p-1'>{base_drink.base_id}</td>
               <td className='p-1'>{base_drink.name}</td>
-              <td className='p-1'>{base_drink.price.toFixed(2)}</td>
-              {/* <td className='p-1'>{base_drink.list_ingredients}</td> */}
+              <td className='p-1'>${base_drink.price.toFixed(2)}</td>
               <td className='p-1'>{base_drink.list_ingredients.join(', ')}</td>
             </tr>
           ))}

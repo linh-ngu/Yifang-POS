@@ -26,7 +26,7 @@ function Menu() {
     <div className='absolute w-full top-[120px]'>
       <div className='max-w-[1640px] m-auto px-16 py-4'>
         <h1 className='font-bold text-4xl text-center p-4'>Menu</h1>
-        <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4'>
+        <div className='grid sm:grid-cols-3 lg:grid-cols-4 gap-6 pt-4'>
             {drinks.map((item, index) => (
                 <div key={index} className='border shadow-lg rounded-lg'>
                     <img src={item.image} alt={item.name}
