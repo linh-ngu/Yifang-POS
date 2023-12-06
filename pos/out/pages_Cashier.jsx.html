@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Cashier.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Cashier.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import "../styles/Cashier.css"
+import BaseDrink from "../components/BaseDrink";   
+import Tips from "../components/Tips";          
+
+/**
+ * @class renders the cashier interface, supporting all of its functions including drink customization, ordering, and payment. 
+ */
+class Cashier extends React.Component {
+    /**
+     * @returns returns and renders the html code that builds the cashier interface.
+     */
+
+    componentDidMount() {
+        this.getOrder_id();
+    }
+
+    constructor(props) {
+        super(props);
+
+        // to store drink info from database
+        this.base = new BaseDrink();
+        this.tipMenu = &lt;Tips onClose={this.handleShowTips} onConfirm={this.handleConfirm}/>;
+        this.totPrice = 0;
+        this.tips = 0;
+        this.drinkId = 0;
+        this.drink = "N/A";
+        this.qty = 0;
+        this.price = 0;
+        this.ingredients = []
+        this.drinks = []
+        this.order_id = this.getOrder_id();
+        this.staff_id = 9;
+        // this.transaction_date = new Date().toLocaleDateString();
+        this.transaction_date = new Date().toISOString().split('T')[0];
+        this.payment_method = "Card";
+        this.payment_amount = 5;
+        this.timestamp = new Date().toLocaleTimeString('en-GB');
+
+        // to display ordered items
+        this.orderTable = [];
+
+        this.homeTable = 
+            &lt;div>
+            &lt;table>
+                &lt;div className="flex justify-between w-[35vw]">
+                    &lt;p className="p-7 font-bold">Name&lt;/p>
+                    &lt;div className="flex">
+                        &lt;p className="p-7 font-bold">Qty&lt;/p>
+                        &lt;p className="p-7 font-bold">Each&lt;/p>
+                        &lt;p className="p-7 font-bold">Total&lt;/p>
+                    &lt;/div>
+                &lt;/div>
+                &lt;/table>
+            &lt;/div>;
+
+        // to display order items prices
+        this.home_price = 
+        &lt;div> 
+            &lt;div className= "grid-container-topping">
+                &lt;div>
+                    Subtotal:
+                &lt;/div>
+                &lt;div>
+                    0.00
+                &lt;/div>
+                &lt;div>
+                    Tax:
+                &lt;/div>
+                &lt;div>
+                    0.00
+                &lt;/div>
+                &lt;div>
+                    Tips:
+                &lt;/div>
+                &lt;div>
+                    0.00
+                &lt;/div>
+                &lt;div>
+                    Balance Due:
+                &lt;/div>
+                &lt;div>
+                    0.00
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>;
+
+        //to display drink buttons on the right side of the screen
+        this.home_right = 
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="Teas" className = "button"  onClick={() => this.changeCurrRight(this.teas)}>&lt;p>Teas&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Brown Sugar" className = "button"  onClick={() => this.changeCurrRight(this.bwsg)}>&lt;p>Brown Sugar&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Milk Tea" className = "button"  onClick={() => this.changeCurrRight(this.milkTea)}>&lt;p>Milk Tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Fruits" className = "button"  onClick={() => this.changeCurrRight(this.fruits)}>&lt;p>Fruits&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Fresh Sugarcane" className = "button"  onClick={() => this.changeCurrRight(this.sugarcane)}>&lt;p>Fresh Sugarcane&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Fresh Taro or Red Bean" className = "button"  onClick={() => this.changeCurrRight(this.taroBean)}>&lt;p>Fresh Taro/Red Bean&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Traditional" className = "button"  onClick={() => this.changeCurrRight(this.traditional)}>&lt;p>Traditional&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="Seasonal" className = "button"  onClick={() => this.changeCurrRight(this.traditional)}>&lt;p>Seasonal&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>;
+        
+        // states stored to tab between displays (and back)
+        this.state = {
+            staffId: props.staffId,
+            curr_right: this.home_right,
+            curr_table: this.homeTable,
+            curr_price: this.home_price,
+            history_right: [],
+            history_left:[],
+            showTips: false,
+        };
+
+        this.customization = (
+            &lt;div>
+              &lt;p>Customization for: {this.drink}&lt;/p>
+            &lt;/div>
+        );
+
+        this.teas = (
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="sun moon lake black tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, 'sun moon lake black tea')}>&lt;p>sun moon lake black tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="pouchong green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "pouchong green tea")}>&lt;p>pouchong green tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="songboling mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "songboling mountain tea")}>&lt;p>songboling mountain tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="lugu oolong tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "lugu oolong tea")}>&lt;p>lugu oolong tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="tea w/ original salty cream" className= "button"  onClick={() => this.changeCurrRight(this.customization, "tea w/ original salty cream")}>&lt;p>tea w/ original salty cream&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+
+        this.bwsg = (
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="brown sugar pearl latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl latte")}>&lt;p>brown sugar pearl latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="brown sugar pearl milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl milk tea")}>&lt;p>brown sugar pearl milk tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="brown sugar pearl matcha latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl matcha latte")}>&lt;p>brown sugar pearl matcha latte&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+
+        this.milkTea = (
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="traditional milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "traditional milk tea")}>&lt;p>traditional milk tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="super trio traditional milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio traditional milk tea")}>&lt;p>super trio traditional milk tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="tea latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "tea latte")}>&lt;p>tea latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="matcha latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "matcha latte")}>&lt;p>matcha latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="peach green milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach green milk tea")}>&lt;p>peach green milk tea&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+
+        this.fruits = (
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="avocado mango agar cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "avocado mango agar cooler")}>&lt;p>avocado mango agar cooler&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="mango pomelo sago cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "mango pomelo sago cooler")}>&lt;p>mango pomelo sago cooler&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="yiFang taiwan fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "yiFang taiwan fruit tea")}>&lt;p>yiFang taiwan fruit tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="watermelon coconut agar cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "watermelon coconut agar cooler")}>&lt;p>watermelon coconut agar cooler&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="kumquat passionfruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "kumquat passionfruit tea")}>&lt;p>kumquat passionfruit tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="green plum green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "green plum green tea")}>&lt;p>green plum green tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="peach fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach fruit tea")}>&lt;p>peach fruit tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="peach soda pop" className= "button"  onClick={() => this.changeCurrRight(this.customization, "peach soda pop")}>&lt;p>peach soda pop&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="strawberry fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "strawberry fruit tea")}>&lt;p>strawberry fruit tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="strawberry milk (blended)" className= "button"  onClick={() => this.changeCurrRight(this.customization, "strawberry milk (blended)")}>&lt;p>strawberry milk (blended)&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="yakult fruit tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "yakult fruit tea")}>&lt;p>yakult fruit tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="passionfruit green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "passionfruit green tea")}>&lt;p>passionfruit green tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="pineapple green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "pineapple green tea")}>&lt;p>pineapple green tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="wintermelon lemon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon lemon tea")}>&lt;p>wintermelon lemon tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="lemon mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "lemon mountain tea")}>&lt;p>lemon mountain tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="lemon green tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "lemon green tea")}>&lt;p>lemon green tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="aiyu jelly lemon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "aiyu jelly lemon tea")}>&lt;p>aiyu jelly lemon tea&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+
+        this.sugarcane =(
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="sugarcane mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane mountain tea")}>&lt;p>sugarcane mountain tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="sugarcane lemon mountain tea"  className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane lemon mountain tea")}>&lt;p>sugarcane lemon mountain tea&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+
+        this.taroBean = (
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="fresh taro latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro latte")}>&lt;p>fresh taro latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="fresh taro green tea latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro green tea latte")}>&lt;p>fresh taro green tea latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="sweet taro sago latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "sweet taro sago latte")}>&lt;p>sweet taro sago latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="red bean black glutinous rice with coconut latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean black glutinous rice with coconut latte")}>&lt;p>red bean black glutinous rice with coconut latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="red bean sago latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean sago latte")}>&lt;p>red bean sago latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="red bean matcha frappe with boba" className= "button"  onClick={() => this.changeCurrRight(this.customization, "red bean matcha frappe with boba")}>&lt;p>red bean matcha frappe with boba&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+
+        this.traditional = (
+            &lt;>
+            &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+            &lt;div className= "grid-container-in">
+                &lt;div>
+                    &lt;button aria-label="super trio wintermelon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio wintermelon tea")}>&lt;p>super trio wintermelon tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="wintermelon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon tea")}>&lt;p>wintermelon tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="wintermelon latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "wintermelon latte")}>&lt;p>wintermelon latte&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="grass jelly tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "grass jelly tea")}>&lt;p>grass jelly tea&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="black sesame milk" className= "button"  onClick={() => this.changeCurrRight(this.customization, "black sesame milk")}>&lt;p>black sesame milk&lt;/p>&lt;/button>
+                &lt;/div>
+                &lt;div>
+                    &lt;button aria-label="thai tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "thai tea")}>&lt;p>thai tea&lt;/p>&lt;/button>
+                &lt;/div>
+            &lt;/div>
+            &lt;/>
+        );
+    }
+
+    handleConfirm = (vals) => {
+        this.tips = vals.tips;
+        this.payment_method = vals.method;
+        this.changeCurrPrice();
+    }
+
+    handleShowTips = () => {
+        this.setState(prevState => ({ showTips: !prevState.showTips }));
+    };
+
+    handleGoBack = () => {
+        if(this.state.history_right.length > 0){
+            this.setState({curr_right: this.state.history_right.pop()});
+        }
+    };
+
+    handleQtyChange = (event) => {
+        // Update the state with the new input value
+        this.qty = event.target.value;
+    };
+
+    handleToppingChange = (name, event) => {
+        if(!event.target.checked){
+            var index = this.ingredients.indexOf(name);
+            
+            if(index !== -1){
+                this.ingredients.splice(index, 1);
+                this.price -= .75;
+            }
+        }
+        else{
+            this.ingredients.push(name);
+            this.price += .75;
+        }
+    }
+
+    getOrder_id = async() => {
+        try {
+            const response = await fetch("https://yifang-backend.onrender.com/order/getId");
+            const jsonData = await response.json();
+
+            // this.state.order_id = jsonData[0].order_id + 1;
+
+            // setOrder_id(jsonData[0].order_id + 1);
+            this.setState({order_id: jsonData[0].order_id + 1});
+            console.log(jsonData[0].order_id + 1);
+        } catch (err) {
+            console.error(err.message);
+        }
+    } 
+
+    doCheckout = async e => {
+        // e.preventDefault();
+        try {
+          const { order_id, staff_id, transaction_date, payment_method, payment_amount, timestamp } = this;
+          const body = { order_id: this.state.order_id, staff_id, transaction_date, payment_method, payment_amount: (this.totPrice*(1+ 0.075) + this.tips).toFixed(2), timestamp };
+          const response = await fetch("https://yifang-backend.onrender.com/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+          });
+          console.log(response);
+          this.payOrder();
+        //   onClose();
+    
+        //   window.location = "/";
+        } catch (err) {
+          console.error(err.message);
+        }
+    };
+    
+    saveDrink = async (key) => {
+        // EDIT THIS AFTER CONNECTION WITH DATABASE
+        if (key != -1){
+            this.removeFromOrder(key);
+        }
+        if(this.qty > 0){
+            // console.log("...about to get menu");
+            await this.base.getMenu();
+
+            console.log("...finished getting menu");
+            // console.log("...finished getting menu");
+            this.price += this.base.findPrice(this.drink);
+
+            console.log(this.drink);
+            console.log("This is price: " + this.price);
+
+            this.totPrice += this.price*this.qty;
+            this.orderTable.push({drinkId: this.drinkId, drinkName: this.drink, Qty: this.qty, Each: this.price, Total: this.price*this.qty});
+            this.changeCurrTable();
+            this.changeCurrPrice();
+            this.setState({curr_right: this.state.history_right.pop()});
+
+            // reset values
+            this.drinkId = 0;
+            this.drink = "N/A";
+            this.price = 0;
+            this.qty = 0;
+            this.ingredients = [];
+        }
+    }
+
+    removeFromOrder = (key) => {
+        this.totPrice = this.totPrice - this.orderTable[key].Total;
+        delete this.orderTable[key];
+        this.changeCurrTable();
+        this.changeCurrPrice();
+    }
+
+    editDrink = (key) => {
+        var prevLength = this.orderTable.length;
+        this.changeCurrRight(this.customization, this.orderTable[key].drinkName, key);
+    }
+
+    changeCurrTable = () => {
+        this.homeTable =  (
+        &lt;div>
+            &lt;table>
+            &lt;div className="flex justify-between w-[45vw]">
+                &lt;p className="px-7 font-bold">Name&lt;/p>
+                &lt;div className="flex">
+                    &lt;p className="px-7 font-bold">Qty&lt;/p>
+                    &lt;p className="px-7 font-bold">Each&lt;/p>
+                    &lt;p className="px-7 font-bold">Total&lt;/p>
+                &lt;/div>
+            &lt;/div>
+            &lt;tbody>
+                {this.orderTable.map((item, index) => (
+                &lt;div>
+                    &lt;div key={index} className="flex justify-between w-[45vw]">
+                        &lt;p className="px-7">{item.drinkName}&lt;/p>
+                        &lt;div className="flex">
+                            &lt;p className="px-7">{item.Qty}&lt;/p>
+                            &lt;p className="px-7">{item.Each}&lt;/p>
+                            &lt;p  className="px-7">{item.Total}&lt;/p>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;button aria-label="Remove drink" className="button-small ml-7" onClick={() => this.removeFromOrder(index)}>remove&lt;/button>
+                    &lt;button aria-label="Edit drink" className="button-small ml-7" onClick={() => this.editDrink(index)}>edit&lt;/button>
+                &lt;/div>
+                ))}
+            &lt;/tbody>
+            &lt;/table>
+        &lt;/div>);
+
+        this.setState({ curr_table: this.homeTable });
+    }
+
+    changeCurrPrice = () => {
+        this.home_price = (
+        &lt;div> 
+            &lt;div className= "grid-container-topping">
+                &lt;div>
+                    Subtotal:
+                &lt;/div>
+                &lt;div>
+                    {this.totPrice.toFixed(2)}
+                &lt;/div>
+                &lt;div>
+                    Tax:
+                &lt;/div>
+                &lt;div>
+                    {(this.totPrice * 0.075).toFixed(2)}
+                &lt;/div>
+                &lt;div>
+                    Tips:
+                &lt;/div>
+                &lt;div>
+                    {this.tips.toFixed(2)}
+                &lt;/div>
+                &lt;div>
+                    Balance Due:
+                &lt;/div>
+                &lt;div>
+                    {(this.totPrice*(1+ 0.075) + this.tips).toFixed(2)}
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>);
+
+        this.setState({curr_price: this.home_price});
+    }
+
+    changeCurrRight = (newContent, newDrink = "None", key = -1) => {
+        this.state.history_right.push(this.state.curr_right);
+        if(newDrink !== "None"){
+            this.drink = newDrink;
+            this.customization = (
+                &lt;div>
+                &lt;p style={{textAlign: "center"}}>{this.drink}&lt;/p>
+                &lt;div className= "grid-container-topping">
+                    &lt;div>
+                        Boba 
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("boba", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Lychee Coconut Jelly 
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("lychee coconut jelly", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Sago 
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("sago", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Aiyu
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("aiyu", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Agar Boba
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("agar boba", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Aloe Vera
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("aloe vera", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Cheese Foam
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("cheese foam", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Red Bean
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("red bean", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Black Glutinous Rice
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("black glutinous rice", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Grass Jelly
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("grass jelly", event)}>&lt;/input>
+                    &lt;/div>
+                    &lt;div>
+                        Taro Mochi
+                    &lt;/div>
+                    &lt;div>
+                        &lt;input type = "checkbox" onChange={(event) => this.handleToppingChange("Taro Mochi", event)}>&lt;/input>
+                    &lt;/div>
+                &lt;/div>
+                    &lt;div style={{textAlign: "center"}}>
+                        Qty &lt;input type="number" style={{width:"50px", height:"30px",  border:"2px solid #ccc", borderRadius:"3px"}} onChange={this.handleQtyChange}>&lt;/input>
+                    &lt;/div>
+
+                    &lt;div style = {{float: "left", paddingLeft:"10%", display:"inline-block"}}>
+                        &lt;button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back&lt;/button>
+                    &lt;/div>
+
+                    &lt;div style={{float:"right", paddingRight:"10%", display:"inline-block"}}>
+                        &lt;button aria-label="Save" className= "button-small" onClick={() => this.saveDrink(key)}> Save &lt;/button>
+                    &lt;/div>
+                &lt;/div>
+            );
+            newContent = this.customization;
+        }
+
+        this.setState({ curr_right: newContent });
+    }
+
+    payOrder = () => {
+        this.totPrice = 0;
+        this.tips = 0;
+        this.orderTable = [] //clear table
+        this.changeCurrTable();
+        this.changeCurrPrice(0);
+    }
+
+    render() {
+        return (
+            &lt;>
+                &lt;div className= "grid-container-out">
+                    &lt;div>
+                    &lt;div className= "grid-container-left">
+                        &lt;div className="border-2 rounded-xl">
+                            {this.state.curr_table}
+                        &lt;/div>
+                        &lt;div>  
+                            {this.state.curr_price}
+                            &lt;div className='ml-7 pb-7 flex justify-between' style = {{textAlign:"right", paddingRight:"10%"}}>
+                                {/* &lt;button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}&lt;/button> */}
+                                &lt;button aria-label="Add Tips" className='button-small' onClick={this.handleShowTips}>Add Tips&lt;/button>
+                                &lt;button aria-label="Pay Now" className= "button-small" onClick={() => this.doCheckout()}>Pay Now&lt;/button>
+                                {this.state.showTips &amp;&amp; this.tipMenu}
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;/div>
+                    &lt;div>
+                        {this.state.curr_right}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/>
+
+        );
+    }
+}
+
+export default Cashier;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BaseDrink.html">BaseDrink</a></li><li><a href="Cashier.html">Cashier</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddIngredients">AddIngredients</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#Bag">Bag</a></li><li><a href="global.html#Customization">Customization</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Ingredient">Ingredient</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Manager">Manager</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Order">Order</a></li><li><a href="global.html#OrderHistory">OrderHistory</a></li><li><a href="global.html#Redirect">Redirect</a></li><li><a href="global.html#Report">Report</a></li><li><a href="global.html#ShopContext">ShopContext</a></li><li><a href="global.html#Tips">Tips</a></li><li><a href="global.html#UserContext">UserContext</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Dec 05 2023 16:49:11 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

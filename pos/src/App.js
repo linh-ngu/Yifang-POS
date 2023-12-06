@@ -10,7 +10,9 @@ import Redirect from './pages/Redirect';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShopContextProvider } from './contexts/ShopContextProvider';
 import { UserContextProvider } from './contexts/UserContextProvider';
-
+/**
+ * @returns the home page with access to all the other interfaces as well 
+ */
 function App() {
 
   return (

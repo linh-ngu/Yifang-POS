@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Navbar.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Navbar.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react'
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom'
+import '../styles/Navbar.css'
+import Logo from '../assets/YifangLogo.png'
+import Bag from './Bag';
+/**
+ * @returns navbar with access to different interfaces
+ */
+const Navbar = () => {
+    const [openLinks, setOpenLinks] = useState(false);
+    const [isBagOpen, setIsBagOpen] = useState(false);
+    const [hoverLogin, setHoverLogin] = useState(false);
+    const [hoverBag, setHoverBag] = useState(false);
+
+    const toggleNavbar = () => {
+        setOpenLinks(!openLinks)
+    }
+
+    const closeBag = () => {
+        setIsBagOpen(false);
+    };
+
+    return (
+        &lt;div className='navbar w-full h-[150px] flex justify-between absolute z-10 backdrop-blur-sm'>
+            &lt;div className='flex items-center justify-center' id={openLinks ? "open" : "close"}>
+            &lt;Link to="/">
+                &lt;img src={Logo} alt='Logo' className='w-[150px]'/>
+            &lt;/Link>
+                &lt;div className='hiddenLinks'>
+                    &lt;Link to='/menu' className='styled-hover'>Menu&lt;/Link>
+                    &lt;Link to='/order' className='styled-hover'>Order&lt;/Link>
+                    &lt;Link to='/login' className='login' onMouseEnter={() => setHoverLogin(true)} onMouseLeave={() => setHoverLogin(false)}>
+                        {hoverLogin ? &lt;AccountCircleIcon /> : &lt;AccountCircleOutlinedIcon />}
+                    &lt;/Link>
+                &lt;/div>
+            &lt;/div>
+            &lt;div className='rightSide'>
+                &lt;div className='navBarButtons'>
+                    &lt;Link to='/menu' className='styled-hover'>Menu&lt;/Link>
+                    &lt;Link to='/order' className='styled-hover'>Order&lt;/Link>
+                    &lt;Link to='/login' className='-translate-y-[2px]' onMouseEnter={() => setHoverLogin(true)} onMouseLeave={() => setHoverLogin(false)}>
+                        {hoverLogin ? &lt;AccountCircleIcon /> : &lt;AccountCircleOutlinedIcon />}
+                    &lt;/Link>
+                    &lt;button aria-label="Shopping bag" onClick={toggleNavbar}>&lt;MenuIcon/>&lt;/button>
+                    &lt;div className='bag cursor-pointer -translate-y-[2px]' onMouseEnter={() => setHoverBag(true)} onMouseLeave={() => setHoverBag(false)}>
+                        {isBagOpen ? &lt;ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : (hoverBag ? &lt;ShoppingBagIcon onClick={() => setIsBagOpen(!isBagOpen)} /> : &lt;ShoppingBagOutlinedIcon onClick={() => setIsBagOpen(!isBagOpen)} />)}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            {isBagOpen &amp;&amp; &lt;Bag onClose={closeBag} />}
+        &lt;/div>
+    )
+}
+
+export default Navbar
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BaseDrink.html">BaseDrink</a></li><li><a href="Cashier.html">Cashier</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddIngredients">AddIngredients</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#Bag">Bag</a></li><li><a href="global.html#Customization">Customization</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Ingredient">Ingredient</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Manager">Manager</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Order">Order</a></li><li><a href="global.html#OrderHistory">OrderHistory</a></li><li><a href="global.html#Redirect">Redirect</a></li><li><a href="global.html#Report">Report</a></li><li><a href="global.html#ShopContext">ShopContext</a></li><li><a href="global.html#Tips">Tips</a></li><li><a href="global.html#UserContext">UserContext</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Dec 05 2023 16:49:11 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/OrderHistory.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/OrderHistory.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import TotalOrders from './orderHistoryTableButtons/totalOrders';
+import BestSeller from './orderHistoryTableButtons/bestSeller';
+import PaymentMethod from './orderHistoryTableButtons/paymentMethod';
+import PeakDay from './orderHistoryTableButtons/peakDay';
+import SlowDay from './orderHistoryTableButtons/slowDay';
+/**
+ * @returns data from order history as a table
+ */
+
+const OrderHistory = () => {
+  const[order, setOrder] = useState([]);
+
+  const getOrder = async() => {
+      try {
+          const response = await fetch("http://localhost:5000/manager/orderhistory");
+          const jsonData = await response.json();
+
+          setOrder(jsonData);
+
+      } catch (err) {
+          console.error(err.message);
+      }
+  } 
+  
+  useEffect(() => {
+    getOrder().catch(error => console.error(error));
+  });
+
+  const [showModel, setShowModel] = useState("");
+
+  const openModel = (val) => {
+      setShowModel(val);
+  };
+
+  const closeModel = () => {
+      setShowModel("");
+  };
+  
+  return (
+    &lt;div className=''>
+      &lt;table className='w-full text-center border border-black mb-4'>
+          &lt;thead>
+            &lt;tr>
+              &lt;th className='p-1'>Order ID&lt;/th>
+              &lt;th className='p-1'>Staff ID&lt;/th>
+              &lt;th className='p-1'>Transaction Date&lt;/th>
+              &lt;th className='p-1'>Payment Method&lt;/th>
+              &lt;th className='p-1'>Payment Amount&lt;/th>
+              &lt;th className='p-1'>Timestamp&lt;/th>
+            &lt;/tr>
+          &lt;/thead>
+          &lt;tbody>
+          {order.map((my_order, index) => (
+            &lt;tr key={index}>
+              &lt;td className='p-1'>{my_order.order_id}&lt;/td>
+              &lt;td className='p-1'>{my_order.staff_id}&lt;/td>
+              &lt;td className='p-1'>{my_order.transaction_date}&lt;/td>
+              &lt;td className='p-1'>{my_order.payment_method}&lt;/td>
+              &lt;td className='p-1'>${my_order.payment_amount.toFixed(2)}&lt;/td>
+              &lt;td className='p-1'>{my_order.timestamp}&lt;/td>
+            &lt;/tr>
+          ))}
+        &lt;/tbody>
+      &lt;/table>
+      &lt;div className='flex justify-center'>
+        &lt;button aria-label="Total number of orders" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("totalOrders")}>Total # of Orders&lt;/button>
+        &lt;button aria-label="Best seller" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("bestSeller")}>Best Seller&lt;/button>
+        &lt;button aria-label="Payment method" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("paymentMethod")}>Payment Method&lt;/button>
+        &lt;button aria-label="Peak day" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("peakDay")}>Peak Day&lt;/button>
+        &lt;button aria-label="Slow day" className='border border-black shadow-md rounded-lg p-2 m-4' onClick={() => openModel("slowDay")}>Slow Day&lt;/button> 
+      &lt;/div>
+      {showModel === "totalOrders" &amp;&amp; &lt;TotalOrders onClose={closeModel} />}
+      {showModel === "bestSeller" &amp;&amp; &lt;BestSeller onClose={closeModel} />}
+      {showModel === "paymentMethod" &amp;&amp; &lt;PaymentMethod onClose={closeModel} />}
+      {showModel === "peakDay" &amp;&amp; &lt;PeakDay onClose={closeModel} />}
+      {showModel === "slowDay" &amp;&amp; &lt;SlowDay onClose={closeModel} />}
+    &lt;/div>
+  )
+};
+
+export default OrderHistory;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BaseDrink.html">BaseDrink</a></li><li><a href="Cashier.html">Cashier</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AddIngredients">AddIngredients</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#Bag">Bag</a></li><li><a href="global.html#Customization">Customization</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Ingredient">Ingredient</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Manager">Manager</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Order">Order</a></li><li><a href="global.html#OrderHistory">OrderHistory</a></li><li><a href="global.html#Redirect">Redirect</a></li><li><a href="global.html#Report">Report</a></li><li><a href="global.html#ShopContext">ShopContext</a></li><li><a href="global.html#Tips">Tips</a></li><li><a href="global.html#UserContext">UserContext</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Dec 05 2023 16:49:11 GMT-0600 (Central Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
