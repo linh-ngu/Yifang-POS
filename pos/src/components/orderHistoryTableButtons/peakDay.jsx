@@ -27,7 +27,7 @@ const PeakDay = ({ onClose }) => {
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
-      <div className='relative bg-white rounded-lg h-[500px] w-[500px] overflow-auto'>
+      <div className='relative bg-white rounded-lg h-[500px] w-[500px] flex flex-col justify-center items-center overflow-auto'>
         {peakDaysData ? (
           <div>
             <p>Peak Days:</p>

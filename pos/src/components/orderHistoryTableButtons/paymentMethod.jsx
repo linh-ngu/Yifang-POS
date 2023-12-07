@@ -25,13 +25,11 @@ const PaymentMethod = ({ onClose }) => {
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 p-8'>
-      <div className='relative bg-white rounded-lg h-[500px] w-[500px]'>
+      <div className='relative bg-white rounded-lg h-[500px] w-[500px] flex flex-col justify-center items-center overflow-auto'>
         {paymentData ? (
           <div>
-            <p>Payment Method:</p>
-            <p>{paymentData.payment_method}</p>
-            <p>Payment Count:</p>
-            <p>{paymentData.payment_count}</p>
+            <p>Payment Method: {paymentData.payment_method}</p>
+            <p>Payment Count: {paymentData.payment_count}</p>
           </div>
         ) : (
           <p>Loading...</p>
