@@ -45,12 +45,12 @@ class Cashier extends React.Component {
         this.homeTable = 
             <div>
             <table>
-                <div className="flex justify-between w-[35vw]">
-                    <p className="p-7 font-bold">Name</p>
+                <div className="flex justify-between w-[45vw]">
+                    <p className="p-4 font-bold">Name</p>
                     <div className="flex">
-                        <p className="p-7 font-bold">Qty</p>
-                        <p className="p-7 font-bold">Each</p>
-                        <p className="p-7 font-bold">Total</p>
+                        <p className="p-4 font-bold">Qty</p>
+                        <p className="p-4 font-bold">Each</p>
+                        <p className="p-4 font-bold">Total</p>
                     </div>
                 </div>
                 </table>
@@ -135,7 +135,7 @@ class Cashier extends React.Component {
 
         this.teas = (
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="sun moon lake black tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, 'sun moon lake black tea')}><p>sun moon lake black tea</p></button>
@@ -158,7 +158,7 @@ class Cashier extends React.Component {
 
         this.bwsg = (
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="brown sugar pearl latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "brown sugar pearl latte")}><p>brown sugar pearl latte</p></button>
@@ -175,7 +175,7 @@ class Cashier extends React.Component {
 
         this.milkTea = (
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="traditional milk tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "traditional milk tea")}><p>traditional milk tea</p></button>
@@ -198,7 +198,7 @@ class Cashier extends React.Component {
 
         this.fruits = (
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="avocado mango agar cooler" className= "button"  onClick={() => this.changeCurrRight(this.customization, "avocado mango agar cooler")}><p>avocado mango agar cooler</p></button>
@@ -257,7 +257,7 @@ class Cashier extends React.Component {
 
         this.sugarcane =(
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="sugarcane mountain tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "sugarcane mountain tea")}><p>sugarcane mountain tea</p></button>
@@ -271,7 +271,7 @@ class Cashier extends React.Component {
 
         this.taroBean = (
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="fresh taro latte" className= "button"  onClick={() => this.changeCurrRight(this.customization, "fresh taro latte")}><p>fresh taro latte</p></button>
@@ -297,7 +297,7 @@ class Cashier extends React.Component {
 
         this.traditional = (
             <>
-            <button aria-label="Back" className= "button-small" onClick={() => this.handleGoBack()}>Back</button>
+            <button aria-label="Back" className= "button-small translate-x-[10px]" onClick={() => this.handleGoBack()}>Back</button>
             <div className= "grid-container-in">
                 <div>
                     <button aria-label="super trio wintermelon tea" className= "button"  onClick={() => this.changeCurrRight(this.customization, "super trio wintermelon tea")}><p>super trio wintermelon tea</p></button>
@@ -441,26 +441,26 @@ class Cashier extends React.Component {
         <div>
             <table>
             <div className="flex justify-between w-[45vw]">
-                <p className="px-7 font-bold">Name</p>
+                <p className="p-4 font-bold">Name</p>
                 <div className="flex">
-                    <p className="px-7 font-bold">Qty</p>
-                    <p className="px-7 font-bold">Each</p>
-                    <p className="px-7 font-bold">Total</p>
+                    <p className="p-4 font-bold">Qty</p>
+                    <p className="p-4 font-bold">Each</p>
+                    <p className="p-4 font-bold">Total</p>
                 </div>
             </div>
             <tbody>
                 {this.orderTable.map((item, index) => (
                 <div>
                     <div key={index} className="flex justify-between w-[45vw]">
-                        <p className="px-7">{item.drinkName}</p>
+                        <p className="px-4 pb-1">{item.drinkName}</p>
                         <div className="flex">
-                            <p className="px-7">{item.Qty}</p>
-                            <p className="px-7">{item.Each}</p>
-                            <p  className="px-7">{item.Total}</p>
+                            <p className="px-4 pb-1">{item.Qty}</p>
+                            <p className="px-4 pb-1">{item.Each}</p>
+                            <p  className="px-4 pb-1">{item.Total}</p>
                         </div>
                     </div>
-                    <button aria-label="Remove drink" className="button-small ml-7" onClick={() => this.removeFromOrder(index)}>remove</button>
-                    <button aria-label="Edit drink" className="button-small ml-7" onClick={() => this.editDrink(index)}>edit</button>
+                    <button aria-label="Remove drink" className="button-small ml-7 mb-2" onClick={() => this.removeFromOrder(index)}>remove</button>
+                    <button aria-label="Edit drink" className="button-small ml-7 mb-2" onClick={() => this.editDrink(index)}>edit</button>
                 </div>
                 ))}
             </tbody>
@@ -611,14 +611,13 @@ class Cashier extends React.Component {
             <>
                 <div className= "grid-container-out">
                     <div>
-                    <div className= "grid-container-left">
-                        <div className="border-2 rounded-xl">
+                    <div className= "grid-container-left h-[300px]">
+                        <div className="border-2 rounded-xl overflow-auto h-[300px]">
                             {this.state.curr_table}
                         </div>
-                        <div>  
+                        <div className='flex flex-col justify-between h-[255px]'>  
                             {this.state.curr_price}
-                            <div className='ml-7 pb-7 flex justify-between' style = {{textAlign:"right", paddingRight:"10%"}}>
-                                {/* <button className= "button-small" onClick={() => this.payOrder()}>Pay Now {this.state.order_id}</button> */}
+                            <div className='ml-7 flex justify-between' style = {{textAlign:"right", paddingRight:"10%"}}>
                                 <button aria-label="Add Tips" className='button-small' onClick={this.handleShowTips}>Add Tips</button>
                                 <button aria-label="Pay Now" className= "button-small" onClick={() => this.doCheckout()}>Pay Now</button>
                                 {this.state.showTips && this.tipMenu}

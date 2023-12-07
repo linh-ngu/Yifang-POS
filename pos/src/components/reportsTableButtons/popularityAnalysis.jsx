@@ -86,8 +86,8 @@ const PopularityAnalysis = ({onClose}) => {
           />
         )}
         {popularityData ? (
-          <div>
-            <p>Popularity:</p>
+          <div className='px-4 pt-4 overflow-auto'>
+            <p className='text-center'>Popularity:</p>
             <br></br>
             <ul>
               {popularityData.map((drink, index) => (
@@ -103,7 +103,7 @@ const PopularityAnalysis = ({onClose}) => {
           <p></p>
         )}
         <div className='flex justify-center'>
-          <button aria-label="Cancel" className='border border-black rounded-lg p-2 mx-2' onClick={handleCancel}>Cancel</button>
+          <button aria-label="Cancel" className='border border-black rounded-lg p-2 m-4' onClick={handleCancel}>Cancel</button>
           {enterVisible && (
             <button aria-label="Enter" className='border border-black rounded-lg p-2 mx-2' onClick={handleEnter}>Enter</button>
           )}

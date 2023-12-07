@@ -102,7 +102,7 @@ const SalesReport = ({onClose}) => {
         )}
         {salesReport ? (
           <div>
-            <p>Sales Report:</p>
+            <p className='text-center'>Sales Report:</p>
             <br></br>
             <ul>
               {salesReport.map((report, index) => (
